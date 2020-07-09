@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - node
+  - 14
+  - 13
+  - 11
+  - 10
+cache: yarn
+
+script:
+  - "yarn ci"

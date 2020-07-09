@@ -1,0 +1,9 @@
+{
+  "name": "redux-to-recoil",
+  "version": "0.0.1",
+  "description": "Create Recoil atoms and selectors from your existing actions, reducers, and selectors",
+  "main": "index.js",
+  "repository": "https://github.com/spautz/redux-to-recoil",
+  "author": "Steven Pautz <spautz@gmail.com>",
+  "license": "MIT"
+}
