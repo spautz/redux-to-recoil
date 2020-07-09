@@ -1,23 +1,14 @@
 /* eslint-env node */
 
 module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
     'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
   ],
-
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2019,
-    sourceType: 'module',
-  },
-
-  ignorePatterns: [
-    'dist/',
-    'coverage/',
-    'node_modules/',
-  ],
+  ignorePatterns: ['dist/', 'coverage/', 'node_modules/'],
 };

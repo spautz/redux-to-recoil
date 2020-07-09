@@ -2,8 +2,89 @@
   "name": "redux-to-recoil",
   "version": "0.0.1",
   "description": "Create Recoil atoms and selectors from your existing actions, reducers, and selectors",
-  "main": "index.js",
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/spautz/redux-to-recoil#readme",
   "repository": "https://github.com/spautz/redux-to-recoil",
+  "bugs": "https://github.com/spautz/redux-to-recoil/issues",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "author": "Steven Pautz <spautz@gmail.com>",
-  "license": "MIT"
+  "files": [
+    "dist/",
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "jsnext:main": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "____ LIFECYCLE HOOKS _______________________________________________": "",
+    "prepare": "yon run build",
+    "prebuild": "yon run clean",
+    "prerelease": "yon run clean",
+    "prepublishOnly": "yarn run checkup && yarn run build",
+    "pretest": "yon run test:clean",
+    "____ INTEGRATION ___________________________________________________": "",
+    "dev": "yon run format && yon run types && yon run lint",
+    "checkup": "yon run format:checkup && yon run types && yon run lint",
+    "all": "yon run dev && yon run test && yon run build",
+    "____ INDIVIDUAL COMMANDS ___________________________________________": "",
+    "build": "microbundle build",
+    "build:watch": "microbundle watch",
+    "clean": "rimraf dist/ node_modules/.cache/ && yon run test:clean",
+    "format": "prettier --write \"**/*.*\"",
+    "format:checkup": "prettier --list-different \"**/*.*\"",
+    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
+    "release:tag": "standard-version --sign --skip.changelog --release-as ",
+    "test": "jest --coverage",
+    "test:clean": "rimraf coverage/",
+    "test:watch": "jest --coverage --watch",
+    "types": "tsc --noEmit --p tsconfig.json"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^26.0.4",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
+    "microbundle": "^0.12.2",
+    "prettier": "^2.0.5",
+    "redux": "^4.0.5",
+    "rimraf": "^3.0.2",
+    "standard-version": "^8.0.0",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.6",
+    "yarn-or-npm": "^3.0.1"
+  },
+  "peerDependencies": {
+    "redux": "^4.0.0"
+  },
+  "lint-staged": {
+    "**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "yon format"
+    }
+  }
 }
