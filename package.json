@@ -67,6 +67,7 @@
     "redux": "^4.0.5",
     "rimraf": "^3.0.2",
     "standard-version": "^8.0.0",
+    "ts-jest": "^26.1.1",
     "tslib": "^2.0.0",
     "typescript": "^3.9.6",
     "yarn-or-npm": "^3.0.1"

@@ -1,3 +1,2 @@
-// @TODO
-
-export default null;
+export { default as atomFromReduxState } from './atomFromReduxState';
+export * from './atomFromReduxState';

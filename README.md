@@ -33,7 +33,7 @@ import { atomFromReduxState } from 'redux-to-recoil';
 import { myActionCreator, myReducer, mySelector } from 'my-existing-code';
 
 // `atomFromReduxState` replaces Recoil's `atom()` constructor
-const todoAtom = atomFromReduxState('todos'); // wraps state.todos
+const todoAtom = atomFromReduxState('.todos'); // wraps state.todos
 
 const todoCountSelector = selector({
   key: 'todoCountSelector',
