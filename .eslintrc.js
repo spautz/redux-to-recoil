@@ -10,5 +10,6 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
   ],
-  ignorePatterns: ['dist/', 'coverage/', 'node_modules/'],
+
+  ignorePatterns: ['demos/', 'dist/', 'coverage/', 'node_modules/'],
 };

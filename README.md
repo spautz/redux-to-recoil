@@ -11,7 +11,7 @@ Create Recoil atoms and selectors from your existing actions, reducers, and sele
 
 ## Motivation
 
-Migrating from [Redux](https://redux.js.org/) to [Recoil](https://recoiljs.org/) requires migrating a lot of code.
+Migrating from [Redux](https://redux.js.org/) to [Recoil](https://recoiljs.org/) can be a lot of work.
 
 This library contains utilities which take in your existing Redux-oriented functions and return Recoil state.
 The goal is to try things out with Recoil without having to migrate your entire codebase first.
@@ -33,20 +33,18 @@ import { atomFromReduxState } from 'redux-to-recoil';
 import { myActionCreator, myReducer, mySelector } from 'my-existing-code';
 
 // `atomFromReduxState` replaces Recoil's `atom()` constructor
-const todoAtom = atomFromReduxState('.todos'); // wraps state.todos
+const todoListAtom = atomFromReduxState('.todos'); // wraps state.todos
 
 const todoCountSelector = selector({
-  key: 'todoCountSelector',
-  get: ({ get }) => get(todoAtom).length,
+  key: 'todoCount',
+  get: ({ get }) => get(todoList).length,
 });
 
 // Inside your component, use the atoms and selectors as normal
-const [todos, setTodos] = useRecoilState(todoAtom);
+const [todoList, setTodoList] = useRecoilState(todoListAtom);
 const todoCount = useRecoilState(todoCountSelector);
 
-// And continue to use Redux, too
-const todoCount = useSelector(myExistingSelector);
-<button onClick={() => dispatch(addTodo())}>
+// All Redux middleware and tools still work
 ```
 
 ```typescript jsx
