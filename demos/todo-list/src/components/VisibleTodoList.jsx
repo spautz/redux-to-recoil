@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Todo from './Todo';
-import visibleTodosSelector from '../selectors/visibleTodosSelector';
 import { toggleTodo } from '../actions';
+import visibleTodosSelector from '../selectors/visibleTodosSelector';
+import Todo from './Todo';
 
 const VisibleTodoList = (props) => {
   const dispatch = useDispatch();
