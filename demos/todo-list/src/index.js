@@ -1,17 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { RecoilRoot } from 'recoil';
 
 import rootReducer from './reducers';
-import App from './App';
+import ReduxApp from './ReduxApp';
+import RecoilApp from './RecoilApp';
 
 const store = createStore(rootReducer);
 
 render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RecoilRoot>
+        <ReduxApp />
+        <RecoilApp />
+      </RecoilRoot>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
