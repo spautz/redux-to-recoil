@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { VisibilityFilters } from '../../constants';
-import { setVisibilityFilter } from '../../redux/actions';
-import visibilityFilterSelector from '../../redux/selectors/visibilityFilterSelector';
+import { setVisibilityFilter, VisibilityFilters } from '../actions';
+import visibilityFilterSelector from '../selectors/visibilityFilterSelector';
 
 const FilterLink = (props) => {
   const { children, filter } = props;

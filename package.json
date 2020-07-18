@@ -50,7 +50,9 @@
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "recoil": "^0.0.10"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.4",
     "@types/react-redux": "^7.1.9",
@@ -65,11 +67,7 @@
     "lint-staged": "^10.2.11",
     "microbundle": "^0.12.2",
     "prettier": "^2.0.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0",
     "recoil": "^0.0.10",
-    "redux": "^4.0.5",
     "rimraf": "^3.0.2",
     "standard-version": "^8.0.0",
     "ts-jest": "^26.1.1",
@@ -77,12 +75,7 @@
     "typescript": "^3.9.6",
     "yarn-or-npm": "^3.0.1"
   },
-  "peerDependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "recoil": "^0.0.10",
-    "redux": "^4.0.0"
-  },
+  "peerDependencies": {},
   "lint-staged": {
     "**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}": [
       "prettier --write"

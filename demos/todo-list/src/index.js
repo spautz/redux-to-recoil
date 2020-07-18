@@ -4,9 +4,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
 
-import rootReducer from './redux/reducers';
-import ReduxApp from './ReduxApp';
-import RecoilApp from './RecoilApp';
+import rootReducer from './reducers';
+import App from './App';
 
 const store = createStore(rootReducer);
 
@@ -14,8 +13,7 @@ render(
   <React.StrictMode>
     <Provider store={store}>
       <RecoilRoot>
-        <ReduxApp />
-        <RecoilApp />
+        <App />
       </RecoilRoot>
     </Provider>
   </React.StrictMode>,

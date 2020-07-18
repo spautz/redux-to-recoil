@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { VisibilityFilters } from '../../constants';
+import { VisibilityFilters } from '../actions';
 import allTodosSelector from './allTodosSelector';
 import visibilityFilterSelector from './visibilityFilterSelector';
 
