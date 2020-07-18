@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { VisibilityFilters } from './actions';
-import AddTodo from './components.recoil/AddTodo';
-import FilterLink from './components.recoil/FilterLink';
-import VisibleTodoList from './components.recoil/VisibleTodoList';
+import { VisibilityFilters } from './constants';
+import AddTodo from './recoil/components/AddTodo';
+import FilterLink from './recoil/components/FilterLink';
+import VisibleTodoList from './recoil/components/VisibleTodoList';
 
 const RecoilApp = () => (
   <fieldset>
-    <legend>Recoil</legend>
+    <legend>100% Recoil</legend>
     <AddTodo />
     <VisibleTodoList />
 

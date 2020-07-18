@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
-import { addTodo } from '../actions';
+import { addTodo } from '../../redux/actions';
 
 const AddTodo = () => {
   const dispatch = useDispatch();

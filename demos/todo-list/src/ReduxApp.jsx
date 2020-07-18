@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { VisibilityFilters } from './actions';
-import AddTodo from './components.redux/AddTodo';
-import FilterLink from './components.redux/FilterLink';
-import VisibleTodoList from './components.redux/VisibleTodoList';
+import { VisibilityFilters } from './constants';
+import AddTodo from './redux/components/AddTodo';
+import FilterLink from './redux/components/FilterLink';
+import VisibleTodoList from './redux/components/VisibleTodoList';
 
 const ReduxApp = () => (
   <fieldset>
-    <legend>Redux</legend>
+    <legend>100% Redux</legend>
     <AddTodo />
     <VisibleTodoList />
 

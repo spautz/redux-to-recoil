@@ -65,6 +65,8 @@
     "lint-staged": "^10.2.11",
     "microbundle": "^0.12.2",
     "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "recoil": "^0.0.10",
     "redux": "^4.0.5",
@@ -76,8 +78,10 @@
     "yarn-or-npm": "^3.0.1"
   },
   "peerDependencies": {
-    "redux": "^4.0.0",
-    "recoil": "^0.0.10"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "recoil": "^0.0.10",
+    "redux": "^4.0.0"
   },
   "lint-staged": {
     "**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}": [

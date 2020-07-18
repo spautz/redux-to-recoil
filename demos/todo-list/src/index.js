@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
 
-import rootReducer from './reducers';
+import rootReducer from './redux/reducers';
 import ReduxApp from './ReduxApp';
 import RecoilApp from './RecoilApp';
 
