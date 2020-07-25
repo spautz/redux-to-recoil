@@ -1,10 +1,12 @@
 ## Todo List demo
 
-This project takes the ["Todo List" example from Redux](https://redux.js.org/basics/example) and implements it in three
-ways:
+This demo project takes the ["Todo List" example from Redux](https://redux.js.org/basics/example) and uses
+[Redux-to-Recoil](https://github.com/spautz/redux-to-recoil) to access the Redux state via Recoil.
 
-1. Using the standard Redux store
-2. Using equivalent state in Recoil
-3. Using React-to-Recoil to create Recoil state using the original Redux code
+There are three different implementations of the UI, running side-by-side:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- The original plain Redux version: read from Redux state, dispatch actions to Redux
+- A Recoil state version: read from Recoil state, dispatch actions to Redux
+- A bidirectional Recoil state version: read from Recoil state, write to Recoil state
+
+This project was bootstrapped with [Create React ReduxApp](https://github.com/facebook/create-react-app).

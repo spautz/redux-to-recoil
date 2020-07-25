@@ -1,10 +1,11 @@
 import { createSelector } from 'reselect';
 
 import { VisibilityFilters } from '../actions';
-import allTodosSelector from './allTodosSelector';
-import visibilityFilterSelector from './visibilityFilterSelector';
 
-const visibleTodosSelector = createSelector(
+const allTodosSelector = (state) => state.todos;
+const visibilityFilterSelector = (state) => state.visibilityFilter;
+
+const getVisibleTodos = createSelector(
   [allTodosSelector, visibilityFilterSelector],
   (allTodos, visibilityFilter) => {
     switch (visibilityFilter) {
@@ -20,4 +21,4 @@ const visibleTodosSelector = createSelector(
   },
 );
 
-export default visibleTodosSelector;
+export default getVisibleTodos;
