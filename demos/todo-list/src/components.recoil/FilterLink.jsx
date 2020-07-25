@@ -1,15 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useRecoilValue } from 'recoil';
+import { atomFromRedux } from 'redux-to-recoil';
 
 import { setVisibilityFilter } from '../actions';
 
+const visibilityFilterAtom = atomFromRedux('.visibilityFilter');
+
 const FilterLink = (props) => {
-  const { children, active, onClick } = props;
+  const { children, filter } = props;
+  const dispatch = useDispatch();
+
+  const currentFilter = useRecoilValue(visibilityFilterAtom);
 
   return (
     <button
-      onClick={onClick}
-      disabled={active}
+      onClick={() => dispatch(setVisibilityFilter(filter))}
+      disabled={filter === currentFilter}
       style={{
         marginLeft: '4px',
       }}
@@ -19,12 +26,4 @@ const FilterLink = (props) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.visibilityFilter,
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => dispatch(setVisibilityFilter(ownProps.filter)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilterLink);
+export default FilterLink;

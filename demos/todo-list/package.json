@@ -12,6 +12,7 @@
     "react-scripts": "3.4.1",
     "recoil": "^0.0.10",
     "redux": "^4.0.5",
+    "redux-to-recoil": "file:../../",
     "reselect": "^4.0.0"
   },
   "scripts": {
