@@ -12,6 +12,7 @@
 !**/*.tsx
 
 # Unless they're somewhere we can ignore
+build/
 dist/
 coverage/
 node_modules/

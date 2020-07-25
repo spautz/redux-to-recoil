@@ -6,6 +6,7 @@
     "lib": ["dom", "ES2019"],
     "allowJs": true,
     "declaration": true,
+    "jsx": "react",
     "sourceMap": true,
     "removeComments": false,
     /* Strict Type-Checking Options */

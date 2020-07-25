@@ -1,12 +1,15 @@
 import React from 'react';
 
 import { VisibilityFilters } from './actions';
-import AddTodo from './components/AddTodo';
-import FilterLink from './components/FilterLink';
-import VisibleTodoList from './components/VisibleTodoList';
+import AddTodo from './components.recoil/AddTodo';
+import FilterLink from './components.recoil/FilterLink';
+import VisibleTodoList from './components.recoil/VisibleTodoList';
 
-const App = () => (
-  <div>
+const ReduxApp = () => (
+  <fieldset>
+    <legend>
+      <legend>Redux-to-Recoil</legend>
+    </legend>
     <AddTodo />
     <VisibleTodoList />
 
@@ -16,7 +19,7 @@ const App = () => (
       <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
       <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
     </div>
-  </div>
+  </fieldset>
 );
 
-export default App;
+export default ReduxApp;
