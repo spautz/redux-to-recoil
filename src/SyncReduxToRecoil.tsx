@@ -1,4 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useRecoilState } from 'recoil';
+
+import { reduxStateAtom } from './internals';
+
+const selectEntireState = (state: any) => state;
 
 interface SyncReduxToRecoilProps {
   enabled?: boolean;
@@ -7,11 +13,13 @@ interface SyncReduxToRecoilProps {
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const { children, enabled } = props;
 
-  // const reduxStore = useSt();
+  const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
-  useEffect(() => {
-    console.log('SyncReduxToRecoil:useEffect');
-  }, [enabled]);
+  const currentReduxState = useSelector(selectEntireState);
+  if (enabled && currentReduxState !== lastReduxState) {
+    console.log('new currentReduxState!', currentReduxState);
+    setReduxState(currentReduxState);
+  }
 
   return <React.Fragment>{children}</React.Fragment>;
 };

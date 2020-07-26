@@ -1,6 +1,6 @@
 import { RecoilState, selector } from 'recoil';
 
-import { getReduxSourceAtom, getValueAtPath } from './util';
+import { getValueAtPath, reduxStateAtom } from './internals';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const atomFromRedux = <ReturnType = any>(namespace: string): RecoilState<ReturnType> => {
@@ -9,11 +9,11 @@ const atomFromRedux = <ReturnType = any>(namespace: string): RecoilState<ReturnT
 
   // Although named "atomFromRedux", each instance is actually just a selector. They all pull from a single atom
   const selectorFromRedux = selector<ReturnType>({
-    key: `redux-to-recoil:${namespaceParts.join('.')}`,
+    key: `redux-to-recoil:atom:${namespaceParts.join('.')}`,
     get: ({ get }) => {
-      const reduxSourceAtom = getReduxSourceAtom();
-      const reduxState = get(reduxSourceAtom);
-      return getValueAtPath(reduxState, namespaceParts);
+      const reduxState = get(reduxStateAtom);
+      const value = getValueAtPath(reduxState, namespaceParts);
+      return value;
     },
     set: ({ get, set }) => {
       console.log('TODO: Bidirectional support', namespace, { get, set });

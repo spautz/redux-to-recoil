@@ -6,3 +6,5 @@ export * from './atomFromRedux';
 
 export { default as selectorFromReselect } from './selectorFromReselect';
 export * from './selectorFromReselect';
+
+export * as internals from './internals';

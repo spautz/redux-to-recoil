@@ -51,8 +51,12 @@ together in a component.
 This library is useful for accessing Redux state from _within_ a Recoil selector -- which lets you call selectors
 conditionally, or within loops. `useSelector` can't do that.
 
-This library can help you avoid unnecessary rerenders in some situations. It can also facilitate a migration from
-Redux to Recoil.
+It can also facilitate a migration from Redux to Recoil.
+
+## Performance notes
+
+Until [Recoil issue #314](https://github.com/facebookexperimental/Recoil/issues/314) is worked, each component that
+uses a Redux-linked atom or selector will rerender when Redux updates.
 
 ## Roadmap
 
