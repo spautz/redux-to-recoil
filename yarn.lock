@@ -1078,6 +1078,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@ngard/tiny-get@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@ngard/tiny-get/-/tiny-get-1.2.2.tgz#3784ea1fdd852a59a44d50c144f070529422d7a7"
+  integrity sha512-+B2yx8KGWPxi/z0fqCgA+gNEWGwoVJZ8v98DFHIEVtEfn5BHXV8Wcr9NfracmrZa2dqekyXduPFcw2sL1HUw6Q==
+
 "@rollup/plugin-alias@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.1.tgz#bb96cf37fefeb0a953a6566c284855c7d1cd290c"
@@ -1247,11 +1252,6 @@
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
-
-"@types/lodash@^4.14.158":
-  version "4.14.158"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.158.tgz#b38ea8b6fe799acd076d7a8d7ab71c26ef77f785"
-  integrity sha512-InCEXJNTv/59yO4VSfuvNrZHt7eeNtWQEgnieIA+mIC+MOWM9arOWG2eQ8Vhk6NbOre6/BidiXhkZYeDY9U35w==
 
 "@types/minimist@^1.2.0":
   version "1.2.0"
@@ -4715,11 +4715,6 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
-
-limited-cache@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/limited-cache/-/limited-cache-0.5.0.tgz#5e10e875e7c1e1bdae74881852bf93482c441bc7"
-  integrity sha512-ozZr9n273zQTmxr5YiecChUo8vEbJW49jsuER9sZNAdjiCzhTE58eOWbA47/iYKu6OCPVNQ2dWs8O6zBgMeYxg==
 
 lines-and-columns@^1.1.6:
   version "1.1.6"

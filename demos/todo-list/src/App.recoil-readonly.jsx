@@ -7,9 +7,7 @@ import VisibleTodoList from './components-recoil-readonly/VisibleTodoList';
 
 const RecoilReadOnlyApp = () => (
   <fieldset>
-    <legend>
-      <legend>Redux-to-Recoil: Read-only</legend>
-    </legend>
+    <legend>Redux-to-Recoil: Read-only</legend>
     <AddTodo />
     <VisibleTodoList />
 

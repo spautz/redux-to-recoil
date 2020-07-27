@@ -49,9 +49,7 @@
     "types": "tsc --noEmit --p tsconfig.json"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.158",
-    "limited-cache": "^0.5.0",
-    "lodash": "^4.17.19"
+    "@ngard/tiny-get": "^1.2.2"
   },
   "devDependencies": {
     "@types/jest": "^26.0.7",

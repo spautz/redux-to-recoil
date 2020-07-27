@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
 import internalStateAtom from './internalStateAtom';
+import { ReduxState } from './types';
 
-const selectEntireState = (state: any) => state;
+const selectEntireState = (state: ReduxState) => state;
 
 interface SyncReduxToRecoilProps {
   enabled?: boolean;

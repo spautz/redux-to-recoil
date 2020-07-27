@@ -9,7 +9,7 @@ const todosAtom = atomFromRedux('.todos');
 
 const VisibleTodoList = () => {
   const [, setAllTodos] = useRecoilState(todosAtom);
-  const [todos, updateTodos] = useRecoilState(getVisibleTodos);
+  const [todos] = useRecoilState(getVisibleTodos);
 
   const toggleTodo = (id) => {
     setAllTodos((allTodos) =>

@@ -1572,6 +1572,11 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
 
+"@types/lodash@^4.14.158":
+  version "4.14.158"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.158.tgz#b38ea8b6fe799acd076d7a8d7ab71c26ef77f785"
+  integrity sha512-InCEXJNTv/59yO4VSfuvNrZHt7eeNtWQEgnieIA+mIC+MOWM9arOWG2eQ8Vhk6NbOre6/BidiXhkZYeDY9U35w==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -8875,9 +8880,14 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
-"redux-to-recoil@github:spautz/redux-to-recoil#dev--core-functionality":
+redux-to-recoil@latest:
   version "0.0.1"
-  resolved "https://codeload.github.com/spautz/redux-to-recoil/tar.gz/3cbd17af6a4ea4875ad74fa6f7cbea49265f5de8"
+  resolved "https://registry.yarnpkg.com/redux-to-recoil/-/redux-to-recoil-0.0.1.tgz#3f123c701bb4f04e41174693024d98a0df2a02d7"
+  integrity sha512-vFmo+rVW/0rriEHUFbCcCed4oMi3XlxFKRUvy36+nvGW2KbO9pzQxeUnrivE48rZf56qYpp8lPMSdmd59HGLxw==
+  dependencies:
+    "@types/lodash" "^4.14.158"
+    limited-cache "^0.5.0"
+    lodash "^4.17.19"
 
 redux@^4.0.5:
   version "4.0.5"
