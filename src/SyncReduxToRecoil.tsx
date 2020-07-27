@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
 import { reduxStateAtom } from './internals';
@@ -15,9 +15,11 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
 
   const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
+  const store = useStore();
+  console.log('store = ', store);
+
   const currentReduxState = useSelector(selectEntireState);
   if (enabled && currentReduxState !== lastReduxState) {
-    console.log('new currentReduxState!', currentReduxState);
     setReduxState(currentReduxState);
   }
 

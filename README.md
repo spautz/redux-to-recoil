@@ -58,6 +58,13 @@ It can also facilitate a migration from Redux to Recoil.
 Until [Recoil issue #314](https://github.com/facebookexperimental/Recoil/issues/314) is worked, each component that
 uses a Redux-linked atom or selector will rerender when Redux updates.
 
+## Console error
+
+Due to [Recoil issue #12](https://github.com/facebookexperimental/Recoil/issues/12), you will see a console error in
+React 16.13. This does not hurt anything, but it is annoying.
+
+> `Warning: Cannot update a component (`Batcher`) while rendering a different component`
+
 ## Roadmap
 
 - [ ] Core functionality: SyncReduxToRecoil
