@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { VisibilityFilters } from './actions';
-import AddTodo from './components.recoil/AddTodo';
-import FilterLink from './components.recoil/FilterLink';
-import VisibleTodoList from './components.recoil/VisibleTodoList';
+import AddTodo from './components-recoil-readonly/AddTodo';
+import FilterLink from './components-recoil-readonly/FilterLink';
+import VisibleTodoList from './components-recoil-readonly/VisibleTodoList';
 
 const ReduxApp = () => (
   <fieldset>
     <legend>
-      <legend>Redux-to-Recoil</legend>
+      <legend>Redux-to-Recoil: Read-only</legend>
     </legend>
     <AddTodo />
     <VisibleTodoList />

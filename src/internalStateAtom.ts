@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 
-const reduxStateAtom = atom({
+const internalStateAtom = atom({
   key: 'redux-to-recoil:state',
   default: null,
 });
 
-export default reduxStateAtom;
+export default internalStateAtom;

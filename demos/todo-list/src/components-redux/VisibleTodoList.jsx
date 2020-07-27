@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toggleTodo } from '../actions';
-import getVisibleTodos from '../selectors/getVisibleTodos';
+import getVisibleTodos from '../selectors/getVisibleTodos.redux';
 import Todo from './Todo';
 
 const VisibleTodoList = (props) => {

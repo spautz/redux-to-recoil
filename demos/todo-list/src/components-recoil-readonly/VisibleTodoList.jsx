@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { selectorFromReselect } from 'redux-to-recoil';
 
 import { toggleTodo } from '../actions';
-import getVisibleTodos from '../selectors/getVisibleTodos';
+import getVisibleTodos from '../selectors/getVisibleTodos.redux';
 import Todo from './Todo';
 
 const todosSelector = selectorFromReselect(getVisibleTodos);
@@ -12,7 +12,6 @@ const todosSelector = selectorFromReselect(getVisibleTodos);
 const VisibleTodoList = (props) => {
   const dispatch = useDispatch();
 
-  // console.log()
   const todos = useRecoilValue(todosSelector);
 
   return (

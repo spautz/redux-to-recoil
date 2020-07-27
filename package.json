@@ -50,7 +50,11 @@
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/lodash": "^4.14.158",
+    "limited-cache": "^0.5.0",
+    "lodash": "^4.17.19"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.7",
     "@types/react": "^16.9.43",

@@ -7,4 +7,5 @@ export * from './atomFromRedux';
 export { default as selectorFromReselect } from './selectorFromReselect';
 export * from './selectorFromReselect';
 
-export * as internals from './internals';
+// Danger! This shouldn't be used unless you absolutely know what you're doing
+export { default as _internalStateAtom } from './internalStateAtom';

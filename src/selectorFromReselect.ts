@@ -1,6 +1,6 @@
 import { RecoilValueReadOnly, selector } from 'recoil';
 
-import { reduxStateAtom } from './internals';
+import internalStateAtom from './internalStateAtom';
 
 let count = 0;
 
@@ -14,7 +14,7 @@ const selectorFromReselect = <ReturnType = any>(
   const wrappedSelector = selector<ReturnType>({
     key: `redux-to-recoil:selector:${count}${selectorFn.name}`,
     get: ({ get }) => {
-      const reduxState = get(reduxStateAtom);
+      const reduxState = get(internalStateAtom);
       const value = selectorFn(reduxState);
       return value;
     },

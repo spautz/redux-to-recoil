@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
-import { reduxStateAtom } from './internals';
+import internalStateAtom from './internalStateAtom';
 
 const selectEntireState = (state: any) => state;
 
@@ -13,10 +13,8 @@ interface SyncReduxToRecoilProps {
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const { children, enabled } = props;
 
-  const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
-
-  const store = useStore();
-  console.log('store = ', store);
+  // @TODO: Go through middleware to write updates
+  const [lastReduxState, setReduxState] = useRecoilState(internalStateAtom);
 
   const currentReduxState = useSelector(selectEntireState);
   if (enabled && currentReduxState !== lastReduxState) {
