@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
 import internalStateAtom from './internalStateAtom';

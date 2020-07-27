@@ -6,9 +6,9 @@ import { RecoilRoot } from 'recoil';
 import { SyncReduxToRecoil } from 'redux-to-recoil';
 
 import rootReducer from './reducers';
-import ReduxApp from './ReduxApp';
-import RecoilAppReadOnly from './RecoilApp.readonly';
-import RecoilAppReadWrite from './RecoilApp.readwrite';
+import ReduxApp from './App.redux';
+import RecoilReadOnlyApp from './App.recoil-readonly';
+import RecoilReadWriteApp from './App.recoil-readwrite';
 
 const store = createStore(rootReducer);
 
@@ -18,8 +18,8 @@ render(
       <RecoilRoot>
         <SyncReduxToRecoil>
           <ReduxApp />
-          <RecoilAppReadOnly />
-          <RecoilAppReadWrite />
+          <RecoilReadOnlyApp />
+          <RecoilReadWriteApp />
         </SyncReduxToRecoil>
       </RecoilRoot>
     </Provider>

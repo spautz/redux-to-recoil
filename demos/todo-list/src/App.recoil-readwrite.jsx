@@ -5,7 +5,7 @@ import AddTodo from './components-recoil-readwrite/AddTodo';
 import FilterLink from './components-recoil-readwrite/FilterLink';
 import VisibleTodoList from './components-recoil-readwrite/VisibleTodoList';
 
-const ReduxApp = () => (
+const RecoilReadWriteApp = () => (
   <fieldset>
     <legend>
       <legend>Redux-to-Recoil: Read-Write (with middleware)</legend>
@@ -22,4 +22,4 @@ const ReduxApp = () => (
   </fieldset>
 );
 
-export default ReduxApp;
+export default RecoilReadWriteApp;

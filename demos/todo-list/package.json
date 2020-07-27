@@ -6,15 +6,13 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "limited-cache": "^0.5.0",
-    "lodash": "^4.17.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "recoil": "^0.0.10",
     "redux": "^4.0.5",
-    "redux-to-recoil": "github:spautz/redux-to-recoil#dev--core-functionality",
+    "redux-to-recoil": "github:spautz/redux-to-recoil#master",
     "reselect": "^4.0.0"
   },
   "scripts": {

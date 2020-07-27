@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
 
-const internalStateAtom = atom({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const internalStateAtom = atom<any>({
   key: 'redux-to-recoil:state',
   default: null,
 });

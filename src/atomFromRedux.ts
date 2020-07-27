@@ -1,5 +1,5 @@
 import getPath from 'lodash/get';
-import { ReadWriteSelectorOptions, RecoilState, selector } from 'recoil';
+import { RecoilState, selector } from 'recoil';
 import { LimitedCache } from 'limited-cache';
 
 import internalStateAtom from './internalStateAtom';
@@ -29,7 +29,7 @@ const atomFromRedux = <ReturnType = any>(path: string): RecoilState<ReturnType> 
       set: ({ get, set }, newValue) => {
         console.log('TODO: Bidirectional support', realPath, { get, set }, newValue);
       },
-    } as ReadWriteSelectorOptions<any>);
+    });
 
     atomSelectorCache.set(realPath, selectorForPath);
   }
