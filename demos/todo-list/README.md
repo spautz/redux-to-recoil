@@ -5,8 +5,8 @@ This demo project takes the ["Todo List" example from Redux](https://redux.js.or
 
 There are three different implementations of the UI, running side-by-side:
 
-- The original plain Redux version: read from Redux state, dispatch actions to Redux
-- A Recoil state version: read from Recoil state, dispatch actions to Redux
-- A bidirectional Recoil state version: read from Recoil state, write to Recoil state
+- The original plain Redux version: read from Redux, dispatch actions to Redux.
+- A read-only Recoil version: read from Recoil, dispatch actions to Redux.
+- A read-write Recoil version: read from Recoil, write to Recoil.
 
 This project was bootstrapped with [Create React ReduxApp](https://github.com/facebook/create-react-app).

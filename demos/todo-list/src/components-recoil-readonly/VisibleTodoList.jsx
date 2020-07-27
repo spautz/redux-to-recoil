@@ -1,14 +1,18 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useRecoilValue } from 'recoil';
+import { selectorFromReselect } from 'redux-to-recoil';
 
 import { toggleTodo } from '../actions';
-import getVisibleTodos from '../selectors/getVisibleTodos';
+import getVisibleTodos from '../selectors/getVisibleTodos.redux';
 import Todo from './Todo';
+
+const todosSelector = selectorFromReselect(getVisibleTodos);
 
 const VisibleTodoList = (props) => {
   const dispatch = useDispatch();
 
-  const todos = useSelector(getVisibleTodos);
+  const todos = useRecoilValue(todosSelector);
 
   return (
     <ul>

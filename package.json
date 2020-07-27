@@ -36,8 +36,8 @@
     "ci": "yon run checkup && yon run test:report",
     "all": "yon run dev && yon run test && yon run build",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
-    "build": "microbundle build",
-    "build:watch": "microbundle watch",
+    "build": "microbundle build --jsx React.createElement",
+    "build:watch": "microbundle watch --jsx React.createElement",
     "clean": "rimraf dist/ node_modules/.cache/ && yon run test:clean",
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
@@ -50,10 +50,15 @@
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/lodash": "^4.14.158",
+    "limited-cache": "^0.5.0",
+    "lodash": "^4.17.19"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.7",
     "@types/react": "^16.9.43",
+    "@types/react-redux": "^7.1.9",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "coveralls": "^3.1.0",
@@ -67,6 +72,7 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
     "recoil": "^0.0.10",
     "redux": "^4.0.5",
     "rimraf": "^3.0.2",
@@ -77,6 +83,9 @@
     "yarn-or-npm": "^3.0.1"
   },
   "peerDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.0.0",
     "recoil": "^0.0.10",
     "redux": "^4.0.5"
   },

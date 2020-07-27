@@ -1,8 +1,12 @@
 let nextTodoId = 0;
 
+// So that the redux and the recoil-readwrite apps don't hit ID collisions with each other, they both need to read and
+// update nextTodoId
+export const getNextTodoId = () => nextTodoId++;
+
 export const addTodo = (text) => ({
   type: 'ADD_TODO',
-  id: nextTodoId++,
+  id: getNextTodoId(),
   text,
 });
 

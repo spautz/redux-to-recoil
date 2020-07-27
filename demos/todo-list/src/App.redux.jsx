@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { VisibilityFilters } from './actions';
-import AddTodo from './components.redux/AddTodo';
-import FilterLink from './components.redux/FilterLink';
-import VisibleTodoList from './components.redux/VisibleTodoList';
+import AddTodo from './components-redux/AddTodo';
+import FilterLink from './components-redux/FilterLink';
+import VisibleTodoList from './components-redux/VisibleTodoList';
 
 const ReduxApp = () => (
   <fieldset>
