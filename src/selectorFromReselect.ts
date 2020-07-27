@@ -1,13 +1,12 @@
 import { RecoilValueReadOnly, selector } from 'recoil';
 
 import internalStateAtom from './internalStateAtom';
+import { DefaultReturnType, ReduxState } from './types';
 
 let count = 0;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const selectorFromReselect = <ReturnType = any>(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  selectorFn: (reduxState: any) => ReturnType,
+const selectorFromReselect = <ReturnType = DefaultReturnType>(
+  selectorFn: (reduxState: ReduxState) => ReturnType,
 ): RecoilValueReadOnly<ReturnType> => {
   count++;
 
