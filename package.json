@@ -1,19 +1,17 @@
 {
   "name": "redux-to-recoil",
   "version": "0.0.1",
-  "description": "Create Recoil atoms and selectors from your existing actions, reducers, and selectors",
+  "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [],
   "license": "MIT",
   "homepage": "https://github.com/spautz/redux-to-recoil#readme",
   "repository": "https://github.com/spautz/redux-to-recoil",
   "bugs": "https://github.com/spautz/redux-to-recoil/issues",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "author": "Steven Pautz <spautz@gmail.com>",
   "files": [
     "dist/",
     "src/",
+    "CHANGELOG.md",
     "LICENSE",
     "README.md"
   ],

@@ -63,13 +63,14 @@ uses a Redux-linked atom or selector will rerender when Redux updates.
 Due to [Recoil issue #12](https://github.com/facebookexperimental/Recoil/issues/12), you will see a console error in
 React 16.13. This does not hurt anything, but it is annoying.
 
-> `Warning: Cannot update a component (`Batcher`) while rendering a different component`
+> `Warning: Cannot update a component (Batcher) while rendering a different component`
 
 ## Roadmap
 
-- [ ] Core functionality: SyncReduxToRecoil
-- [ ] Core functionality: atomFromRedux
-- [ ] Core functionality: selectorFromReselect
+- [x] Core functionality: SyncReduxToRecoil
+- [x] Core functionality: atomFromRedux
+- [x] Core functionality: selectorFromReselect
 - [ ] Tests
-- [ ] Demo
+- [x] Core functionality: middleware for writing back to redux
+- [x] Demo
 - [ ] Initial release
