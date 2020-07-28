@@ -89,7 +89,7 @@ React 16.13. This does not hurt anything, but it is annoying.
 - [x] Core functionality: SyncReduxToRecoil
 - [x] Core functionality: atomFromRedux
 - [x] Core functionality: selectorFromReselect
+- [x] Core functionality: sync changes back to redux
 - [ ] Tests
-- [ ] Core functionality: sync changes back to redux
 - [x] Demo
-- [ ] Initial release
+- [ ] First stable release

@@ -1,6 +1,6 @@
 {
   "name": "redux-to-recoil",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [],
   "license": "MIT",
@@ -41,7 +41,7 @@
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
-    "release:tag": "standard-version --sign --skip.changelog --release-as ",
+    "release:tag": "standard-version --commit-all --sign --skip.changelog --release-as ",
     "test": "jest --coverage",
     "test:clean": "rimraf coverage/",
     "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
