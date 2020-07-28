@@ -22,16 +22,15 @@ const atomSelectorFamily = selectorFamily({
     return reduxState;
   },
   set: (realPath: string) => ({ get, set }, newValue: unknown) => {
-    console.log('TODO: Bidirectional support', realPath, { get, set }, newValue);
     const reduxState = get(internalStateAtom);
-    const changes: ChangeEntry = [realPath, newValue];
-    const newState = applyChangesToState(reduxState, changes);
-    console.log('newState = ', newState);
+    const thisChange: ChangeEntry = [realPath, newValue];
+    // @TODO: Batching support
+    const allChanges = [thisChange];
+    const newState = applyChangesToState(reduxState, allChanges);
     set(internalStateAtom, newState);
     const reduxStore = getStore();
     if (reduxStore) {
-      console.log('dispatch!', syncChangesFromRecoilAction(changes));
-      reduxStore.dispatch(syncChangesFromRecoilAction(changes));
+      reduxStore.dispatch(syncChangesFromRecoilAction(allChanges));
     } else {
       console.error('Cannot dispatch to Redux store because it is not synced');
     }

@@ -8,7 +8,6 @@ import { ReduxState } from './internals/types';
 
 const selectEntireState = (state: ReduxState) => state;
 let store: Store | null = null;
-
 const getStore = (): Store | null => store;
 
 export interface SyncReduxToRecoilProps {
