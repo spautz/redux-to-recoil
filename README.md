@@ -71,6 +71,6 @@ React 16.13. This does not hurt anything, but it is annoying.
 - [x] Core functionality: atomFromRedux
 - [x] Core functionality: selectorFromReselect
 - [ ] Tests
-- [ ] Core functionality: middleware for writing back to redux
+- [ ] Core functionality: sync changes back to redux
 - [x] Demo
 - [ ] Initial release

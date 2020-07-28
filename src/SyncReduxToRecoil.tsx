@@ -1,20 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Store } from 'redux';
+import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
-import internalStateAtom from './internalStateAtom';
-import { ReduxState } from './types';
+import { internalStateAtom } from './internals';
+import { ReduxState } from './internals/types';
 
 const selectEntireState = (state: ReduxState) => state;
+let store: Store | null = null;
 
-interface SyncReduxToRecoilProps {
+const getStore = (): Store | null => store;
+
+export interface SyncReduxToRecoilProps {
   enabled?: boolean;
 }
 
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const { children, enabled } = props;
 
-  // @TODO: Go through middleware to write updates
+  store = useStore();
   const [lastReduxState, setReduxState] = useRecoilState(internalStateAtom);
 
   const currentReduxState = useSelector(selectEntireState);
@@ -30,3 +34,4 @@ SyncReduxToRecoil.defaultProps = {
 };
 
 export default SyncReduxToRecoil;
+export { getStore };
