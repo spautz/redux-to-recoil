@@ -43,6 +43,25 @@ import { SyncReduxToRecoil } from 'redux-to-recoil';
 </Provider>;
 ```
 
+If you want to sync changes from Recoil back to Redux, wrap your reducer with `syncChangesFromRecoil`
+
+```typescript jsx
+import { syncChangesFromRecoil } from 'redux-to-recoil';
+
+// This will enable write-from-recoil
+const reducer = syncChangesFromRecoil(yourRootReducer);
+const store = createStore(reducer /* ... */);
+```
+
+```
+// Writing from recoil works like normal
+const todosAtom = atomFromRedux('.todos'); // wraps state.todos
+
+const [todos, setTodos] = useRecoilState(todosAtom);
+
+setTodos(newTodoList);
+```
+
 ## Do I need this?
 
 You probably don't need this. Redux and Recoil work fine side-by-side. You can already use values from Redux and Recoil
@@ -71,6 +90,6 @@ React 16.13. This does not hurt anything, but it is annoying.
 - [x] Core functionality: atomFromRedux
 - [x] Core functionality: selectorFromReselect
 - [ ] Tests
-- [ ] Core functionality: middleware for writing back to redux
+- [ ] Core functionality: sync changes back to redux
 - [x] Demo
 - [ ] Initial release

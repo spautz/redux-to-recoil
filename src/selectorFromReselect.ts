@@ -1,7 +1,7 @@
 import { RecoilValueReadOnly, selector } from 'recoil';
 
-import internalStateAtom from './internalStateAtom';
-import { DefaultReturnType, ReduxState } from './types';
+import { internalStateAtom } from './internals';
+import { DefaultReturnType, ReduxState } from './internals/types';
 
 let count = 0;
 
