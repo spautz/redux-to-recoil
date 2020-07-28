@@ -43,6 +43,25 @@ import { SyncReduxToRecoil } from 'redux-to-recoil';
 </Provider>;
 ```
 
+If you want to sync changes from Recoil back to Redux, wrap your reducer with `syncChangesFromRecoil`
+
+```typescript jsx
+import { syncChangesFromRecoil } from 'redux-to-recoil';
+
+// This will enable write-from-recoil
+const reducer = syncChangesFromRecoil(yourRootReducer);
+const store = createStore(reducer /* ... */);
+```
+
+```
+// Writing from recoil works like normal
+const todosAtom = atomFromRedux('.todos'); // wraps state.todos
+
+const [todos, setTodos] = useRecoilState(todosAtom);
+
+setTodos(newTodoList);
+```
+
 ## Do I need this?
 
 You probably don't need this. Redux and Recoil work fine side-by-side. You can already use values from Redux and Recoil
