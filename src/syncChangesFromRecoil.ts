@@ -21,7 +21,11 @@ const applyChangesToState = (state: ReduxState, changes: Array<ChangeEntry>): Re
   let newState = state;
   for (let i = 0; i < changes.length; i++) {
     const [path, value] = changes[i];
-    newState = setPath(newState, path, value);
+    if (path) {
+      newState = setPath(newState, path, value);
+    } else {
+      newState = value;
+    }
   }
 
   return newState;

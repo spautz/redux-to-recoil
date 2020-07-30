@@ -35,15 +35,15 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('reads absent values from Redux', () => {
-    const value1Atom: RecoilState<unknown> = atomFromRedux('not found');
-    const value1AtomHook = () => useRecoilValue(value1Atom);
+    const missingValueAtom: RecoilState<unknown> = atomFromRedux('not found');
+    const missingValueAtomHook = () => useRecoilValue(missingValueAtom);
 
-    const { result } = renderRecoilHook(value1AtomHook, {
+    const { result } = renderRecoilHook(missingValueAtomHook, {
       wrapper: ReduxProviderWrapper,
     });
 
-    const value1 = result.current;
-    expect(value1).toBe(undefined);
+    const missingValue = result.current;
+    expect(missingValue).toBe(undefined);
   });
 
   it('can read the entire state', () => {
