@@ -1,41 +1,25 @@
 /* eslint-env jest */
 import React from 'react';
-import { AnyAction, createStore, Store } from 'redux';
-import { Provider } from 'react-redux';
+import { Store } from 'redux';
 import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
 import atomFromRedux from '../src/atomFromRedux';
-import SyncReduxToRecoil from '../src/SyncReduxToRecoil';
-import syncChangesFromRecoil from '../src/syncChangesFromRecoil';
-import { ReduxState } from '../src/internals';
 
-const testReducer = (state: ReduxState, action: AnyAction): ReduxState => {
-  if (action.type === 'INCREMENT_KEY') {
-    const { key } = action.payload;
-
-    return {
-      ...state,
-      [key]: (state[key] || 0) + 1,
-    };
-  }
-  return state;
-};
+import {
+  createTestStore,
+  createTestWrapper,
+  incrementKeyAction,
+  VALUE1_DEFAULT,
+  VALUE2_DEFAULT,
+} from './helpers';
 
 describe('read Redux state through Recoil', () => {
-  let reduxStore: Store;
+  let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
-    reduxStore = createStore(syncChangesFromRecoil(testReducer), {
-      value1: 100,
-      value2: 200,
-    });
-    ReduxProviderWrapper = ({ children }) => (
-      <Provider store={reduxStore}>
-        <SyncReduxToRecoil />
-        {children}
-      </Provider>
-    );
+    testStore = createTestStore();
+    ReduxProviderWrapper = createTestWrapper(testStore);
   });
 
   it('reads values from Redux', () => {
@@ -47,7 +31,7 @@ describe('read Redux state through Recoil', () => {
     });
 
     const value1: number = result.current;
-    expect(value1).toBe(100);
+    expect(value1).toBe(VALUE1_DEFAULT);
   });
 
   it('reads absent values from Redux', () => {
@@ -71,7 +55,7 @@ describe('read Redux state through Recoil', () => {
     });
 
     const root = result.current;
-    expect(root).toBe(reduxStore.getState());
+    expect(root).toBe(testStore.getState());
   });
 
   it('works with or without a leading dot', () => {
@@ -88,18 +72,14 @@ describe('read Redux state through Recoil', () => {
     const { result, rerender } = renderRecoilHook(value2AtomHook, {
       wrapper: ReduxProviderWrapper,
     });
-    expect(result.current).toBe(200);
+    expect(result.current).toBe(VALUE2_DEFAULT);
 
-    const incrementValue2Action = {
-      type: 'INCREMENT_KEY',
-      payload: { key: 'value2' },
-    };
     act(() => {
-      reduxStore.dispatch(incrementValue2Action);
+      testStore.dispatch(incrementKeyAction('value2'));
     });
 
     rerender();
 
-    expect(result.current).toBe(201);
+    expect(result.current).toBe(VALUE2_DEFAULT + 1);
   });
 });

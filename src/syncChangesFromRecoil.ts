@@ -18,8 +18,6 @@ const syncChangesFromRecoilAction = (changes: Array<ChangeEntry>): SyncFromRecoi
 });
 
 const applyChangesToState = (state: ReduxState, changes: Array<ChangeEntry>): ReduxState => {
-  console.log('applyChangesToState()', state, changes);
-
   let newState = state;
   for (let i = 0; i < changes.length; i++) {
     const [path, value] = changes[i];
@@ -30,11 +28,7 @@ const applyChangesToState = (state: ReduxState, changes: Array<ChangeEntry>): Re
 };
 
 const syncChangesFromRecoil = (rootReducer: Reducer): Reducer => {
-  console.log('syncChangesFromRecoil reducer is registered!');
-
   return (state, action) => {
-    console.log('syncChangesFromRecoil reducer is running!', action, state);
-
     if (action.type === SYNC_CHANGES_FROM_RECOIL) {
       return applyChangesToState(state, action.payload);
     } else {

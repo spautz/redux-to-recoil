@@ -16,7 +16,6 @@ const atomSelectorFamily = selectorFamily({
   key: 'redux-to-recoil:atom',
   get: (realPath: string) => ({ get }) => {
     const reduxState = get(internalStateAtom);
-    console.log('atomSelector()', realPath, reduxState);
     if (realPath) {
       return getPath(reduxState, realPath);
     }
@@ -29,15 +28,11 @@ const atomSelectorFamily = selectorFamily({
     const allChanges = [thisChange];
     const newState = applyChangesToState(reduxState, allChanges);
 
-    console.log('newState = ', newState);
-
     set(internalStateAtom, newState);
     const reduxStore = getStore();
     if (reduxStore) {
       reduxStore.dispatch(syncChangesFromRecoilAction(allChanges));
-
-      console.log('IMMEDIATELY AFTER DISPATCH, store: ', reduxStore.getState());
-    } else {
+    } else if (__DEV__) {
       console.error('Cannot dispatch to Redux store because it is not synced');
     }
   },
