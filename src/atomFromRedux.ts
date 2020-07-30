@@ -27,11 +27,12 @@ const atomSelectorFamily = selectorFamily({
     // @TODO: Batching support
     const allChanges = [thisChange];
     const newState = applyChangesToState(reduxState, allChanges);
+
     set(internalStateAtom, newState);
     const reduxStore = getStore();
     if (reduxStore) {
       reduxStore.dispatch(syncChangesFromRecoilAction(allChanges));
-    } else {
+    } else if (__DEV__) {
       console.error('Cannot dispatch to Redux store because it is not synced');
     }
   },

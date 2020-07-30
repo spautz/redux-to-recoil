@@ -7,7 +7,7 @@ import VisibleTodoList from './components-recoil-readwrite/VisibleTodoList';
 
 const RecoilReadWriteApp = () => (
   <fieldset>
-    <legend>Redux-to-Recoil: Read-Write (with middleware)</legend>
+    <legend>Redux-to-Recoil: Read-Write</legend>
     <AddTodo />
     <VisibleTodoList />
 
