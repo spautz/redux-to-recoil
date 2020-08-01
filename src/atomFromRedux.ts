@@ -1,12 +1,13 @@
 import { get as getPath } from 'immutable-path';
 import { RecoilState, selectorFamily } from 'recoil';
 
-import { DefaultReturnType, internalStateAtom } from './internals';
 import {
-  applyChangesToState,
   ChangeEntry,
+  DefaultReturnType,
+  applyChangesToState,
+  internalStateAtom,
   syncChangesFromRecoilAction,
-} from './syncChangesFromRecoil';
+} from './internals';
 import { getStore } from './SyncReduxToRecoil';
 
 const atomSelectorCache = Object.create(null);

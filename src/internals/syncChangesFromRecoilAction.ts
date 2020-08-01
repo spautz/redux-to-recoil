@@ -1,0 +1,16 @@
+import { ChangeEntry } from './types';
+
+const SYNC_CHANGES_FROM_RECOIL = 'SYNC_CHANGES_FROM_RECOIL';
+
+export interface SyncFromRecoilAction {
+  type: typeof SYNC_CHANGES_FROM_RECOIL;
+  payload: Array<ChangeEntry>;
+}
+
+const syncChangesFromRecoilAction = (changes: Array<ChangeEntry>): SyncFromRecoilAction => ({
+  type: SYNC_CHANGES_FROM_RECOIL,
+  payload: changes,
+});
+
+export default syncChangesFromRecoilAction;
+export { SYNC_CHANGES_FROM_RECOIL };

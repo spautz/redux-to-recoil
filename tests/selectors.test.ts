@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react';
 import { Store } from 'redux';
 import { Selector } from 'react-redux';
