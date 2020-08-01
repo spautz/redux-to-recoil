@@ -1,6 +1,6 @@
 {
   "name": "redux-to-recoil",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [],
   "license": "MIT",
