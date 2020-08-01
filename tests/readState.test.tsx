@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react';
 import { Store } from 'redux';
 import { RecoilState, useRecoilValue } from 'recoil';
@@ -63,6 +62,15 @@ describe('read Redux state through Recoil', () => {
     const atomWithoutDot: RecoilState<number> = atomFromRedux<number>('value1');
 
     expect(atomWithDot).toStrictEqual(atomWithoutDot);
+  });
+
+  it('caches atomFromRedux instances', () => {
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('.value1');
+    const value2Atom: RecoilState<number> = atomFromRedux<number>('.value2');
+    const value1Atom2: RecoilState<number> = atomFromRedux<number>('.value1');
+
+    expect(value1Atom).not.toEqual(value2Atom);
+    expect(value1Atom).toStrictEqual(value1Atom2);
   });
 
   it('always sees the current Redux values', () => {

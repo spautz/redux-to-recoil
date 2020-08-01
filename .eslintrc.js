@@ -15,6 +15,14 @@ module.exports = {
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
   },
+  overrides: [
+    {
+      files: ['**/*.test.*', '**/tests/*.*'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 
   ignorePatterns: ['demos/', 'dist/', 'coverage/', 'node_modules/'],
 };
