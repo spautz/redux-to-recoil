@@ -1,16 +1,18 @@
 import React from 'react';
 import { Store } from 'redux';
-import { RecoilState, useRecoilState } from 'recoil';
+import { RecoilState, useRecoilState, useSetRecoilState } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
 import atomFromRedux from '../src/atomFromRedux';
 
 import { createTestStore, createTestWrapper, VALUE1_DEFAULT, VALUE2_DEFAULT } from './helpers';
+import { Provider } from 'react-redux';
 
 describe('write Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.resetModules();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });
@@ -79,5 +81,25 @@ describe('write Redux state through Recoil', () => {
       value1: VALUE2_DEFAULT,
       value3: 'value3',
     });
+  });
+
+  it('throws an error if you try to write without syncing', () => {
+    const WrapperWithoutSync: React.FC = ({ children }) => (
+      <Provider store={testStore}>{children}</Provider>
+    );
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value1AtomHook = () => useSetRecoilState(value1Atom);
+
+    const { result } = renderRecoilHook(value1AtomHook, {
+      wrapper: WrapperWithoutSync,
+    });
+
+    const setValue1 = result.current;
+
+    expect(() => {
+      act(() => {
+        setValue1(123);
+      });
+    }).toThrowError('Cannot dispatch to Redux because <SyncReduxToRecoil> is not mounted');
   });
 });

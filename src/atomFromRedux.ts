@@ -4,6 +4,7 @@ import { RecoilState, selectorFamily } from 'recoil';
 import {
   ChangeEntry,
   DefaultReturnType,
+  ReduxState,
   applyChangesToObject,
   reduxStateAtom,
   reduxStoreRef,
@@ -16,13 +17,23 @@ const { hasOwnProperty } = Object.prototype;
 const atomSelectorFamily = selectorFamily({
   key: 'redux-to-recoil:atom',
   get: (realPath: string) => ({ get }) => {
-    const reduxState = get(reduxStateAtom);
+    const reduxStore = reduxStoreRef.c;
+    if (!reduxStore) {
+      throw new Error('Cannot read from Redux because <SyncReduxToRecoil> is not mounted');
+    }
+
+    const reduxState: ReduxState = get(reduxStateAtom);
     if (realPath) {
       return getPath(reduxState, realPath);
     }
     return reduxState;
   },
   set: (realPath: string) => ({ get, set }, newValue: unknown) => {
+    const reduxStore = reduxStoreRef.c;
+    if (!reduxStore) {
+      throw new Error('Cannot dispatch to Redux because <SyncReduxToRecoil> is not mounted');
+    }
+
     const reduxState = get(reduxStateAtom);
     const thisChange: ChangeEntry = [realPath, newValue];
     // @TODO: Batching support
@@ -30,12 +41,7 @@ const atomSelectorFamily = selectorFamily({
     const newState = applyChangesToObject(reduxState, allChanges);
 
     set(reduxStateAtom, newState);
-    const reduxStore = reduxStoreRef.c;
-    if (reduxStore) {
-      reduxStore.dispatch(syncChangesFromRecoilAction(allChanges));
-    } else if (__DEV__) {
-      throw new Error('Cannot dispatch to Redux store because <SyncReduxToRecoil> is not mounted');
-    }
+    reduxStore.dispatch(syncChangesFromRecoilAction(allChanges));
   },
 });
 

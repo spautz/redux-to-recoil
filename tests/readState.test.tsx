@@ -1,5 +1,6 @@
 import React from 'react';
 import { Store } from 'redux';
+import { Provider } from 'react-redux';
 import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
@@ -17,6 +18,7 @@ describe('read Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.resetModules();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });
@@ -89,5 +91,22 @@ describe('read Redux state through Recoil', () => {
     rerender();
 
     expect(result.current).toBe(VALUE2_DEFAULT + 1);
+  });
+
+  it('throws an error if you try to read without syncing', () => {
+    const WrapperWithoutSync: React.FC = ({ children }) => (
+      <Provider store={testStore}>{children}</Provider>
+    );
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('no-sync');
+    const value1AtomHook = () => useRecoilValue(value1Atom);
+
+    const { result } = renderRecoilHook(value1AtomHook, {
+      wrapper: WrapperWithoutSync,
+    });
+
+    expect(result.error).toBeTruthy();
+    expect(result.error.message).toEqual(
+      'Cannot read from Redux because <SyncReduxToRecoil> is not mounted',
+    );
   });
 });
