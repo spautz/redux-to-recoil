@@ -1,21 +1,21 @@
 import React from 'react';
 import { Store } from 'redux';
 import { Selector } from 'react-redux';
-import { useRecoilValue } from 'recoil';
+import { RecoilState, selector, useRecoilValue } from 'recoil';
 import { createSelector } from 'reselect';
 import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
-import selectorFromReselect from '../src/selectorFromReselect';
 import { ReduxState } from '../src/internals';
+import atomFromRedux from '../src/atomFromRedux';
+import selectorFromReselect from '../src/selectorFromReselect';
 
 import { createTestStore, createTestWrapper } from './helpers';
-import atomFromRedux from '../src/atomFromRedux';
-import { RecoilState, selector } from 'recoil/dist';
 
 describe('selectors', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.resetModules();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });

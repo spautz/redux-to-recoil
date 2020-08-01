@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
@@ -13,7 +13,15 @@ export interface SyncReduxToRecoilProps {
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const { children, enabled } = props;
 
+  // We need to set this synchronously so that components can read on mount
   reduxStoreRef.c = useStore();
+  useEffect(() => {
+    return () => {
+      // Clear ref on unmount
+      reduxStoreRef.c = null;
+    };
+  }, []);
+
   const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
   const currentReduxState = useSelector(selectEntireState);

@@ -1,10 +1,7 @@
-import React from 'react';
 import { AnyAction, Store, createStore } from 'redux';
-import { Provider } from 'react-redux';
 
-import { ReduxState } from '../src/internals';
-import syncChangesFromRecoil from '../src/syncChangesFromRecoil';
-import SyncReduxToRecoil from '../src/SyncReduxToRecoil';
+import { ReduxState } from '../../src/internals';
+import syncChangesFromRecoil from '../../src/syncChangesFromRecoil';
 
 const VALUE1_DEFAULT = 100;
 const VALUE2_DEFAULT = 200;
@@ -33,18 +30,5 @@ const createTestStore = (): Store =>
     value2: VALUE2_DEFAULT,
   });
 
-const createTestWrapper = (testStore: Store): React.FC => ({ children }) => (
-  <Provider store={testStore}>
-    <SyncReduxToRecoil />
-    {children}
-  </Provider>
-);
-
-export {
-  VALUE1_DEFAULT,
-  VALUE2_DEFAULT,
-  incrementKeyAction,
-  testReducer,
-  createTestStore,
-  createTestWrapper,
-};
+export default createTestStore;
+export { VALUE1_DEFAULT, VALUE2_DEFAULT, incrementKeyAction, testReducer };
