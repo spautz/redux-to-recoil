@@ -2,7 +2,13 @@
   "name": "redux-to-recoil",
   "version": "0.1.0",
   "description": "Access your Redux store through Recoil atoms and selectors",
-  "keywords": [],
+  "keywords": [
+    "redux to recoil",
+    "recoil from redux",
+    "migrate",
+    "migration",
+    "sync"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/redux-to-recoil#readme",
   "repository": "https://github.com/spautz/redux-to-recoil",
@@ -36,8 +42,8 @@
     "all": "yon run clean && yon run dev && yon run test && yon run build",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
     "build": "microbundle build --jsx React.createElement",
-    "build:watch": "microbundle watch --jsx React.createElement",
     "build:clean": "rimraf dist/",
+    "build:watch": "microbundle watch --jsx React.createElement",
     "format": "prettier --write \"**/*.*\"",
     "format:checkup": "prettier --list-different \"**/*.*\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
@@ -103,7 +109,7 @@
   },
   "standard-version": {
     "scripts": {
-      "postchangelog": "yon format"
+      "postchangelog": "yon run format"
     }
   }
 }
