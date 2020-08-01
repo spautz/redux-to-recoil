@@ -4,11 +4,11 @@ import { RecoilState, selectorFamily } from 'recoil';
 import {
   ChangeEntry,
   DefaultReturnType,
-  applyChangesToState,
-  internalStateAtom,
+  applyChangesToObject,
+  reduxStateAtom,
+  reduxStoreRef,
   syncChangesFromRecoilAction,
 } from './internals';
-import { getStore } from './SyncReduxToRecoil';
 
 const atomSelectorCache = Object.create(null);
 const { hasOwnProperty } = Object.prototype;
@@ -16,25 +16,25 @@ const { hasOwnProperty } = Object.prototype;
 const atomSelectorFamily = selectorFamily({
   key: 'redux-to-recoil:atom',
   get: (realPath: string) => ({ get }) => {
-    const reduxState = get(internalStateAtom);
+    const reduxState = get(reduxStateAtom);
     if (realPath) {
       return getPath(reduxState, realPath);
     }
     return reduxState;
   },
   set: (realPath: string) => ({ get, set }, newValue: unknown) => {
-    const reduxState = get(internalStateAtom);
+    const reduxState = get(reduxStateAtom);
     const thisChange: ChangeEntry = [realPath, newValue];
     // @TODO: Batching support
     const allChanges = [thisChange];
-    const newState = applyChangesToState(reduxState, allChanges);
+    const newState = applyChangesToObject(reduxState, allChanges);
 
-    set(internalStateAtom, newState);
-    const reduxStore = getStore();
+    set(reduxStateAtom, newState);
+    const reduxStore = reduxStoreRef.c;
     if (reduxStore) {
       reduxStore.dispatch(syncChangesFromRecoilAction(allChanges));
     } else if (__DEV__) {
-      console.error('Cannot dispatch to Redux store because it is not synced');
+      throw new Error('Cannot dispatch to Redux store because <SyncReduxToRecoil> is not mounted');
     }
   },
 });
@@ -47,9 +47,7 @@ const atomFromRedux = <ReturnType = DefaultReturnType>(path: string): RecoilStat
 
   if (!hasOwnProperty.call(atomSelectorCache, realPath)) {
     // Although named "atomFromRedux", each instance is actually just a selector. They all pull from a single atom.
-    const selectorForPath = atomSelectorFamily(realPath);
-
-    atomSelectorCache[realPath] = selectorForPath;
+    atomSelectorCache[realPath] = atomSelectorFamily(realPath);
   }
 
   return atomSelectorCache[realPath];

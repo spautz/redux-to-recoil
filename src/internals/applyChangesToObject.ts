@@ -2,7 +2,7 @@ import { set as setPath } from 'immutable-path/dist/immutable-object-path';
 
 import { ChangeEntry, ReduxState } from './types';
 
-const applyChangesToState = (state: ReduxState, changes: Array<ChangeEntry>): ReduxState => {
+const applyChangesToObject = (state: ReduxState, changes: Array<ChangeEntry>): ReduxState => {
   let newState = state;
   for (let i = 0; i < changes.length; i++) {
     const [path, value] = changes[i];
@@ -16,4 +16,4 @@ const applyChangesToState = (state: ReduxState, changes: Array<ChangeEntry>): Re
   return newState;
 };
 
-export default applyChangesToState;
+export default applyChangesToObject;

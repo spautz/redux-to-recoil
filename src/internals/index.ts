@@ -1,8 +1,11 @@
-export { default as applyChangesToState } from './applyChangesToState';
-export * from './applyChangesToState';
+export { default as applyChangesToObject } from './applyChangesToObject';
+export * from './applyChangesToObject';
 
-export { default as internalStateAtom } from './internalStateAtom';
-export * from './internalStateAtom';
+export { default as reduxStateAtom } from './reduxStateAtom';
+export * from './reduxStateAtom';
+
+export { default as reduxStoreRef } from './reduxStoreRef';
+export * from './reduxStoreRef';
 
 export { default as syncChangesFromRecoilAction } from './syncChangesFromRecoilAction';
 export * from './syncChangesFromRecoilAction';
