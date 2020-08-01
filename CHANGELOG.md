@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/spautz/redux-to-recoil/compare/v0.0.2...v0.0.3) (2020-08-01)
+
+### Features
+
+- Improve error detection when missing SyncReduxToRecoil ([#10](https://github.com/spautz/redux-to-recoil/issues/10)) ([c683d11](https://github.com/spautz/redux-to-recoil/commit/c683d11d54f7ca1bf34a652d13d6441627be05e7))
+
 ### [0.0.2](https://github.com/spautz/redux-to-recoil/compare/v0.0.1...v0.0.2) (2020-07-28)
 
 ### Features
