@@ -1,8 +1,3 @@
-declare global {
-  // Microbundle handles this
-  const __DEV__: boolean;
-}
-
 export type ChangeEntry = [string, ReduxState];
 
 // These renames are for readability, and to avoid having to repeatedly disable no-explicit-any for each usage.

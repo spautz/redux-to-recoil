@@ -29,7 +29,7 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
     setReduxState(currentReduxState);
   }
 
-  if (__DEV__ && children) {
+  if (process.env.NODE_ENV !== 'production' && children) {
     console.warn(
       'Passing children to <SyncReduxToRecoil> is not recommended, as they will rerender on every Redux change',
     );
