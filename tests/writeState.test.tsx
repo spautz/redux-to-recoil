@@ -14,6 +14,9 @@ describe('write Redux state through Recoil', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
+    jest.clearAllTimers();
+    jest.useRealTimers();
+
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });
@@ -110,22 +113,23 @@ describe('write Redux state through Recoil', () => {
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const value1AtomHook = () => useRecoilState(value1Atom);
 
-    const { result } = renderRecoilHook(value1AtomHook, {
+    const { result, rerender } = renderRecoilHook(value1AtomHook, {
       wrapper: ReduxProviderWrapper,
       initialProps: {
         writeEnabled: false,
       },
     });
 
-    let [value1, setValue] = result.current;
+    const [value1, setValue] = result.current;
     expect(value1).toBe(VALUE1_DEFAULT);
 
     act(() => {
       setValue(999);
     });
 
-    value1 = result.current[0];
-    expect(value1).toBe(VALUE1_DEFAULT);
+    rerender();
+
+    expect(result.current[0]).toBe(VALUE1_DEFAULT);
 
     const consoleErrorCalls = consoleErrorSpy.mock.calls;
     expect(consoleErrorCalls.length).toBe(1);
@@ -157,8 +161,7 @@ describe('write Redux state through Recoil', () => {
     rerender();
 
     // Recoil has updated synchronously, but not Redux
-    const [updatedValue] = result.current;
-    expect(updatedValue).toBe(123);
+    expect(result.current[0]).toBe(123);
     expect(testStore.getState().value1).toBe(VALUE1_DEFAULT);
 
     act(() => {
@@ -170,5 +173,50 @@ describe('write Redux state through Recoil', () => {
     // Now the update should be done
     expect(result.current[0]).toBe(123);
     expect(testStore.getState().value1).toBe(123);
+  });
+
+  it('queues up multiple writes when batching', () => {
+    jest.useFakeTimers();
+
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value2Atom: RecoilState<number> = atomFromRedux<number>('value2');
+    const multipleAtomHook = () => [useRecoilState(value1Atom), useRecoilState(value2Atom)];
+
+    const { result, rerender } = renderRecoilHook(multipleAtomHook, {
+      wrapper: ReduxProviderWrapper,
+      initialProps: {
+        writeEnabled: true,
+        batchWrites: true,
+      },
+    });
+
+    const [[value1, setValue1], [value2, setValue2]] = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT);
+    expect(value2).toBe(VALUE2_DEFAULT);
+
+    act(() => {
+      setValue1(123);
+      setValue2(456);
+    });
+
+    rerender();
+
+    // Recoil has updated synchronously, but not Redux
+    expect(result.current[0][0]).toBe(123);
+    expect(testStore.getState().value1).toBe(VALUE1_DEFAULT);
+    expect(result.current[1][0]).toBe(456);
+    expect(testStore.getState().value2).toBe(VALUE2_DEFAULT);
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    rerender();
+
+    // Now the update should be done
+    expect(result.current[0][0]).toBe(123);
+    expect(testStore.getState().value1).toBe(123);
+    expect(result.current[1][0]).toBe(456);
+    expect(testStore.getState().value2).toBe(456);
   });
 });

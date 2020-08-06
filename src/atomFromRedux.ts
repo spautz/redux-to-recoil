@@ -14,7 +14,7 @@ import { options } from './options';
 
 const atomSelectorCache = Object.create(null);
 const { hasOwnProperty } = Object.prototype;
-let batchWriteTimeoutId: number;
+let batchWriteTimeoutId: number | null;
 export const batchedChangeSet: Array<ChangeEntry> = [];
 
 const atomSelectorFamily = selectorFamily({
@@ -65,6 +65,7 @@ const atomSelectorFamily = selectorFamily({
         batchWriteTimeoutId = setTimeout(() => {
           reduxStore.dispatch(syncChangesFromRecoilAction(batchedChangeSet));
           batchedChangeSet.splice(0);
+          batchWriteTimeoutId = null;
         });
       }
     } else {
