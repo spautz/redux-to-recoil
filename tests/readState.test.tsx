@@ -18,6 +18,7 @@ describe('read Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.resetModules();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
@@ -93,7 +94,7 @@ describe('read Redux state through Recoil', () => {
     expect(result.current).toBe(VALUE2_DEFAULT + 1);
   });
 
-  it('throws an error if you try to read without syncing', () => {
+  it('throws an error if you try to read without SyncReduxToRecoil', () => {
     const WrapperWithoutSync: React.FC = ({ children }) => (
       <Provider store={testStore}>{children}</Provider>
     );
@@ -108,5 +109,67 @@ describe('read Redux state through Recoil', () => {
     expect(result.error.message).toEqual(
       'Cannot read from Redux because <SyncReduxToRecoil> is not mounted',
     );
+  });
+
+  it('warns and returns undefined if readEnabled has never been on', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockReturnValueOnce();
+
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value1AtomHook = () => useRecoilValue(value1Atom);
+
+    const { result } = renderRecoilHook(value1AtomHook, {
+      wrapper: ReduxProviderWrapper,
+      initialProps: {
+        readEnabled: false,
+      },
+    });
+
+    const value1 = result.current;
+    expect(value1).toBe(undefined);
+
+    const consoleWarnCalls = consoleWarnSpy.mock.calls;
+    expect(consoleWarnCalls.length).toBe(1);
+    const [warningString] = consoleWarnCalls[0];
+    expect(warningString).toBe('Cannot access Redux state because reads have never been enabled');
+  });
+
+  it('does not update unless readEnabled is on', () => {
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value1AtomHook = () => useRecoilValue(value1Atom);
+
+    const { result, rerender } = renderRecoilHook(value1AtomHook, {
+      wrapper: ReduxProviderWrapper,
+      initialProps: {
+        readEnabled: true,
+      },
+    });
+
+    let value1: number = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT);
+
+    // Disable reads, then update redux
+    act(() => {
+      rerender({
+        readEnabled: false,
+      });
+    });
+    act(() => {
+      testStore.dispatch(incrementKeyAction('value1'));
+    });
+
+    // Should be unchanged
+    value1 = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT);
+
+    act(() => {
+      testStore.dispatch(incrementKeyAction('value1'));
+    });
+    rerender({
+      readEnabled: true,
+    });
+
+    // Both changes should have gone through, and now we can see them
+    value1 = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT + 2);
   });
 });

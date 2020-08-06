@@ -15,6 +15,7 @@ describe('selectors', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.resetModules();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);

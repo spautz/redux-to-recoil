@@ -1,18 +1,22 @@
 import React from 'react';
 import { Store } from 'redux';
+import { Provider } from 'react-redux';
 import { RecoilState, useRecoilState, useSetRecoilState } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
 import atomFromRedux from '../src/atomFromRedux';
 
 import { createTestStore, createTestWrapper, VALUE1_DEFAULT, VALUE2_DEFAULT } from './helpers';
-import { Provider } from 'react-redux';
 
 describe('write Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.resetModules();
+    jest.clearAllTimers();
+    jest.useRealTimers();
+
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });
@@ -83,7 +87,7 @@ describe('write Redux state through Recoil', () => {
     });
   });
 
-  it('throws an error if you try to write without syncing', () => {
+  it('throws an error if you try to write without SyncReduxToRecoil', () => {
     const WrapperWithoutSync: React.FC = ({ children }) => (
       <Provider store={testStore}>{children}</Provider>
     );
@@ -101,5 +105,118 @@ describe('write Redux state through Recoil', () => {
         setValue1(123);
       });
     }).toThrowError('Cannot dispatch to Redux because <SyncReduxToRecoil> is not mounted');
+  });
+
+  it('emits an error and does nothing if writeEnabled is off', () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValueOnce();
+
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value1AtomHook = () => useRecoilState(value1Atom);
+
+    const { result, rerender } = renderRecoilHook(value1AtomHook, {
+      wrapper: ReduxProviderWrapper,
+      initialProps: {
+        writeEnabled: false,
+      },
+    });
+
+    const [value1, setValue] = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT);
+
+    act(() => {
+      setValue(999);
+    });
+
+    rerender();
+
+    expect(result.current[0]).toBe(VALUE1_DEFAULT);
+
+    const consoleErrorCalls = consoleErrorSpy.mock.calls;
+    expect(consoleErrorCalls.length).toBe(1);
+    const [errorString] = consoleErrorCalls[0];
+    expect(errorString).toBe('Cannot dispatch to Redux because writes are disabled');
+  });
+
+  it('can batch its writes to Redux', () => {
+    jest.useFakeTimers();
+
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value1AtomHook = () => useRecoilState(value1Atom);
+
+    const { result, rerender } = renderRecoilHook(value1AtomHook, {
+      wrapper: ReduxProviderWrapper,
+      initialProps: {
+        writeEnabled: true,
+        batchWrites: true,
+      },
+    });
+
+    const [value1, setValue1] = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT);
+
+    act(() => {
+      setValue1(123);
+    });
+
+    rerender();
+
+    // Recoil has updated synchronously, but not Redux
+    expect(result.current[0]).toBe(123);
+    expect(testStore.getState().value1).toBe(VALUE1_DEFAULT);
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    rerender();
+
+    // Now the update should be done
+    expect(result.current[0]).toBe(123);
+    expect(testStore.getState().value1).toBe(123);
+  });
+
+  it('queues up multiple writes when batching', () => {
+    jest.useFakeTimers();
+
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value2Atom: RecoilState<number> = atomFromRedux<number>('value2');
+    const multipleAtomHook = () => [useRecoilState(value1Atom), useRecoilState(value2Atom)];
+
+    const { result, rerender } = renderRecoilHook(multipleAtomHook, {
+      wrapper: ReduxProviderWrapper,
+      initialProps: {
+        writeEnabled: true,
+        batchWrites: true,
+      },
+    });
+
+    const [[value1, setValue1], [value2, setValue2]] = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT);
+    expect(value2).toBe(VALUE2_DEFAULT);
+
+    act(() => {
+      setValue1(123);
+      setValue2(456);
+    });
+
+    rerender();
+
+    // Recoil has updated synchronously, but not Redux
+    expect(result.current[0][0]).toBe(123);
+    expect(testStore.getState().value1).toBe(VALUE1_DEFAULT);
+    expect(result.current[1][0]).toBe(456);
+    expect(testStore.getState().value2).toBe(VALUE2_DEFAULT);
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    rerender();
+
+    // Now the update should be done
+    expect(result.current[0][0]).toBe(123);
+    expect(testStore.getState().value1).toBe(123);
+    expect(result.current[1][0]).toBe(456);
+    expect(testStore.getState().value2).toBe(456);
   });
 });

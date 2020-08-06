@@ -3,15 +3,25 @@ import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
 import { ReduxState, reduxStateAtom, reduxStoreRef } from './internals';
+import { ReduxToRecoilOptions, options } from './options';
+import { batchedChangeSet } from './atomFromRedux';
 
 const selectEntireState = (state: ReduxState) => state;
 
-export interface SyncReduxToRecoilProps {
-  enabled?: boolean;
-}
+export type SyncReduxToRecoilProps = Partial<ReduxToRecoilOptions>;
 
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
-  const { children, enabled } = props;
+  const { children, ...optionProps } = props;
+
+  // If any values are passed via props, sync them as options
+  if (process.env.NODE_ENV !== 'production') {
+    Object.keys(optionProps).forEach((key) => {
+      if (!Object.prototype.hasOwnProperty.call(options, key)) {
+        console.warn(`SyncReduxToRecoil: Unrecognized option "${key}"`);
+      }
+    });
+  }
+  Object.assign(options, optionProps);
 
   // We need to set this synchronously so that components can read on mount
   reduxStoreRef.c = useStore();
@@ -25,7 +35,7 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
   const currentReduxState = useSelector(selectEntireState);
-  if (enabled && currentReduxState !== lastReduxState) {
+  if (options.readEnabled && !batchedChangeSet.length && currentReduxState !== lastReduxState) {
     setReduxState(currentReduxState);
   }
 
@@ -36,10 +46,6 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   }
 
   return <React.Fragment>{children}</React.Fragment>;
-};
-
-SyncReduxToRecoil.defaultProps = {
-  enabled: true,
 };
 
 export default SyncReduxToRecoil;

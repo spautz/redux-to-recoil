@@ -10,5 +10,7 @@ export * from './selectorFromReselect';
 export { default as syncChangesFromRecoil } from './syncChangesFromRecoil';
 export * from './syncChangesFromRecoil';
 
+export * from './options';
+
 // Danger! Internals shouldn't be used unless you absolutely know what you're doing
 export * as _internals from './internals';

@@ -6354,10 +6354,10 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-recoil-hooks-testing-library@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/react-recoil-hooks-testing-library/-/react-recoil-hooks-testing-library-0.0.7.tgz#112f59bc994830d7750f3cc3714dd313224d53f8"
-  integrity sha512-c/EQMZ/U7RkYL5baJUCUVmWgVwDXa/v9QgMAX/owjUnYipfCxysKKu877nNMpIKJ/MWZ0P2MmBs4QSm357AXWA==
+react-recoil-hooks-testing-library@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/react-recoil-hooks-testing-library/-/react-recoil-hooks-testing-library-0.0.8.tgz#f9fafe2e48a753017a3a66c1cf2640284d7c4046"
+  integrity sha512-E2bueO060bzr0D08+o2Vn7LqJRNHvlDJoRtPQGbSaJCKvJhjzunrATwFXCy3pTQh1wAhek2Vvpo2JWsRt/WNCQ==
   dependencies:
     "@testing-library/react-hooks" "^3.3.0"
 
