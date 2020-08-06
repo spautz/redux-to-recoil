@@ -10,9 +10,12 @@ import {
   reduxStoreRef,
   syncChangesFromRecoilAction,
 } from './internals';
+import { options } from './options';
 
 const atomSelectorCache = Object.create(null);
 const { hasOwnProperty } = Object.prototype;
+let batchWriteTimeoutId: number;
+let batchedChangeSet: Array<ChangeEntry>;
 
 const atomSelectorFamily = selectorFamily({
   key: 'redux-to-recoil:atom',
@@ -23,6 +26,14 @@ const atomSelectorFamily = selectorFamily({
     }
 
     const reduxState: ReduxState = get(reduxStateAtom);
+
+    if (!options.readEnabled && reduxState == null) {
+      // We've *never* synced: just return undefined for all keys
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('Cannot access Redux state because reads have never been enabled');
+      }
+      return;
+    }
     if (realPath) {
       return getPath(reduxState, realPath);
     }
@@ -30,6 +41,10 @@ const atomSelectorFamily = selectorFamily({
   },
   set: (realPath: string) => ({ get, set }, newValue: unknown) => {
     const reduxStore = reduxStoreRef.c;
+    if (!options.writeEnabled) {
+      console.error('Cannot dispatch to Redux because writes are disabled');
+      return;
+    }
     if (!reduxStore) {
       throw new Error('Cannot dispatch to Redux because <SyncReduxToRecoil> is not mounted');
     }
@@ -37,11 +52,24 @@ const atomSelectorFamily = selectorFamily({
     const reduxState = get(reduxStateAtom);
     const thisChange: ChangeEntry = [realPath, newValue];
     // @TODO: Batching support
-    const allChanges = [thisChange];
-    const newState = applyChangesToObject(reduxState, allChanges);
+    const thisChangeSet = [thisChange];
+    const newState = applyChangesToObject(reduxState, thisChangeSet);
 
     set(reduxStateAtom, newState);
-    reduxStore.dispatch(syncChangesFromRecoilAction(allChanges));
+    if (options.batchWrites) {
+      // Queue up changes and dispatch once we're done
+      if (!batchWriteTimeoutId) {
+        batchedChangeSet = [thisChange];
+        batchWriteTimeoutId = setTimeout(() =>
+          reduxStore.dispatch(syncChangesFromRecoilAction(batchedChangeSet)),
+        );
+      } else {
+        batchedChangeSet.push(thisChange);
+      }
+    } else {
+      // Unbatched: dispatch immediately
+      reduxStore.dispatch(syncChangesFromRecoilAction(thisChangeSet));
+    }
   },
 });
 
