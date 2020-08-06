@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/spautz/redux-to-recoil/compare/v0.1.0...v0.2.0) (2020-08-06)
+
+### Features
+
+- Add options to control reads from and writes to Redux ([#12](https://github.com/spautz/redux-to-recoil/issues/12)) ([5bbe760](https://github.com/spautz/redux-to-recoil/commit/5bbe7609304e0ea9ec3e908e6a1a06ac935c937d))
+
 ## [0.1.0](https://github.com/spautz/redux-to-recoil/compare/v0.0.3...v0.1.0) (2020-08-01)
 
 First production-ready public release.
