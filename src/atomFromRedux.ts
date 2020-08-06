@@ -15,7 +15,7 @@ import { options } from './options';
 const atomSelectorCache = Object.create(null);
 const { hasOwnProperty } = Object.prototype;
 let batchWriteTimeoutId: number;
-let batchedChangeSet: Array<ChangeEntry>;
+export const batchedChangeSet: Array<ChangeEntry> = [];
 
 const atomSelectorFamily = selectorFamily({
   key: 'redux-to-recoil:atom',
@@ -50,21 +50,22 @@ const atomSelectorFamily = selectorFamily({
     }
 
     const reduxState = get(reduxStateAtom);
+
+    // Recoil always updates synchronously
     const thisChange: ChangeEntry = [realPath, newValue];
-    // @TODO: Batching support
     const thisChangeSet = [thisChange];
     const newState = applyChangesToObject(reduxState, thisChangeSet);
-
     set(reduxStateAtom, newState);
+
     if (options.batchWrites) {
       // Queue up changes and dispatch once we're done
+      batchedChangeSet.push(thisChange);
+
       if (!batchWriteTimeoutId) {
-        batchedChangeSet = [thisChange];
-        batchWriteTimeoutId = setTimeout(() =>
-          reduxStore.dispatch(syncChangesFromRecoilAction(batchedChangeSet)),
-        );
-      } else {
-        batchedChangeSet.push(thisChange);
+        batchWriteTimeoutId = setTimeout(() => {
+          reduxStore.dispatch(syncChangesFromRecoilAction(batchedChangeSet));
+          batchedChangeSet.splice(0);
+        });
       }
     } else {
       // Unbatched: dispatch immediately

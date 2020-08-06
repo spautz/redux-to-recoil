@@ -5,7 +5,6 @@ import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
 import atomFromRedux from '../src/atomFromRedux';
-import SyncReduxToRecoil, { SyncReduxToRecoilProps } from '../src/SyncReduxToRecoil';
 
 import {
   createTestStore,
@@ -115,19 +114,13 @@ describe('read Redux state through Recoil', () => {
   it('warns and returns undefined if readEnabled has never been on', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockReturnValueOnce();
 
-    const WrapperWithoutReadEnabled: React.FC = ({ children }) => (
-      <Provider store={testStore}>
-        <SyncReduxToRecoil readEnabled={false} />
-        {children}
-      </Provider>
-    );
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const value1AtomHook = () => useRecoilValue(value1Atom);
 
     const { result } = renderRecoilHook(value1AtomHook, {
-      wrapper: WrapperWithoutReadEnabled,
+      wrapper: ReduxProviderWrapper,
       initialProps: {
-        readEnabled: true,
+        readEnabled: false,
       },
     });
 
@@ -141,21 +134,11 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('does not update unless readEnabled is on', () => {
-    const WrapperWithoutReadEnabled: React.FC<SyncReduxToRecoilProps> = ({
-      children,
-      readEnabled,
-    }) => (
-      <Provider store={testStore}>
-        <SyncReduxToRecoil readEnabled={readEnabled} />
-        {children}
-      </Provider>
-    );
-
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const value1AtomHook = () => useRecoilValue(value1Atom);
 
     const { result, rerender } = renderRecoilHook(value1AtomHook, {
-      wrapper: WrapperWithoutReadEnabled,
+      wrapper: ReduxProviderWrapper,
       initialProps: {
         readEnabled: true,
       },

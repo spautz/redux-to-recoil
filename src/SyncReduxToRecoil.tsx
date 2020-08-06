@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 
 import { ReduxState, reduxStateAtom, reduxStoreRef } from './internals';
 import { ReduxToRecoilOptions, options } from './options';
+import { batchedChangeSet } from './atomFromRedux';
 
 const selectEntireState = (state: ReduxState) => state;
 
@@ -34,7 +35,7 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
   const currentReduxState = useSelector(selectEntireState);
-  if (options.readEnabled && currentReduxState !== lastReduxState) {
+  if (options.readEnabled && !batchedChangeSet.length && currentReduxState !== lastReduxState) {
     setReduxState(currentReduxState);
   }
 
