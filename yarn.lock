@@ -6354,9 +6354,9 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-"react-recoil-hooks-testing-library@github:spautz/react-recoil-hooks-testing-library#b95bb11":
+"react-recoil-hooks-testing-library@github:spautz/react-recoil-hooks-testing-library#c86c3172ecd7ba83a5164f338eb214d3ad78c03c":
   version "0.0.7"
-  resolved "https://codeload.github.com/spautz/react-recoil-hooks-testing-library/tar.gz/b95bb1114ff92c5e13daec6e9783c262e27284f0"
+  resolved "https://codeload.github.com/spautz/react-recoil-hooks-testing-library/tar.gz/c86c3172ecd7ba83a5164f338eb214d3ad78c03c"
   dependencies:
     "@testing-library/react-hooks" "^3.3.0"
 
