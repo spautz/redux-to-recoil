@@ -1188,7 +1188,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@testing-library/react-hooks@3.4.1", "@testing-library/react-hooks@^3.3.0":
+"@testing-library/react-hooks@^3.3.0":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-3.4.1.tgz#1f8ccd21208086ec228d9743fe40b69d0efcd7e5"
   integrity sha512-LbzvE7oKsVzuW1cxA/aOeNgeVvmHWG2p/WSzalIGyWuqZT3jVcNDT5KPEwy36sUYWde0Qsh32xqIUFXukeywXg==
@@ -6354,10 +6354,9 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-recoil-hooks-testing-library@^0.0.7:
+"react-recoil-hooks-testing-library@github:spautz/react-recoil-hooks-testing-library#b95bb11":
   version "0.0.7"
-  resolved "https://registry.yarnpkg.com/react-recoil-hooks-testing-library/-/react-recoil-hooks-testing-library-0.0.7.tgz#112f59bc994830d7750f3cc3714dd313224d53f8"
-  integrity sha512-c/EQMZ/U7RkYL5baJUCUVmWgVwDXa/v9QgMAX/owjUnYipfCxysKKu877nNMpIKJ/MWZ0P2MmBs4QSm357AXWA==
+  resolved "https://codeload.github.com/spautz/react-recoil-hooks-testing-library/tar.gz/b95bb1114ff92c5e13daec6e9783c262e27284f0"
   dependencies:
     "@testing-library/react-hooks" "^3.3.0"
 
