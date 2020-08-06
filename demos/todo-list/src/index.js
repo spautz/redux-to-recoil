@@ -20,11 +20,11 @@ render(
   <React.StrictMode>
     <Provider store={store}>
       <RecoilRoot>
-        <SyncReduxToRecoil>
-          <ReduxApp />
-          <RecoilReadOnlyApp />
-          <RecoilReadWriteApp />
-        </SyncReduxToRecoil>
+        <SyncReduxToRecoil batchWrites />
+
+        <ReduxApp />
+        <RecoilReadOnlyApp />
+        <RecoilReadWriteApp />
       </RecoilRoot>
     </Provider>
   </React.StrictMode>,
