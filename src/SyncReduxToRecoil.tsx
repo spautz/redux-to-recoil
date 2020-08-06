@@ -10,18 +10,17 @@ const selectEntireState = (state: ReduxState) => state;
 export type SyncReduxToRecoilProps = Partial<ReduxToRecoilOptions>;
 
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
-  const { children, readEnabled, writeEnabled, batchWrites } = props;
+  const { children, ...optionProps } = props;
 
   // If any values are passed via props, sync them as options
-  if (readEnabled != null) {
-    options.readEnabled = readEnabled;
+  if (process.env.NODE_ENV !== 'production') {
+    Object.keys(optionProps).forEach((key) => {
+      if (!Object.prototype.hasOwnProperty.call(options, key)) {
+        console.warn(`SyncReduxToRecoil: Unrecognized option "${key}"`);
+      }
+    });
   }
-  if (writeEnabled != null) {
-    options.writeEnabled = writeEnabled;
-  }
-  if (batchWrites != null) {
-    options.batchWrites = batchWrites;
-  }
+  Object.assign(options, optionProps);
 
   // We need to set this synchronously so that components can read on mount
   reduxStoreRef.c = useStore();

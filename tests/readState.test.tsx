@@ -5,6 +5,7 @@ import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
 import atomFromRedux from '../src/atomFromRedux';
+import SyncReduxToRecoil, { SyncReduxToRecoilProps } from '../src/SyncReduxToRecoil';
 
 import {
   createTestStore,
@@ -13,12 +14,12 @@ import {
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
 } from './helpers';
-import SyncReduxToRecoil, { SyncReduxToRecoilProps } from '../src/SyncReduxToRecoil';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.resetModules();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
@@ -139,7 +140,7 @@ describe('read Redux state through Recoil', () => {
     expect(warningString).toBe('Cannot access Redux state because reads have never been enabled');
   });
 
-  it.only('does not update unless readEnabled is on', () => {
+  it('does not update unless readEnabled is on', () => {
     const WrapperWithoutReadEnabled: React.FC<SyncReduxToRecoilProps> = ({
       children,
       readEnabled,

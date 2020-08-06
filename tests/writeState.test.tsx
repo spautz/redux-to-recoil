@@ -7,11 +7,13 @@ import atomFromRedux from '../src/atomFromRedux';
 
 import { createTestStore, createTestWrapper, VALUE1_DEFAULT, VALUE2_DEFAULT } from './helpers';
 import { Provider } from 'react-redux';
+import SyncReduxToRecoil from '../src/SyncReduxToRecoil';
 
 describe('write Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.resetModules();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
@@ -83,7 +85,7 @@ describe('write Redux state through Recoil', () => {
     });
   });
 
-  it('throws an error if you try to write without syncing', () => {
+  it('throws an error if you try to write without SyncReduxToRecoil', () => {
     const WrapperWithoutSync: React.FC = ({ children }) => (
       <Provider store={testStore}>{children}</Provider>
     );
@@ -101,5 +103,40 @@ describe('write Redux state through Recoil', () => {
         setValue1(123);
       });
     }).toThrowError('Cannot dispatch to Redux because <SyncReduxToRecoil> is not mounted');
+  });
+
+  it('emits an error and does nothing if writeEnabled is off', () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValueOnce();
+
+    const WrapperWithoutWriteEnabled: React.FC = ({ children }) => (
+      <Provider store={testStore}>
+        <SyncReduxToRecoil writeEnabled={false} />
+        {children}
+      </Provider>
+    );
+    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
+    const value1AtomHook = () => useRecoilState(value1Atom);
+
+    const { result } = renderRecoilHook(value1AtomHook, {
+      wrapper: WrapperWithoutWriteEnabled,
+      initialProps: {
+        writeEnabled: true,
+      },
+    });
+
+    let [value1, setValue] = result.current;
+    expect(value1).toBe(VALUE1_DEFAULT);
+
+    act(() => {
+      setValue(999);
+    });
+
+    value1 = result.current[0];
+    expect(value1).toBe(VALUE1_DEFAULT);
+
+    const consoleErrorCalls = consoleErrorSpy.mock.calls;
+    expect(consoleErrorCalls.length).toBe(1);
+    const [errorString] = consoleErrorCalls[0];
+    expect(errorString).toBe('Cannot dispatch to Redux because writes are disabled');
   });
 });
