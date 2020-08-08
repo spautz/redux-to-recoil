@@ -13,12 +13,12 @@ There are three different implementations of the UI, running side-by-side:
 
 ### Comparison
 
-## Reading from Redux
-
-| Plain Redux  | Redux-to-Recoil: Read-only | Redux-to-Recoil: Read-write |
-| ------------ | -------------------------- | --------------------------- |
-| `test`       | Content Cell               | Same as Read-only           |
-| Content Cell | Content Cell               | Same as Read-only           |
+| Plain Redux                                                                                        | Redux-to-Recoil: Read-only                                                                             | Redux-to-Recoil: Read-write                                                                                                |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| [components-redux/VisibleTodoList.jsx](./src/components-redux/VisibleTodoList.jsx)                 | [components-recoil-readonly/VisibleTodoList.jsx](./src/components-recoil-readonly/VisibleTodoList.jsx) | [components-recoil-readwrite/VisibleTodoList.jsx](./src/components-recoil-readwrite/VisibleTodoList.jsx)                   |
+| To read:<br>`const selector = state => state.someKey;`<br>`const myValue = useSelector(selector);` | To read:<br>`const myAtom = atomFromRedux('.someKey');`<br>`const myValue = useRecoilValue(myAtom);`   | Same as Read-only                                                                                                          |
+| To write:<br>`const myAction = someActionConstructor(value);`<br>`dispatch(myAction);`             | Same as plain redux                                                                                    | To write:<br>`const myAtom = atomFromRedux('.someKey');`<br>`const setValue = useSetRecoilValue(myAtom);`                  |
+|                                                                                                    |                                                                                                        | To read and write:<br>`const myAtom = atomFromRedux('.someKey');`<br>`const [myValue, setValue] = useRecoilState(myAtom);` |
 
 ### Other notes
 
