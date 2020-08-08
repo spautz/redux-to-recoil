@@ -3,6 +3,8 @@
 This demo project takes the ["Todo List" example from Redux](https://redux.js.org/basics/example) and uses
 [Redux-to-Recoil](https://github.com/spautz/redux-to-recoil) to access the Redux state via Recoil.
 
+[See the live demo.](https://spautz.github.io/redux-to-recoil/)
+
 ### What's included?
 
 There are three different implementations of the UI, running side-by-side:
