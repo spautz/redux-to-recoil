@@ -74,7 +74,7 @@ It can also facilitate a migration from Redux to Recoil.
 
 ## Options
 
-Several [options are available](https://github.com/spautz/redux-to-recoil/blob/master/src/options.ts#L2-L26) to control
+Several [options are available](https://github.com/spautz/redux-to-recoil/blob/master/src/options.ts#L1-L26) to control
 how and whether Recoil receives updates from, and writes updates to, Redux.
 
 ## Demo

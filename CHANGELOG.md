@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/spautz/redux-to-recoil/compare/v0.2.0...v0.2.1) (2020-08-08)
+
+### Features
+
+- Host [demo on gh-pages](https://spautz.github.io/redux-to-recoil/) ([#13](https://github.com/spautz/redux-to-recoil/issues/13)) ([1c1add6](https://github.com/spautz/redux-to-recoil/commit/1c1add6020240a961217b62f9e3d055942b1f64d))
+- Expand docs
+
 ## [0.2.0](https://github.com/spautz/redux-to-recoil/compare/v0.1.0...v0.2.0) (2020-08-06)
 
 ### Features
