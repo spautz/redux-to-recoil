@@ -4,16 +4,16 @@
     "main.js.map": "/redux-to-recoil/static/js/main.d51d3b80.chunk.js.map",
     "runtime-main.js": "/redux-to-recoil/static/js/runtime-main.e057d82b.js",
     "runtime-main.js.map": "/redux-to-recoil/static/js/runtime-main.e057d82b.js.map",
-    "static/js/2.21cf9972.chunk.js": "/redux-to-recoil/static/js/2.21cf9972.chunk.js",
-    "static/js/2.21cf9972.chunk.js.map": "/redux-to-recoil/static/js/2.21cf9972.chunk.js.map",
+    "static/js/2.0adcf4dd.chunk.js": "/redux-to-recoil/static/js/2.0adcf4dd.chunk.js",
+    "static/js/2.0adcf4dd.chunk.js.map": "/redux-to-recoil/static/js/2.0adcf4dd.chunk.js.map",
     "index.html": "/redux-to-recoil/index.html",
-    "precache-manifest.7be1c67de6e0d20b18a06d1f705c2d9d.js": "/redux-to-recoil/precache-manifest.7be1c67de6e0d20b18a06d1f705c2d9d.js",
+    "precache-manifest.f95346f69a76fd1362eb0c2ce898804a.js": "/redux-to-recoil/precache-manifest.f95346f69a76fd1362eb0c2ce898804a.js",
     "service-worker.js": "/redux-to-recoil/service-worker.js",
-    "static/js/2.21cf9972.chunk.js.LICENSE.txt": "/redux-to-recoil/static/js/2.21cf9972.chunk.js.LICENSE.txt"
+    "static/js/2.0adcf4dd.chunk.js.LICENSE.txt": "/redux-to-recoil/static/js/2.0adcf4dd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e057d82b.js",
-    "static/js/2.21cf9972.chunk.js",
+    "static/js/2.0adcf4dd.chunk.js",
     "static/js/main.d51d3b80.chunk.js"
   ]
 }
