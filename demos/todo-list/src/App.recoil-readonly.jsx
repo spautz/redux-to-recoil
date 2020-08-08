@@ -6,8 +6,7 @@ import FilterLink from './components-recoil-readonly/FilterLink';
 import VisibleTodoList from './components-recoil-readonly/VisibleTodoList';
 
 const RecoilReadOnlyApp = () => (
-  <fieldset>
-    <legend>Redux-to-Recoil: Read-only</legend>
+  <div>
     <AddTodo />
     <VisibleTodoList />
 
@@ -17,7 +16,7 @@ const RecoilReadOnlyApp = () => (
       <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
       <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
     </div>
-  </fieldset>
+  </div>
 );
 
 export default RecoilReadOnlyApp;
