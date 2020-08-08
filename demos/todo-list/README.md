@@ -7,6 +7,6 @@ There are three different implementations of the UI, running side-by-side:
 
 - The original plain Redux version: read from Redux, dispatch actions to Redux.
 - A read-only Recoil version: read from Recoil, dispatch actions to Redux.
-- A read-write Recoil version: read from Recoil, write to Recoil.
+- A read-write Recoil version: read from Recoil, write to Recoil. The library syncs changes back to Redux.
 
 This project was bootstrapped with [Create React ReduxApp](https://github.com/facebook/create-react-app).

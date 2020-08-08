@@ -21,9 +21,21 @@ render(
     <Provider store={store}>
       <RecoilRoot>
         <SyncReduxToRecoil batchWrites />
+        <h1>Redux-to-Recoil: Todo List Demo</h1>
+        <a
+          href="https://github.com/spautz/redux-to-recoil/tree/master/demos/todo-list"
+          target="_blank"
+        >
+          View source and readme
+        </a>
 
+        <h2>Plain Redux</h2>
         <ReduxApp />
+
+        <h2>Redux-to-Recoil: Read-only</h2>
         <RecoilReadOnlyApp />
+
+        <h2>Redux-to-Recoil: Read-write</h2>
         <RecoilReadWriteApp />
       </RecoilRoot>
     </Provider>
