@@ -29,7 +29,7 @@ const [todos, setTodos] = useRecoilState(todosAtom);
 const todoCount = useRecoilValue(todoCountSelector);
 ```
 
-`<SyncReduxToRecoil />` syncs state from Redux to Recoil.
+`<SyncReduxToRecoil />` syncs state from Redux to Recoil. This is required.
 
 ```typescript jsx
 import { SyncReduxToRecoil } from 'redux-to-recoil';
@@ -42,7 +42,8 @@ import { SyncReduxToRecoil } from 'redux-to-recoil';
 </Provider>;
 ```
 
-Wrap your reducer with `syncChangesFromRecoil`, if you want to dispatch changes from Recoil back to Redux.
+If you want to dispatch changes from Recoil back to Redux then wrap your reducer with `syncChangesFromRecoil`.
+This is only needed if you `set` Recoil values directly.
 
 ```typescript jsx
 import { syncChangesFromRecoil } from 'redux-to-recoil';
@@ -70,6 +71,18 @@ This library is useful for accessing Redux state from _within_ a Recoil selector
 conditionally, or within loops. `useSelector` can't do that.
 
 It can also facilitate a migration from Redux to Recoil.
+
+## Options
+
+Several [options are available](https://github.com/spautz/redux-to-recoil/blob/master/src/options.ts#L2-L26) to control
+how and whether Recoil receives updates from, and writes updates to, Redux.
+
+## Demo
+
+A Todo List demo shows both a read-only sync from redux and a read-write sync.
+
+- [Live demo](https://spautz.github.io/redux-to-recoil)
+- [View source and readme](https://github.com/spautz/redux-to-recoil/tree/master/demos/todo-list)
 
 ## Performance notes
 
