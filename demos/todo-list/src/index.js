@@ -21,21 +21,35 @@ render(
     <Provider store={store}>
       <RecoilRoot>
         <SyncReduxToRecoil batchWrites />
-        <h1>Redux-to-Recoil: Todo List Demo</h1>
-        <a
-          href="https://github.com/spautz/redux-to-recoil/tree/master/demos/todo-list"
-          target="_blank"
-        >
-          View source and readme
-        </a>
+        <h2>Redux-to-Recoil: Todo List Demo</h2>
+        <p>
+          Use the{' '}
+          <a
+            href="https://github.com/zalmoxisus/redux-devtools-extension#installation"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Redux Devtools extension
+          </a>{' '}
+          to watch the Redux state.
+        </p>
+        <p>
+          <a
+            href="https://github.com/spautz/redux-to-recoil/tree/master/demos/todo-list"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View source and readme
+          </a>
+        </p>
 
-        <h2>Plain Redux</h2>
+        <h3>Plain Redux</h3>
         <ReduxApp />
 
-        <h2>Redux-to-Recoil: Read-only</h2>
+        <h3>Redux-to-Recoil: Read-only</h3>
         <RecoilReadOnlyApp />
 
-        <h2>Redux-to-Recoil: Read-write</h2>
+        <h3>Redux-to-Recoil: Read-write</h3>
         <RecoilReadWriteApp />
       </RecoilRoot>
     </Provider>
