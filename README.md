@@ -81,7 +81,7 @@ how and whether Recoil receives updates from, and writes updates to, Redux.
 
 A Todo List demo shows both a read-only sync from redux and a read-write sync.
 
-- [Live demo](https://spautz.github.io/redux-to-recoil)
+- [Live demo](https://spautz.github.io/redux-to-recoil/todo-list/)
 - [View source and readme](https://github.com/spautz/redux-to-recoil/tree/master/demos/todo-list)
 
 ## Performance notes

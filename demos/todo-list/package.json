@@ -13,7 +13,7 @@
     "recoil": "^0.0.10",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-to-recoil": "latest",
+    "redux-to-recoil": "^0.2.0",
     "reselect": "^4.0.0"
   },
   "scripts": {
@@ -38,5 +38,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "https://spautz.github.io/redux-to-recoil/todo-list/"
 }
