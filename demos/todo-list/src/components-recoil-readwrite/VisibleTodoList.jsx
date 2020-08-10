@@ -8,8 +8,8 @@ import Todo from './Todo';
 const todosAtom = atomFromRedux('.todos');
 
 const VisibleTodoList = () => {
-  const [, setAllTodos] = useRecoilState(todosAtom);
   const [todos] = useRecoilState(getVisibleTodos);
+  const [, setAllTodos] = useRecoilState(todosAtom);
 
   const toggleTodo = (id) => {
     setAllTodos((allTodos) =>

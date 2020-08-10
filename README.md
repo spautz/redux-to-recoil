@@ -8,7 +8,7 @@ Access your Redux store through Recoil.
 [![gzip size](http://img.badgesize.io/https://unpkg.com/redux-to-recoil@latest/dist/index.umd.js?compression=gzip)](https://bundlephobia.com/result?p=redux-to-recoil)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/redux-to-recoil.svg)](https://coveralls.io/github/spautz/redux-to-recoil)
 
-## Example
+## Usage
 
 `atomFromRedux` creates a Recoil wrapper around a location in Redux. This works like any other atom.
 
@@ -74,8 +74,8 @@ It can also facilitate a migration from Redux to Recoil.
 
 ## Options
 
-Several [options are available](https://github.com/spautz/redux-to-recoil/blob/master/src/options.ts#L1-L26) to control
-how and whether Recoil receives updates from, and writes updates to, Redux.
+[Options are available](https://github.com/spautz/redux-to-recoil/blob/master/src/options.ts#L1-L26) to control how and
+whether Recoil receives updates from, and writes updates to, Redux.
 
 ## Demo
 
@@ -87,11 +87,11 @@ A Todo List demo shows both a read-only sync from redux and a read-write sync.
 ## Performance notes
 
 Until [Recoil issue #314](https://github.com/facebookexperimental/Recoil/issues/314) is worked, each component that
-uses a Redux-linked atom or selector will rerender when Redux updates.
+uses a Redux-linked atom or selector will rerender when Redux updates -- even if its own values haven't changed.
 
 ## Console error
 
 Due to [Recoil issue #12](https://github.com/facebookexperimental/Recoil/issues/12), you will see a console error in
-React 16.13. This does not hurt anything, but it is annoying.
+React 16.13 and above. This does not hurt anything, but it is annoying.
 
 > `Warning: Cannot update a component (Batcher) while rendering a different component`
