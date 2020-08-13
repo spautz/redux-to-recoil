@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/spautz/redux-to-recoil/compare/v0.2.1...v0.2.2) (2020-08-13)
+
+### Bug Fixes
+
+- Don't mutate pending-changes array between syncs ([#16](https://github.com/spautz/redux-to-recoil/issues/16)) ([99a0464](https://github.com/spautz/redux-to-recoil/commit/99a04645a743ea3c4aaa4a9f79df2ecb0a49fe3d))
+
 ### [0.2.1](https://github.com/spautz/redux-to-recoil/compare/v0.2.0...v0.2.1) (2020-08-08)
 
 ### Features
