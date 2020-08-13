@@ -1,6 +1,9 @@
 export { default as applyChangesToObject } from './applyChangesToObject';
 export * from './applyChangesToObject';
 
+export { default as pendingChangesRef } from './pendingChangesRef';
+export * from './pendingChangesRef';
+
 export { default as reduxStateAtom } from './reduxStateAtom';
 export * from './reduxStateAtom';
 

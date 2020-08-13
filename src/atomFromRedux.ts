@@ -6,6 +6,7 @@ import {
   DefaultReturnType,
   ReduxState,
   applyChangesToObject,
+  pendingChangesRef,
   reduxStateAtom,
   reduxStoreRef,
   syncChangesFromRecoilAction,
@@ -14,8 +15,6 @@ import { options } from './options';
 
 const atomSelectorCache = Object.create(null);
 const { hasOwnProperty } = Object.prototype;
-let batchWriteTimeoutId: number | null;
-export const batchedChangeSet: Array<ChangeEntry> = [];
 
 const atomSelectorFamily = selectorFamily({
   key: 'redux-to-recoil:atom',
@@ -59,13 +58,20 @@ const atomSelectorFamily = selectorFamily({
 
     if (options.batchWrites) {
       // Queue up changes and dispatch once we're done
-      batchedChangeSet.push(thisChange);
-
-      if (!batchWriteTimeoutId) {
-        batchWriteTimeoutId = setTimeout(() => {
-          reduxStore.dispatch(syncChangesFromRecoilAction(batchedChangeSet));
-          batchedChangeSet.splice(0);
-          batchWriteTimeoutId = null;
+      if (pendingChangesRef.c) {
+        pendingChangesRef.c.push(thisChange);
+      } else {
+        // It's the first change: queue everything up
+        pendingChangesRef.c = thisChangeSet;
+        setTimeout(() => {
+          if (pendingChangesRef.c) {
+            reduxStore.dispatch(syncChangesFromRecoilAction(pendingChangesRef.c));
+          } else if (process.env.NODE_ENV !== 'production') {
+            console.warn(
+              'Could not dispatch changes from Recoil to Redux: no changes pending. This should not happen.',
+            );
+          }
+          pendingChangesRef.c = null;
         });
       }
     } else {
