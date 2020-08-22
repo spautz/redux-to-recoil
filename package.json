@@ -11,9 +11,15 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/redux-to-recoil#readme",
-  "repository": "https://github.com/spautz/redux-to-recoil",
   "bugs": "https://github.com/spautz/redux-to-recoil/issues",
-  "author": "Steven Pautz <spautz@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spautz/redux-to-recoil.git"
+  },
+  "author": {
+    "name": "Steven Pautz",
+    "url": "https://stevenpautz.com/"
+  },
   "files": [
     "dist/",
     "src/",
