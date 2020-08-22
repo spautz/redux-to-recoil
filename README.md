@@ -5,7 +5,7 @@ Access your Redux store through Recoil.
 [![npm version](https://img.shields.io/npm/v/redux-to-recoil.svg)](https://www.npmjs.com/package/redux-to-recoil)
 [![build status](https://img.shields.io/travis/com/spautz/redux-to-recoil.svg)](https://travis-ci.com/spautz/redux-to-recoil)
 [![dependencies status](https://img.shields.io/david/spautz/redux-to-recoil.svg)](https://david-dm.org/spautz/redux-to-recoil)
-[![gzip size](http://img.badgesize.io/https://unpkg.com/redux-to-recoil/dist/index.umd.js?compression=gzip)](https://bundlephobia.com/result?p=redux-to-recoil)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/redux-to-recoil/dist/index.umd.js?compression=gzip)](https://bundlephobia.com/result?p=redux-to-recoil)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/redux-to-recoil.svg)](https://coveralls.io/github/spautz/redux-to-recoil)
 
 ## Usage
@@ -89,9 +89,9 @@ A Todo List demo shows both a read-only sync from redux and a read-write sync.
 Until [Recoil issue #314](https://github.com/facebookexperimental/Recoil/issues/314) is worked, each component that
 uses a Redux-linked atom or selector will rerender when Redux updates -- even if its own values haven't changed.
 
-## Console error
+## Console error in latest version of React
 
 Due to [Recoil issue #12](https://github.com/facebookexperimental/Recoil/issues/12), you will see a console error in
-React 16.13 and above. This does not hurt anything, but it is annoying.
+React 16.13 and React 17. This does not hurt anything or cause any problems, but it is annoying.
 
 > `Warning: Cannot update a component (Batcher) while rendering a different component`

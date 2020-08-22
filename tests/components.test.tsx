@@ -2,7 +2,7 @@ import React from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
-import TestRenderer from 'react-test-renderer';
+import TestRenderer, { act } from 'react-test-renderer';
 
 import { reduxStoreRef } from '../src/internals';
 import SyncReduxToRecoil from '../src/SyncReduxToRecoil';
@@ -67,7 +67,7 @@ describe('read Redux state through Recoil', () => {
     expect(warningString).toBe('SyncReduxToRecoil: Unrecognized option "invalidOption"');
   });
 
-  it('sets a reference to the redux store on mount', () => {
+  it('sets a reference to the redux store synchronously on mount', () => {
     TestRenderer.create(
       <Provider store={testStore}>
         <RecoilRoot>
@@ -91,6 +91,11 @@ describe('read Redux state through Recoil', () => {
     expect(reduxStoreRef.c).toBeTruthy();
 
     testRenderer.update(<div />);
+    // In React 17 the useEffect cleanup function runs *after* unmount, so we
+    // need to wait an extra tick
+    act(() => {
+      // do nothing
+    });
 
     expect(reduxStoreRef.c).toBeNull();
   });
