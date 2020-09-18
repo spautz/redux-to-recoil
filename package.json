@@ -60,7 +60,7 @@
     "release:tag": "standard-version --commit-all --sign --skip.changelog --release-as ",
     "test": "jest --coverage",
     "test:clean": "rimraf coverage/",
-    "test:report": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:report": "jest --coverage && coveralls < coverage/lcov.info",
     "test:watch": "jest --coverage --watch",
     "types": "tsc --noEmit --p tsconfig.json"
   },

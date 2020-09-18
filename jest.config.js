@@ -6,5 +6,5 @@ module.exports = {
 
   collectCoverage: true,
   coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/tests/'],
-  coverageReporters: ['json', 'html'],
+  coverageReporters: ['json', 'html', 'lcov'],
 };
