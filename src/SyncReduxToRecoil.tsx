@@ -35,7 +35,7 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
 
   const currentReduxState = useSelector(selectEntireState);
   useEffect(() => {
-    if (options.readEnabled && !pendingChangesRef.c && currentReduxState !== lastReduxState) {
+    if (options.readEnabled && currentReduxState !== lastReduxState && !pendingChangesRef.c) {
       setReduxState(currentReduxState);
     }
   }, [options.readEnabled, pendingChangesRef.c, currentReduxState, lastReduxState, setReduxState]);

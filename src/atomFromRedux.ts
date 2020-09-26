@@ -27,9 +27,9 @@ const atomSelectorFamily = selectorFamily({
     // At initial render the reduxStateAtom will not be populated yet, so fall back to the actual store
     const reduxState: ReduxState = get(reduxStateAtom) || (reduxStore && reduxStore.getState());
 
-    if (!options.readEnabled && reduxState == null) {
+    if (reduxState == null) {
       // We've *never* synced: just return undefined for all keys
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.NODE_ENV !== 'production' && !options.readEnabled) {
         console.warn('Cannot access Redux state because reads have never been enabled');
       }
       return;
