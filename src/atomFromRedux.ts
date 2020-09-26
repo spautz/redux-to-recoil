@@ -24,7 +24,8 @@ const atomSelectorFamily = selectorFamily({
       throw new Error('Cannot read from Redux because <SyncReduxToRecoil> is not mounted');
     }
 
-    const reduxState: ReduxState = get(reduxStateAtom);
+    // At initial render the reduxStateAtom will not be populated yet, so fall back to the actual store
+    const reduxState: ReduxState = get(reduxStateAtom) || (reduxStore && reduxStore.getState());
 
     if (!options.readEnabled && reduxState == null) {
       // We've *never* synced: just return undefined for all keys
@@ -33,6 +34,7 @@ const atomSelectorFamily = selectorFamily({
       }
       return;
     }
+
     if (realPath) {
       return getPath(reduxState, realPath);
     }
