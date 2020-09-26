@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
-import { ReduxState, pendingChangesRef, reduxStateAtom, reduxStoreRef } from './internals';
-import { ReduxToRecoilOptions, options } from './options';
+import { pendingChangesRef, ReduxState, reduxStateAtom, reduxStoreRef } from './internals';
+import { options, ReduxToRecoilOptions } from './options';
 
 const selectEntireState = (state: ReduxState) => state;
 
@@ -34,9 +34,11 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
   const currentReduxState = useSelector(selectEntireState);
-  if (options.readEnabled && !pendingChangesRef.c && currentReduxState !== lastReduxState) {
-    setReduxState(currentReduxState);
-  }
+  useEffect(() => {
+    if (options.readEnabled && currentReduxState !== lastReduxState && !pendingChangesRef.c) {
+      setReduxState(currentReduxState);
+    }
+  }, [options.readEnabled, pendingChangesRef.c, currentReduxState, lastReduxState, setReduxState]);
 
   if (process.env.NODE_ENV !== 'production' && children) {
     console.warn(

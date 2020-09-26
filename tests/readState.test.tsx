@@ -20,6 +20,7 @@ describe('read Redux state through Recoil', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
+
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });
@@ -114,11 +115,14 @@ describe('read Redux state through Recoil', () => {
   it('warns and returns undefined if readEnabled has never been on', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockReturnValueOnce();
 
+    const nullStore = createTestStore(null);
+    const NullReduxProviderWrapper = createTestWrapper(nullStore);
+
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const value1AtomHook = () => useRecoilValue(value1Atom);
 
     const { result } = renderRecoilHook(value1AtomHook, {
-      wrapper: ReduxProviderWrapper,
+      wrapper: NullReduxProviderWrapper,
       initialProps: {
         readEnabled: false,
       },

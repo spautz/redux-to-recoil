@@ -24,11 +24,15 @@ const testReducer = (state: ReduxState, action: AnyAction): ReduxState => {
   return state;
 };
 
-const createTestStore = (): Store =>
-  createStore(syncChangesFromRecoil(testReducer), {
-    value1: VALUE1_DEFAULT,
-    value2: VALUE2_DEFAULT,
-  });
+const initialTestState = {
+  value1: VALUE1_DEFAULT,
+  value2: VALUE2_DEFAULT,
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const createTestStore = (initialState: any = initialTestState): Store => {
+  return createStore(syncChangesFromRecoil(testReducer), initialState);
+};
 
 export default createTestStore;
-export { VALUE1_DEFAULT, VALUE2_DEFAULT, incrementKeyAction, testReducer };
+export { VALUE1_DEFAULT, VALUE2_DEFAULT, incrementKeyAction, testReducer, initialTestState };

@@ -95,3 +95,12 @@ Due to [Recoil issue #12](https://github.com/facebookexperimental/Recoil/issues/
 React 16.13 and React 17. This does not hurt anything or cause any problems, but it is annoying.
 
 > `Warning: Cannot update a component (Batcher) while rendering a different component`
+
+## Recoil version compatibility
+
+|   Recoil | Redux-to-Recoil |
+| -------: | --------------: |
+| `0.0.10` |         `0.2.2` |
+| `0.0.13` |   (in progress) |
+
+Other versions of Recoil and Redux-to-Recoil may be compatible: this table just lists the thoroughly tested pairings.
