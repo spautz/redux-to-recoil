@@ -5,6 +5,8 @@
   "keywords": [
     "redux to recoil",
     "recoil from redux",
+    "recoil",
+    "redux",
     "migrate",
     "migration",
     "sync"
@@ -18,7 +20,7 @@
   },
   "author": {
     "name": "Steven Pautz",
-    "url": "https://stevenpautz.com/"
+    "url": "http://stevenpautz.com/"
   },
   "files": [
     "dist/",
@@ -41,9 +43,9 @@
     "pretest": "yon run test:clean",
     "____ INTEGRATION ___________________________________________________": "",
     "clean": "yon run build:clean && yon run test:clean && rimraf node_modules/.cache/",
-    "test": "yon run test:watch",
+    "test": "yon run test:nowatch",
     "dev": "yon run format && yon run types && yon run lint",
-    "dev:readonly": "yon run format:check && yon run types && yon run lint",
+    "dev:readonly": "yon run format:verify && yon run types && yon run lint",
     "all": "yon run clean && yon run dev && yon run test:nowatch && yon run build",
     "all:readonly": "yon run clean && yon run dev:readonly && yon run test:nowatch",
     "ci": "yon run clean && yon run dev:readonly && yon run test:report",
@@ -54,9 +56,9 @@
     "demo:prepare": "cd demos/todo-list && yarn add redux-to-recoil@next && yarn install && yarn lint && yarn build",
     "demo:start": "cd demos/todo-list && yarn start",
     "demo:deploy": "gh-pages -d demos/todo-list/build",
-    "format": "prettier --write \"**/*.*\"",
-    "format:check": "prettier --list-different \"**/*.*\"",
-    "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\"",
+    "format": "prettier --write .",
+    "format:verify": "prettier --list-different .",
+    "lint": "eslint .",
     "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
     "release:tag": "standard-version --commit-all --sign --skip.changelog --release-as ",
     "test:clean": "rimraf coverage/",
@@ -115,7 +117,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yon run dev:readonly"
     }
   },
   "standard-version": {
