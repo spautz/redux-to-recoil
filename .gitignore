@@ -3,6 +3,6 @@
 
 .idea/
 .vscode/
-dist/
 coverage/
+dist/
 node_modules/

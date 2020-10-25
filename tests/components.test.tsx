@@ -55,7 +55,7 @@ describe('read Redux state through Recoil', () => {
     TestRenderer.create(
       <Provider store={testStore}>
         <RecoilRoot>
-          {/* @ts-expect-error */}
+          {/* @ts-expect-error Invalid prop */}
           <SyncReduxToRecoil invalidOption={123} />
         </RecoilRoot>
       </Provider>,
