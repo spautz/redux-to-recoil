@@ -101,6 +101,7 @@ React 16.13 and React 17. This does not hurt anything or cause any problems, but
 |   Recoil | Redux-to-Recoil |
 | -------: | --------------: |
 | `0.0.10` |         `0.2.2` |
-| `0.0.13` |         `0.3.*` |
+| `0.0.13` |         `0.3.1` |
+|  `0.1.2` |         `0.4.*` |
 
 Other versions of Recoil and Redux-to-Recoil may be compatible: this table just lists the thoroughly tested pairings.
