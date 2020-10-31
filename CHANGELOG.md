@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/spautz/redux-to-recoil/compare/v0.3.1...v0.4.0) (2020-10-31)
+
+### Features
+
+- Officially support Recoil 0.1.x ([#21](https://github.com/spautz/redux-to-recoil/issues/21)) ([25cc923](https://github.com/spautz/redux-to-recoil/commit/25cc9238faa2f30ecebb8034cfafa835f2f8bc6a))
+
 ### [0.3.1](https://github.com/spautz/redux-to-recoil/compare/v0.3.0...v0.3.1) (2020-10-25)
 
 - Minor updates to docs and devDependencies

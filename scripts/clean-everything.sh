@@ -47,3 +47,13 @@ run_command "rm -rf
   yarn-debug.log*
   yarn-error.log*
   "
+
+run_command "rm -rf
+  demos/*/.yarn
+  demos/*/build/
+  demos/*/coverage/
+  demos/*/node_modules/
+  demos/*/npm-debug.log*
+  demos/*/yarn-debug.log*
+  demos/*/yarn-error.log*
+  "
