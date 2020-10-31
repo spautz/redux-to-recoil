@@ -22,6 +22,10 @@
     "name": "Steven Pautz",
     "url": "http://stevenpautz.com/"
   },
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
   "files": [
     "dist/",
     "src/",
