@@ -2907,6 +2907,15 @@ dotgitignore@^2.1.0:
     find-up "^3.0.0"
     minimatch "^3.0.4"
 
+downlevel-dts@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/downlevel-dts/-/downlevel-dts-0.7.0.tgz#155c24310dad8a4820ad077e64b15a8c461aa932"
+  integrity sha512-tcjGqElN0/oad/LJBlaxmZ3zOYEQOBbGuirKzif8s1jeRiWBdNX9H6OBFlRjOQkosXgV+qSjs4osuGCivyZ4Jw==
+  dependencies:
+    semver "^7.3.2"
+    shelljs "^0.8.3"
+    typescript "^4.1.0-dev.20201026"
+
 duplexer@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
@@ -7836,7 +7845,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@4.2.3, typescript@^4.1.3:
+typescript@4.2.3, typescript@^4.1.0-dev.20201026, typescript@^4.1.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.3.tgz#39062d8019912d43726298f09493d598048c1ce3"
   integrity sha512-qOcYwxaByStAWrBf4x0fibwZvMRG+r4cQoTjbPtUlrWjBHbmCAww1i448U0GJ+3cNNEtebDteo/cHOR3xJ4wEw==
