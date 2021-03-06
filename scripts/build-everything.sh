@@ -20,3 +20,4 @@ run_command "yarn install"
 
 run_command "yarn all"
 run_command "yarn all:readonly"
+run_command "yarn demo:prepare"
