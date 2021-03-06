@@ -1,6 +1,6 @@
 # Redux-to-Recoil
 
-Access your Redux store through Recoil.
+Access your [Redux](https://redux.js.org/) store through [Recoil](https://recoiljs.org/).
 
 [![npm version](https://img.shields.io/npm/v/redux-to-recoil.svg)](https://www.npmjs.com/package/redux-to-recoil)
 [![build status](https://img.shields.io/travis/com/spautz/redux-to-recoil.svg)](https://travis-ci.com/spautz/redux-to-recoil)
@@ -86,10 +86,10 @@ A Todo List demo shows both a read-only sync from redux and a read-write sync.
 
 ## Recoil version compatibility
 
-|   Recoil | Redux-to-Recoil |
-| -------: | --------------: |
-| `0.0.10` |         `0.2.2` |
-| `0.0.13` |         `0.3.1` |
-|  `0.1.2` |         `0.4.*` |
+|          Recoil | Redux-to-Recoil |
+| --------------: | --------------: |
+|        `0.0.10` |         `0.2.2` |
+|        `0.0.13` |         `0.3.1` |
+| `0.1.2`-`0.1.3` |         `0.4.*` |
 
 Other versions of Recoil and Redux-to-Recoil may be compatible: this table just lists the thoroughly tested pairings.
