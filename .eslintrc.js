@@ -19,5 +19,5 @@ module.exports = {
     },
   ],
 
-  ignorePatterns: ['demos/', 'dist/', 'coverage/', 'node_modules/'],
+  ignorePatterns: ['demos/', 'coverage/', 'dist/', 'legacy-types/', 'node_modules/'],
 };

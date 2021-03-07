@@ -5,4 +5,5 @@
 .vscode/
 coverage/
 dist/
+legacy-types/
 node_modules/

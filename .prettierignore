@@ -13,6 +13,7 @@
 
 # Unless they're somewhere we can ignore
 build/
-dist/
 coverage/
+dist/
+legacy-types/
 node_modules/
