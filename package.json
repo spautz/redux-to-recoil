@@ -1,6 +1,6 @@
 {
   "name": "redux-to-recoil",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [
     "redux to recoil",
@@ -103,6 +103,7 @@
     "jest": "26.6.3",
     "lint-staged": "10.5.4",
     "microbundle": "0.13.0",
+    "pinst": "2.1.6",
     "prettier": "2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",

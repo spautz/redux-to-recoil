@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/spautz/redux-to-recoil/compare/v0.4.0...v0.4.1) (2021-03-08)
+
+- Publish multiple typesVersions ([#29](https://github.com/spautz/redux-to-recoil/issues/29)) ([de4991a](https://github.com/spautz/redux-to-recoil/commit/de4991ae79d37a515c48da2a20759d1216f45aa6))
+
 ## [0.4.0](https://github.com/spautz/redux-to-recoil/compare/v0.3.1...v0.4.0) (2020-10-31)
 
 ### Features
