@@ -1,19 +1,17 @@
 {
   "files": {
-    "main.js": "/redux-to-recoil/static/js/main.8c22cb11.chunk.js",
-    "main.js.map": "/redux-to-recoil/static/js/main.8c22cb11.chunk.js.map",
-    "runtime-main.js": "/redux-to-recoil/static/js/runtime-main.e057d82b.js",
-    "runtime-main.js.map": "/redux-to-recoil/static/js/runtime-main.e057d82b.js.map",
-    "static/js/2.a72304d8.chunk.js": "/redux-to-recoil/static/js/2.a72304d8.chunk.js",
-    "static/js/2.a72304d8.chunk.js.map": "/redux-to-recoil/static/js/2.a72304d8.chunk.js.map",
+    "main.js": "/redux-to-recoil/static/js/main.1bfd92a0.chunk.js",
+    "main.js.map": "/redux-to-recoil/static/js/main.1bfd92a0.chunk.js.map",
+    "runtime-main.js": "/redux-to-recoil/static/js/runtime-main.74f7527e.js",
+    "runtime-main.js.map": "/redux-to-recoil/static/js/runtime-main.74f7527e.js.map",
+    "static/js/2.47383a0f.chunk.js": "/redux-to-recoil/static/js/2.47383a0f.chunk.js",
+    "static/js/2.47383a0f.chunk.js.map": "/redux-to-recoil/static/js/2.47383a0f.chunk.js.map",
     "index.html": "/redux-to-recoil/index.html",
-    "precache-manifest.131405f8339a5378162f71273f6ca0c8.js": "/redux-to-recoil/precache-manifest.131405f8339a5378162f71273f6ca0c8.js",
-    "service-worker.js": "/redux-to-recoil/service-worker.js",
-    "static/js/2.a72304d8.chunk.js.LICENSE.txt": "/redux-to-recoil/static/js/2.a72304d8.chunk.js.LICENSE.txt"
+    "static/js/2.47383a0f.chunk.js.LICENSE.txt": "/redux-to-recoil/static/js/2.47383a0f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e057d82b.js",
-    "static/js/2.a72304d8.chunk.js",
-    "static/js/main.8c22cb11.chunk.js"
+    "static/js/runtime-main.74f7527e.js",
+    "static/js/2.47383a0f.chunk.js",
+    "static/js/main.1bfd92a0.chunk.js"
   ]
 }
