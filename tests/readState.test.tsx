@@ -13,6 +13,7 @@ import {
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
 } from './helpers';
+import { resetStateBetweenTests } from '../src/internals';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
@@ -21,6 +22,7 @@ describe('read Redux state through Recoil', () => {
     jest.restoreAllMocks();
     jest.resetModules();
 
+    resetStateBetweenTests();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });

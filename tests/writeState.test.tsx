@@ -7,6 +7,7 @@ import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import atomFromRedux from '../src/atomFromRedux';
 
 import { createTestStore, createTestWrapper, VALUE1_DEFAULT, VALUE2_DEFAULT } from './helpers';
+import { resetStateBetweenTests } from '../src/internals';
 
 describe('write Redux state through Recoil', () => {
   let testStore: Store;
@@ -17,6 +18,7 @@ describe('write Redux state through Recoil', () => {
     jest.clearAllTimers();
     jest.useRealTimers();
 
+    resetStateBetweenTests();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });

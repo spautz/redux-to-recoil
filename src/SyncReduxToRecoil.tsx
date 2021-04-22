@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
-import { pendingChangesRef, ReduxState, reduxStateAtom, reduxStoreRef } from './internals';
+import { pendingChangesRef, ReduxState, getReduxStateAtom, reduxStoreRef } from './internals';
 import { options, ReduxToRecoilOptions } from './options';
 
 const selectEntireState = (state: ReduxState) => state;
@@ -31,7 +31,7 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
     };
   }, []);
 
-  const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
+  const [lastReduxState, setReduxState] = useRecoilState(getReduxStateAtom());
 
   const currentReduxState = useSelector(selectEntireState);
   useEffect(() => {
