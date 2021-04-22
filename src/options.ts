@@ -28,11 +28,13 @@ export interface ReduxToRecoilOptions {
   /**
    * Internal string used as the key for the Recoil atom that's used to hold
    * the Redux state.
+   * Danger: changing this after initialization will likely break things.
    */
   _reduxStateAtomKey: string;
   /**
    * Internal string used as the key for the Recoil selectors used to access
    * values from the Redux state.
+   * Danger: changing this after initialization will likely break things.
    */
   _recoilSelectorAtomKey: string;
 }
