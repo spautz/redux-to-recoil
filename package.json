@@ -1,6 +1,6 @@
 {
   "name": "redux-to-recoil",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [
     "redux to recoil",
