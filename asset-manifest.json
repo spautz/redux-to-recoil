@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/redux-to-recoil/static/js/main.f91e8b59.chunk.js",
-    "main.js.map": "/redux-to-recoil/static/js/main.f91e8b59.chunk.js.map",
+    "main.js": "/redux-to-recoil/static/js/main.e8526edf.chunk.js",
+    "main.js.map": "/redux-to-recoil/static/js/main.e8526edf.chunk.js.map",
     "runtime-main.js": "/redux-to-recoil/static/js/runtime-main.b55a827b.js",
     "runtime-main.js.map": "/redux-to-recoil/static/js/runtime-main.b55a827b.js.map",
     "static/js/2.2630874c.chunk.js": "/redux-to-recoil/static/js/2.2630874c.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.b55a827b.js",
     "static/js/2.2630874c.chunk.js",
-    "static/js/main.f91e8b59.chunk.js"
+    "static/js/main.e8526edf.chunk.js"
   ]
 }
