@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/redux-to-recoil/static/js/main.1bfd92a0.chunk.js",
-    "main.js.map": "/redux-to-recoil/static/js/main.1bfd92a0.chunk.js.map",
-    "runtime-main.js": "/redux-to-recoil/static/js/runtime-main.74f7527e.js",
-    "runtime-main.js.map": "/redux-to-recoil/static/js/runtime-main.74f7527e.js.map",
-    "static/js/2.47383a0f.chunk.js": "/redux-to-recoil/static/js/2.47383a0f.chunk.js",
-    "static/js/2.47383a0f.chunk.js.map": "/redux-to-recoil/static/js/2.47383a0f.chunk.js.map",
+    "main.js": "/redux-to-recoil/static/js/main.f91e8b59.chunk.js",
+    "main.js.map": "/redux-to-recoil/static/js/main.f91e8b59.chunk.js.map",
+    "runtime-main.js": "/redux-to-recoil/static/js/runtime-main.b55a827b.js",
+    "runtime-main.js.map": "/redux-to-recoil/static/js/runtime-main.b55a827b.js.map",
+    "static/js/2.2630874c.chunk.js": "/redux-to-recoil/static/js/2.2630874c.chunk.js",
+    "static/js/2.2630874c.chunk.js.map": "/redux-to-recoil/static/js/2.2630874c.chunk.js.map",
     "index.html": "/redux-to-recoil/index.html",
-    "static/js/2.47383a0f.chunk.js.LICENSE.txt": "/redux-to-recoil/static/js/2.47383a0f.chunk.js.LICENSE.txt"
+    "static/js/2.2630874c.chunk.js.LICENSE.txt": "/redux-to-recoil/static/js/2.2630874c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.74f7527e.js",
-    "static/js/2.47383a0f.chunk.js",
-    "static/js/main.1bfd92a0.chunk.js"
+    "static/js/runtime-main.b55a827b.js",
+    "static/js/2.2630874c.chunk.js",
+    "static/js/main.f91e8b59.chunk.js"
   ]
 }
