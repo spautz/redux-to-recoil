@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
 import TestRenderer, { act } from 'react-test-renderer';
 
-import { reduxStoreRef } from '../src/internals';
+import { reduxStoreRef, resetStateBetweenTests } from '../src/internals';
 import SyncReduxToRecoil from '../src/SyncReduxToRecoil';
 
 import { createTestStore } from './helpers';
@@ -14,6 +14,8 @@ describe('read Redux state through Recoil', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
+
+    resetStateBetweenTests();
     testStore = createTestStore();
   });
 

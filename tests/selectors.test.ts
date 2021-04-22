@@ -5,7 +5,7 @@ import { RecoilState, selector, useRecoilValue } from 'recoil';
 import { createSelector } from 'reselect';
 import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
-import { ReduxState } from '../src/internals';
+import { ReduxState, resetStateBetweenTests } from '../src/internals';
 import atomFromRedux from '../src/atomFromRedux';
 import selectorFromReselect from '../src/selectorFromReselect';
 
@@ -17,6 +17,8 @@ describe('selectors', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
+
+    resetStateBetweenTests();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
   });

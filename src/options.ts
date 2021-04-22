@@ -24,7 +24,28 @@ export interface ReduxToRecoilOptions {
    * may give performance improvements.
    */
   batchWrites: boolean;
+
+  /**
+   * Internal string used as the key for the Recoil atom that's used to hold
+   * the Redux state.
+   * Danger: changing this after initialization will likely break things.
+   */
+  _reduxStateAtomKey: string;
+  /**
+   * Internal string used as the key for the Recoil selectors used to access
+   * values from the Redux state.
+   * Danger: changing this after initialization will likely break things.
+   */
+  _recoilSelectorAtomKey: string;
 }
+
+const defaultOptions: Readonly<ReduxToRecoilOptions> = {
+  readEnabled: true,
+  writeEnabled: true,
+  batchWrites: false,
+  _reduxStateAtomKey: 'redux-to-recoil:state',
+  _recoilSelectorAtomKey: 'redux-to-recoil:atom',
+};
 
 /**
  * `options` is just a simple singleton for holding these values.
@@ -34,8 +55,6 @@ export interface ReduxToRecoilOptions {
  * <SyncReduxToCoil writeEnabled={false} />
  * <SyncReduxToCoil batchWrites />
  */
-export const options: ReduxToRecoilOptions = {
-  readEnabled: true,
-  writeEnabled: true,
-  batchWrites: false,
-};
+const options = { ...defaultOptions };
+
+export { defaultOptions, options };

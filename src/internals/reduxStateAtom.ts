@@ -1,10 +1,20 @@
-import { atom } from 'recoil';
+import { atom, RecoilState } from 'recoil';
 
 import { ReduxState } from './types';
+import { options } from '../options';
 
-const reduxStateAtom = atom<ReduxState>({
-  key: 'redux-to-recoil:state',
-  default: null,
-});
+let reduxStateAtom: RecoilState<ReduxState>;
+let lastKey: string;
 
-export default reduxStateAtom;
+const getReduxStateAtom = (): RecoilState<ReduxState> => {
+  if (!reduxStateAtom || options._reduxStateAtomKey !== lastKey) {
+    reduxStateAtom = atom<ReduxState>({
+      key: options._reduxStateAtomKey,
+      default: null,
+    });
+    lastKey = options._reduxStateAtomKey;
+  }
+  return reduxStateAtom;
+};
+
+export { getReduxStateAtom };
