@@ -21,7 +21,9 @@ render(
     <Provider store={store}>
       <RecoilRoot>
         <SyncReduxToRecoil batchWrites />
-        <h2>Redux-to-Recoil: Todo List Demo</h2>
+        <h2>
+          <a href="https://github.com/spautz/redux-to-recoil">Redux-to-Recoil</a>: Todo List Demo
+        </h2>
         <p>
           Use the{' '}
           <a
@@ -35,7 +37,7 @@ render(
         </p>
         <p>
           <a
-            href="https://github.com/spautz/redux-to-recoil/tree/master/demos/todo-list"
+            href="https://github.com/spautz/redux-to-recoil/tree/main/demos/todo-list"
             target="_blank"
             rel="noopener noreferrer"
           >
