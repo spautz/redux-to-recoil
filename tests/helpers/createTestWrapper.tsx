@@ -4,15 +4,17 @@ import { Provider } from 'react-redux';
 
 import SyncReduxToRecoil from '../../src/SyncReduxToRecoil';
 
-const createTestWrapper = (testStore: Store): React.FC => (props) => {
-  const { children, ...anyOtherProps } = props;
+const createTestWrapper =
+  (testStore: Store): React.FC =>
+  (props) => {
+    const { children, ...anyOtherProps } = props;
 
-  return (
-    <Provider store={testStore}>
-      <SyncReduxToRecoil {...anyOtherProps} />
-      {children}
-    </Provider>
-  );
-};
+    return (
+      <Provider store={testStore}>
+        <SyncReduxToRecoil {...anyOtherProps} />
+        {children}
+      </Provider>
+    );
+  };
 
 export default createTestWrapper;
