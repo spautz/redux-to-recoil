@@ -27,7 +27,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     /* Advanced Options */
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false
   },
   "include": ["src", "tests"],
   "exclude": ["node_modules"]
