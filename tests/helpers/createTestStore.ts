@@ -34,5 +34,11 @@ const createTestStore = (initialState: any = initialTestState): Store => {
   return createStore(syncChangesFromRecoil(testReducer), initialState);
 };
 
-export default createTestStore;
-export { VALUE1_DEFAULT, VALUE2_DEFAULT, incrementKeyAction, testReducer, initialTestState };
+export {
+  VALUE1_DEFAULT,
+  VALUE2_DEFAULT,
+  createTestStore,
+  incrementKeyAction,
+  initialTestState,
+  testReducer,
+};

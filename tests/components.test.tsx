@@ -7,16 +7,23 @@ import TestRenderer, { act } from 'react-test-renderer';
 import { reduxStoreRef, resetStateBetweenTests } from '../src/internals';
 import SyncReduxToRecoil from '../src/SyncReduxToRecoil';
 
-import { createTestStore } from './helpers';
+import { createTestStore, suppressRecoilValueWarning } from './helpers';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
+  let originalConsoleError: typeof console.error;
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
 
     resetStateBetweenTests();
     testStore = createTestStore();
+
+    originalConsoleError = console.error;
+    console.error = suppressRecoilValueWarning();
+  });
+  afterEach(() => {
+    console.error = originalConsoleError;
   });
 
   it('needs to be within a Redux context', () => {
