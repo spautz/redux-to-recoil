@@ -5,7 +5,7 @@ import { RecoilRoot } from 'recoil';
 import TestRenderer, { act } from 'react-test-renderer';
 
 import { reduxStoreRef, resetStateBetweenTests } from '../src/internals';
-import SyncReduxToRecoil from '../src/SyncReduxToRecoil';
+import { SyncReduxToRecoil } from '../src/SyncReduxToRecoil';
 
 import { createTestStore, suppressRecoilValueWarning } from './helpers';
 

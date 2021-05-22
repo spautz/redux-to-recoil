@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
-import atomFromRedux from '../src/atomFromRedux';
+import { atomFromRedux } from '../src/atomFromRedux';
 
 import {
   createTestStore,
