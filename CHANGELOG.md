@@ -2,9 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/spautz/redux-to-recoil/compare/v0.5.0...v0.5.1) (2021-05-22)
+
+- Confirm support for Recoil 0.3.x ([#38](https://github.com/spautz/redux-to-recoil/issues/38)) ([16d9054](https://github.com/spautz/redux-to-recoil/commit/16d905416aa24d52d321d6d28065597c49e444ea))
+- Confirm support for Redux 4.1.x ([#37](https://github.com/spautz/redux-to-recoil/issues/37)) ([def58ca](https://github.com/spautz/redux-to-recoil/commit/def58ca0148b09a1e856e19a2c26adac1e43b0f8))
+- Internal scripting and devDependency updates ([#39](https://github.com/spautz/redux-to-recoil/issues/39)) ([da8b2d8](https://github.com/spautz/redux-to-recoil/commit/da8b2d80bcba9d8d7fb8c1798351b559c0ad65b4))
+
 ## [0.5.0](https://github.com/spautz/redux-to-recoil/compare/v0.4.1...v0.5.0) (2021-04-22)
 
-- Officially support Recoil 0.2.x
+- Officially support Recoil 0.2.x ([#36](https://github.com/spautz/redux-to-recoil/issues/36)) ([13f8bd3](https://github.com/spautz/redux-to-recoil/commit/13f8bd36607b893eb224301181270b44ee96773f))
 - Add ability to reset state between tests ([#36](https://github.com/spautz/redux-to-recoil/issues/36)) ([13f8bd3](https://github.com/spautz/redux-to-recoil/commit/13f8bd36607b893eb224301181270b44ee96773f))
 - Build system and devDependency updates ([#35](https://github.com/spautz/redux-to-recoil/issues/35)) ([eec9c2b](https://github.com/spautz/redux-to-recoil/commit/eec9c2b72e1050c7986a7de93ad50435df144f95))
 
