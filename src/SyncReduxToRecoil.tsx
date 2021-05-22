@@ -49,4 +49,4 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   return <React.Fragment>{children}</React.Fragment>;
 };
 
-export default SyncReduxToRecoil;
+export { SyncReduxToRecoil };

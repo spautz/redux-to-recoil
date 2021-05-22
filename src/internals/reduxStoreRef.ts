@@ -5,4 +5,4 @@ const reduxStoreRef: { c: Store | null } = {
   c: null,
 };
 
-export default reduxStoreRef;
+export { reduxStoreRef };

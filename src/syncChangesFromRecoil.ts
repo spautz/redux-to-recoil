@@ -12,4 +12,4 @@ const syncChangesFromRecoil = (rootReducer: Reducer): Reducer => {
   };
 };
 
-export default syncChangesFromRecoil;
+export { syncChangesFromRecoil };
