@@ -10,6 +10,7 @@ import {
   createTestStore,
   createTestWrapper,
   incrementKeyAction,
+  suppressRecoilValueWarning,
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
 } from './helpers';
@@ -18,6 +19,7 @@ import { resetStateBetweenTests } from '../src/internals';
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
+  let originalConsoleError: typeof console.error;
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
@@ -25,6 +27,12 @@ describe('read Redux state through Recoil', () => {
     resetStateBetweenTests();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
+
+    originalConsoleError = console.error;
+    console.error = suppressRecoilValueWarning();
+  });
+  afterEach(() => {
+    console.error = originalConsoleError;
   });
 
   it('reads values from Redux', () => {

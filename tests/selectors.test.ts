@@ -9,11 +9,12 @@ import { ReduxState, resetStateBetweenTests } from '../src/internals';
 import atomFromRedux from '../src/atomFromRedux';
 import selectorFromReselect from '../src/selectorFromReselect';
 
-import { createTestStore, createTestWrapper } from './helpers';
+import { createTestStore, createTestWrapper, suppressRecoilValueWarning } from './helpers';
 
 describe('selectors', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
+  let originalConsoleError: typeof console.error;
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
@@ -21,6 +22,12 @@ describe('selectors', () => {
     resetStateBetweenTests();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
+
+    originalConsoleError = console.error;
+    console.error = suppressRecoilValueWarning();
+  });
+  afterEach(() => {
+    console.error = originalConsoleError;
   });
 
   it('reads from plain selector functions', () => {

@@ -17,4 +17,4 @@ const createTestWrapper =
     );
   };
 
-export default createTestWrapper;
+export { createTestWrapper };

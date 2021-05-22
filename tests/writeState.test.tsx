@@ -6,12 +6,19 @@ import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
 import atomFromRedux from '../src/atomFromRedux';
 
-import { createTestStore, createTestWrapper, VALUE1_DEFAULT, VALUE2_DEFAULT } from './helpers';
+import {
+  createTestStore,
+  createTestWrapper,
+  suppressRecoilValueWarning,
+  VALUE1_DEFAULT,
+  VALUE2_DEFAULT,
+} from './helpers';
 import { resetStateBetweenTests } from '../src/internals';
 
 describe('write Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
+  let originalConsoleError: typeof console.error;
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
@@ -21,6 +28,12 @@ describe('write Redux state through Recoil', () => {
     resetStateBetweenTests();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
+
+    originalConsoleError = console.error;
+    console.error = suppressRecoilValueWarning();
+  });
+  afterEach(() => {
+    console.error = originalConsoleError;
   });
 
   it('writes values to Redux', () => {
@@ -112,6 +125,11 @@ describe('write Redux state through Recoil', () => {
   it('emits an error and does nothing if writeEnabled is off', () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValueOnce();
 
+    // To get the right results here, we have to suppress warnings *before* they reach our spy.
+    // This is a little awkward, but should be fixed once the underlying issue is resolved:
+    // https://github.com/facebookexperimental/Recoil/issues/1034
+    console.error = suppressRecoilValueWarning(consoleErrorSpy);
+
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const value1AtomHook = () => useRecoilState(value1Atom);
 
@@ -134,6 +152,7 @@ describe('write Redux state through Recoil', () => {
     expect(result.current[0]).toBe(VALUE1_DEFAULT);
 
     const consoleErrorCalls = consoleErrorSpy.mock.calls;
+
     expect(consoleErrorCalls.length).toBe(1);
     const [errorString] = consoleErrorCalls[0];
     expect(errorString).toBe('Cannot dispatch to Redux because writes are disabled');
