@@ -103,4 +103,4 @@ const atomFromRedux = <ReturnType = DefaultReturnType>(path: string): RecoilStat
   return getAtomSelectorFamily()(realPath);
 };
 
-export default atomFromRedux;
+export { atomFromRedux };

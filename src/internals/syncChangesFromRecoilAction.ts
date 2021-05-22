@@ -12,5 +12,4 @@ const syncChangesFromRecoilAction = (changes: Array<ChangeEntry>): SyncFromRecoi
   payload: changes,
 });
 
-export default syncChangesFromRecoilAction;
-export { SYNC_CHANGES_FROM_RECOIL };
+export { SYNC_CHANGES_FROM_RECOIL, syncChangesFromRecoilAction };

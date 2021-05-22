@@ -5,4 +5,4 @@ const pendingChangesRef: { c: Array<ChangeEntry> | null } = {
   c: null,
 };
 
-export default pendingChangesRef;
+export { pendingChangesRef };

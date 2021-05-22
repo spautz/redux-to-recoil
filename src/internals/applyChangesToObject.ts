@@ -16,4 +16,4 @@ const applyChangesToObject = (state: ReduxState, changes: Array<ChangeEntry>): R
   return newState;
 };
 
-export default applyChangesToObject;
+export { applyChangesToObject };

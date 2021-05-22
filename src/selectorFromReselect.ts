@@ -25,4 +25,4 @@ const selectorFromReselect = <ReturnType = DefaultReturnType>(
   return wrappedSelector;
 };
 
-export default selectorFromReselect;
+export { selectorFromReselect };

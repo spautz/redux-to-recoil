@@ -1,13 +1,6 @@
-export { default as SyncReduxToRecoil } from './SyncReduxToRecoil';
 export * from './SyncReduxToRecoil';
-
-export { default as atomFromRedux } from './atomFromRedux';
 export * from './atomFromRedux';
-
-export { default as selectorFromReselect } from './selectorFromReselect';
 export * from './selectorFromReselect';
-
-export { default as syncChangesFromRecoil } from './syncChangesFromRecoil';
 export * from './syncChangesFromRecoil';
 
 export * from './options';
