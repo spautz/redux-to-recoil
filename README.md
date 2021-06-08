@@ -74,7 +74,7 @@ It can also facilitate a migration from Redux to Recoil.
 
 ## Options
 
-[Options are available](https://github.com/spautz/redux-to-recoil/blob/master/src/options.ts#L1-L26) to control how and
+[Options are available](https://github.com/spautz/redux-to-recoil/blob/main/src/options.ts#L1-L26) to control how and
 whether Recoil receives updates from, and writes updates to, Redux.
 
 ## Demo
@@ -82,16 +82,16 @@ whether Recoil receives updates from, and writes updates to, Redux.
 A Todo List demo shows both a read-only sync from redux and a read-write sync.
 
 - [Live demo](https://spautz.github.io/redux-to-recoil/)
-- [View source and readme](https://github.com/spautz/redux-to-recoil/tree/master/demos/todo-list)
+- [View source and readme](https://github.com/spautz/redux-to-recoil/tree/main/demos/todo-list)
 
 ## Recoil version compatibility
 
 |          Recoil | Redux-to-Recoil |
 | --------------: | --------------: |
-|        `0.0.10` |         `0.2.2` |
-|        `0.0.13` |         `0.3.1` |
-| `0.1.2`-`0.1.3` |         `0.4.x` |
-|         `0.2.0` | `0.4.x`-`0.5.x` |
 |         `0.3.1` |         `0.5.x` |
+|         `0.2.0` | `0.4.1`-`0.5.1` |
+| `0.1.2`-`0.1.3` |         `0.4.1` |
+|        `0.0.13` |         `0.3.1` |
+|        `0.0.10` |         `0.2.2` |
 
 Other versions of Recoil and Redux-to-Recoil may be compatible: this table just lists the thoroughly tested pairings.
