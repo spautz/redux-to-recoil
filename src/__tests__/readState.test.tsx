@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
-import { atomFromRedux } from '../src/atomFromRedux';
+import { atomFromRedux } from '../atomFromRedux';
 
 import {
   createTestStore,
@@ -14,7 +14,7 @@ import {
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
 } from './helpers';
-import { resetStateBetweenTests } from '../src/internals';
+import { resetStateBetweenTests } from '../internals';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;

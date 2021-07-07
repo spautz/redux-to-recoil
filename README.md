@@ -1,6 +1,6 @@
 # Redux-to-Recoil
 
-Access your [Redux](https://redux.js.org/) store through [Recoil](https://recoiljs.org/).
+Read and write your [Redux](https://redux.js.org/) store through [Recoil](https://recoiljs.org/).
 
 [![npm version](https://img.shields.io/npm/v/redux-to-recoil.svg)](https://www.npmjs.com/package/redux-to-recoil)
 [![build status](https://github.com/spautz/redux-to-recoil/workflows/CI/badge.svg)](https://github.com/spautz/redux-to-recoil/actions)
@@ -69,6 +69,7 @@ together in a component.
 
 This library is useful for accessing Redux state from _within_ a Recoil selector -- which lets you call selectors
 conditionally, or within loops. `useSelector` can't do that.
+([Dynamic-Selectors](https://github.com/spautz/dynamic-selectors#readme) can also do that.)
 
 It can also facilitate a migration from Redux to Recoil.
 

@@ -5,9 +5,9 @@ import { RecoilState, selector, useRecoilValue } from 'recoil';
 import { createSelector } from 'reselect';
 import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
 
-import { ReduxState, resetStateBetweenTests } from '../src/internals';
-import { atomFromRedux } from '../src/atomFromRedux';
-import { selectorFromReselect } from '../src/selectorFromReselect';
+import { ReduxState, resetStateBetweenTests } from '../internals';
+import { atomFromRedux } from '../atomFromRedux';
+import { selectorFromReselect } from '../selectorFromReselect';
 
 import { createTestStore, createTestWrapper, suppressRecoilValueWarning } from './helpers';
 
