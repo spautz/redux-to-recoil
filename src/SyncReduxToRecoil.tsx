@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
-import { pendingChangesRef, ReduxState, getReduxStateAtom, reduxStoreRef } from './internals';
+import { ReduxState, getReduxStateAtom, pendingChangesRef, reduxStoreRef } from './internals';
 import { options, ReduxToRecoilOptions } from './options';
 
 const selectEntireState = (state: ReduxState) => state;
@@ -31,7 +31,8 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
     };
   }, []);
 
-  const [lastReduxState, setReduxState] = useRecoilState(getReduxStateAtom());
+  const reduxStateAtom = getReduxStateAtom();
+  const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
   const currentReduxState = useSelector(selectEntireState);
   useEffect(() => {
@@ -42,11 +43,11 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
 
   if (process.env.NODE_ENV !== 'production' && children) {
     console.warn(
-      'Passing children to <SyncReduxToRecoil> is not recommended, as they will rerender on every Redux change',
+      'Passing children to <SyncReduxToRecoil> is not recommended because they will rerender on *every* Redux change',
     );
   }
 
-  return <React.Fragment>{children}</React.Fragment>;
+  return <Fragment>{children}</Fragment>;
 };
 
 export { SyncReduxToRecoil };

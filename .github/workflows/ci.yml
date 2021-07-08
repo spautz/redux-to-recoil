@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 10.x, 12.x, 14.x, 15.x, 16.x ]
+        node-version: [ 12.x, 14.x, 15.x, 16.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
-        run: yarn install --prefer-offline
+        run: yarn install --ignore-scripts --prefer-offline
 
       - name: Clear local caches
         run: yarn clean

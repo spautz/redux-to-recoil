@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
 import TestRenderer, { act } from 'react-test-renderer';
 
-import { reduxStoreRef, resetStateBetweenTests } from '../src/internals';
-import { SyncReduxToRecoil } from '../src/SyncReduxToRecoil';
+import { reduxStoreRef, resetStateBetweenTests } from '../internals';
+import { SyncReduxToRecoil } from '../SyncReduxToRecoil';
 
 import { createTestStore, suppressRecoilValueWarning } from './helpers';
 

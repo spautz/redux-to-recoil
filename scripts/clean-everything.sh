@@ -51,7 +51,7 @@ for DIRECTORY in '.' 'demos/*' 'examples/*' 'packages/*' ; do
     $DIRECTORY/.yarn
     $DIRECTORY/build/
     $DIRECTORY/coverage/
-    $DIRECTORY/coverage-local/
+    $DIRECTORY/coverage-package/
     $DIRECTORY/dist/
     $DIRECTORY/legacy-types/
     $DIRECTORY/lib-dist/
