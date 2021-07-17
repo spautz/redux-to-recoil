@@ -3,7 +3,7 @@
 module.exports = {
   preset: 'ts-jest',
   roots: ['<rootDir>/src/'],
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/__tests__/_.*', '/node_modules/'],
 
   collectCoverage: true,

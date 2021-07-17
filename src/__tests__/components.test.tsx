@@ -2,7 +2,7 @@ import React from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
-import TestRenderer, { act } from 'react-test-renderer';
+import { render } from '@testing-library/react';
 
 import { reduxStoreRef, resetStateBetweenTests } from '../internals';
 import { SyncReduxToRecoil } from '../SyncReduxToRecoil';
@@ -11,7 +11,8 @@ import { createTestStore, suppressRecoilValueWarning } from './_helpers';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
-  let originalConsoleError: typeof console.error;
+  const originalConsoleError: typeof console.error = console.error;
+  const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
@@ -19,18 +20,18 @@ describe('read Redux state through Recoil', () => {
     resetStateBetweenTests();
     testStore = createTestStore();
 
-    originalConsoleError = console.error;
     console.error = suppressRecoilValueWarning();
   });
   afterEach(() => {
     console.error = originalConsoleError;
+    console.warn = originalConsoleWarn;
   });
 
   it('needs to be within a Redux context', () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValueOnce();
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValue();
 
     expect(() => {
-      TestRenderer.create(
+      render(
         <RecoilRoot>
           <SyncReduxToRecoil />
         </RecoilRoot>,
@@ -40,14 +41,21 @@ describe('read Redux state through Recoil', () => {
     );
 
     const consoleErrorCalls = consoleErrorSpy.mock.calls;
-    expect(consoleErrorCalls.length).toBe(1);
+    expect(consoleErrorCalls.length).toBe(2);
+    expect(consoleErrorCalls[0][0]).toMatch(
+      'could not find react-redux context value; please ensure the component is wrapped in a <Provider>',
+    );
+    expect(consoleErrorCalls[1][0]).toMatch(
+      'The above error occurred in the <SyncReduxToRecoil> component',
+    );
+    consoleErrorSpy.mockRestore();
   });
 
   it('needs to be within a Recoil context', () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValueOnce();
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValue();
 
     expect(() => {
-      TestRenderer.create(
+      render(
         <Provider store={testStore}>
           <SyncReduxToRecoil />
         </Provider>,
@@ -55,20 +63,32 @@ describe('read Redux state through Recoil', () => {
     }).toThrowError('This component must be used inside a <RecoilRoot> component.');
 
     const consoleErrorCalls = consoleErrorSpy.mock.calls;
-    expect(consoleErrorCalls.length).toBe(1);
+    expect(consoleErrorCalls.length).toBe(2);
     expect(consoleErrorCalls[0][0]).toMatch(
-      'Error: could not find react-redux context value; please ensure the component is wrapped in a <Provider>',
+      'This component must be used inside a <RecoilRoot> component',
     );
+    expect(consoleErrorCalls[1][0]).toMatch(
+      'The above error occurred in the <SyncReduxToRecoil> component',
+    );
+    consoleErrorSpy.mockRestore();
   });
 
   it('warns if SyncReduxToRecoil is given invalid options', () => {
-    const consoleWarnSpy = jest.spyOn(console, 'warn').mockReturnValueOnce();
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockReturnValue();
 
-    TestRenderer.create(
+    const { rerender } = render(
       <Provider store={testStore}>
         <RecoilRoot>
           {/* @ts-expect-error Invalid prop */}
           <SyncReduxToRecoil invalidOption={123} />
+        </RecoilRoot>
+      </Provider>,
+    );
+
+    rerender(
+      <Provider store={testStore}>
+        <RecoilRoot>
+          <p>No more SyncReduxToRecoil</p>
         </RecoilRoot>
       </Provider>,
     );
@@ -78,10 +98,11 @@ describe('read Redux state through Recoil', () => {
     expect(consoleWarnCalls[0][0]).toEqual(
       'SyncReduxToRecoil: Unrecognized option "invalidOption"',
     );
+    consoleWarnSpy.mockRestore();
   });
 
   it('sets a reference to the redux store synchronously on mount', () => {
-    TestRenderer.create(
+    render(
       <Provider store={testStore}>
         <RecoilRoot>
           <SyncReduxToRecoil />
@@ -93,7 +114,7 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('clears its reference to the redux store on unmount', () => {
-    const testRenderer = TestRenderer.create(
+    const { rerender } = render(
       <Provider store={testStore}>
         <RecoilRoot>
           <SyncReduxToRecoil />
@@ -103,12 +124,13 @@ describe('read Redux state through Recoil', () => {
 
     expect(reduxStoreRef.c).toBeTruthy();
 
-    testRenderer.update(<div />);
-    // In React 17 the useEffect cleanup function runs *after* unmount, so we
-    // need to wait an extra tick
-    act(() => {
-      // do nothing
-    });
+    rerender(
+      <Provider store={testStore}>
+        <RecoilRoot>
+          <p>No more SyncReduxToRecoil</p>
+        </RecoilRoot>
+      </Provider>,
+    );
 
     expect(reduxStoreRef.c).toBeNull();
   });
