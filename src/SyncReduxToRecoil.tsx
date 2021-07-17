@@ -1,45 +1,15 @@
-import React, { Fragment, useEffect } from 'react';
-import { useSelector, useStore } from 'react-redux';
-import { useRecoilState } from 'recoil';
+import React, { Fragment } from 'react';
 
-import { ReduxState, getReduxStateAtom, pendingChangesRef, reduxStoreRef } from './internals';
 import { options, ReduxToRecoilOptions } from './options';
-
-const selectEntireState = (state: ReduxState) => state;
+import { useSyncReduxToRecoil } from './useSyncReduxToRecoil';
 
 export type SyncReduxToRecoilProps = Partial<ReduxToRecoilOptions>;
 
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const { children, ...optionProps } = props;
 
-  // If any values are passed via props, sync them as options
-  if (process.env.NODE_ENV !== 'production') {
-    Object.keys(optionProps).forEach((key) => {
-      if (!Object.prototype.hasOwnProperty.call(options, key)) {
-        console.warn(`SyncReduxToRecoil: Unrecognized option "${key}"`);
-      }
-    });
-  }
   Object.assign(options, optionProps);
-
-  // We need to set this synchronously so that components can read on mount
-  reduxStoreRef.c = useStore();
-  useEffect(() => {
-    return () => {
-      // Clear ref on unmount
-      reduxStoreRef.c = null;
-    };
-  }, []);
-
-  const reduxStateAtom = getReduxStateAtom();
-  const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
-
-  const currentReduxState = useSelector(selectEntireState);
-  useEffect(() => {
-    if (options.readEnabled && currentReduxState !== lastReduxState && !pendingChangesRef.c) {
-      setReduxState(currentReduxState);
-    }
-  }, [options.readEnabled, pendingChangesRef.c, currentReduxState, lastReduxState, setReduxState]);
+  useSyncReduxToRecoil();
 
   if (process.env.NODE_ENV !== 'production' && children) {
     console.warn(

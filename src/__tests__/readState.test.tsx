@@ -13,7 +13,7 @@ import {
   suppressRecoilValueWarning,
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
-} from './helpers';
+} from './_helpers';
 import { resetStateBetweenTests } from '../internals';
 
 describe('read Redux state through Recoil', () => {

@@ -7,7 +7,7 @@ import TestRenderer, { act } from 'react-test-renderer';
 import { reduxStoreRef, resetStateBetweenTests } from '../internals';
 import { SyncReduxToRecoil } from '../SyncReduxToRecoil';
 
-import { createTestStore, suppressRecoilValueWarning } from './helpers';
+import { createTestStore, suppressRecoilValueWarning } from './_helpers';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
@@ -56,6 +56,9 @@ describe('read Redux state through Recoil', () => {
 
     const consoleErrorCalls = consoleErrorSpy.mock.calls;
     expect(consoleErrorCalls.length).toBe(1);
+    expect(consoleErrorCalls[0][0]).toMatch(
+      'Error: could not find react-redux context value; please ensure the component is wrapped in a <Provider>',
+    );
   });
 
   it('warns if SyncReduxToRecoil is given invalid options', () => {
@@ -72,8 +75,9 @@ describe('read Redux state through Recoil', () => {
 
     const consoleWarnCalls = consoleWarnSpy.mock.calls;
     expect(consoleWarnCalls.length).toBe(1);
-    const [warningString] = consoleWarnCalls[0];
-    expect(warningString).toBe('SyncReduxToRecoil: Unrecognized option "invalidOption"');
+    expect(consoleWarnCalls[0][0]).toEqual(
+      'SyncReduxToRecoil: Unrecognized option "invalidOption"',
+    );
   });
 
   it('sets a reference to the redux store synchronously on mount', () => {

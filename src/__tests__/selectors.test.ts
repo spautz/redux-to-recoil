@@ -9,7 +9,7 @@ import { ReduxState, resetStateBetweenTests } from '../internals';
 import { atomFromRedux } from '../atomFromRedux';
 import { selectorFromReselect } from '../selectorFromReselect';
 
-import { createTestStore, createTestWrapper, suppressRecoilValueWarning } from './helpers';
+import { createTestStore, createTestWrapper, suppressRecoilValueWarning } from './_helpers';
 
 describe('selectors', () => {
   let testStore: Store;
