@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import { ReduxToRecoilOptions, options } from './options';
-import { useSyncReduxToRecoil } from './useSyncReduxToRecoil';
+import { getReduxStateAtom, pendingChangesRef, ReduxState, reduxStoreRef } from './internals';
+import { useSelector, useStore } from 'react-redux';
+import { useRecoilState } from 'recoil';
 
 export type SyncReduxToRecoilProps = Partial<ReduxToRecoilOptions>;
 
@@ -18,8 +20,25 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   }
   Object.assign(options, optionProps);
 
-  useSyncReduxToRecoil();
+  // We need to set this synchronously so that components can read on mount
+  reduxStoreRef.c = useStore();
+  useEffect(() => {
+    return () => {
+      // Clear ref on unmount
+      reduxStoreRef.c = null;
+    };
+  }, []);
 
+  const reduxStateAtom = getReduxStateAtom();
+  const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
+
+  const currentReduxState: ReduxState = useSelector((state) => state);
+  const { readEnabled } = options;
+  useEffect(() => {
+    if (readEnabled && currentReduxState !== lastReduxState && !pendingChangesRef.c) {
+      setReduxState(currentReduxState);
+    }
+  }, [readEnabled, pendingChangesRef.c, currentReduxState, lastReduxState, setReduxState]);
   if (process.env.NODE_ENV !== 'production' && children) {
     console.warn(
       'Passing children to <SyncReduxToRecoil> is not recommended because they will rerender on *every* Redux change',
