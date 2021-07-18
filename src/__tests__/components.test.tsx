@@ -7,7 +7,7 @@ import { render } from '@testing-library/react';
 import { reduxStoreRef, resetStateBetweenTests } from '../internals';
 import { SyncReduxToRecoil } from '../SyncReduxToRecoil';
 
-import { createTestStore, suppressRecoilValueWarning } from './_helpers';
+import { createTestStore } from './_helpers';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
@@ -19,8 +19,6 @@ describe('read Redux state through Recoil', () => {
 
     resetStateBetweenTests();
     testStore = createTestStore();
-
-    console.error = suppressRecoilValueWarning();
   });
   afterEach(() => {
     console.error = originalConsoleError;
