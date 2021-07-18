@@ -4,6 +4,9 @@ import { DefaultReturnType, ReduxState, getReduxStateAtom, reduxStoreRef } from 
 
 let selectorCount = 0;
 
+/**
+ * Creates a Recoil selector from a Reselect selector
+ */
 const selectorFromReselect = <ReturnType = DefaultReturnType>(
   selectorFn: (reduxState: ReduxState) => ReturnType,
 ): RecoilValueReadOnly<ReturnType> => {
