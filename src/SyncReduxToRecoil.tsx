@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
+
+import { ReduxToRecoilOptions, options } from './options';
+import { getReduxStateAtom, pendingChangesRef, ReduxState, reduxStoreRef } from './internals';
 import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
-
-import { ReduxState, getReduxStateAtom, pendingChangesRef, reduxStoreRef } from './internals';
-import { options, ReduxToRecoilOptions } from './options';
-
-const selectEntireState = (state: ReduxState) => state;
 
 export type SyncReduxToRecoilProps = Partial<ReduxToRecoilOptions>;
 
@@ -34,13 +32,13 @@ const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
   const reduxStateAtom = getReduxStateAtom();
   const [lastReduxState, setReduxState] = useRecoilState(reduxStateAtom);
 
-  const currentReduxState = useSelector(selectEntireState);
+  const currentReduxState: ReduxState = useSelector((state) => state);
+  const { readEnabled } = options;
   useEffect(() => {
-    if (options.readEnabled && currentReduxState !== lastReduxState && !pendingChangesRef.c) {
+    if (readEnabled && currentReduxState !== lastReduxState && !pendingChangesRef.c) {
       setReduxState(currentReduxState);
     }
-  }, [options.readEnabled, pendingChangesRef.c, currentReduxState, lastReduxState, setReduxState]);
-
+  }, [readEnabled, pendingChangesRef.c, currentReduxState, lastReduxState, setReduxState]);
   if (process.env.NODE_ENV !== 'production' && children) {
     console.warn(
       'Passing children to <SyncReduxToRecoil> is not recommended because they will rerender on *every* Redux change',
