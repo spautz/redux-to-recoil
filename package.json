@@ -87,7 +87,7 @@
     "immutable-path": "^1.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "12.0.0",
+    "@testing-library/react": "alpha",
     "@types/jest": "26.0.24",
     "@types/node": "16.3.3",
     "@types/react": "17.0.14",
@@ -105,11 +105,11 @@
     "lint-staged": "11.0.1",
     "microbundle": "0.13.3",
     "prettier": "2.3.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "alpha",
+    "react-dom": "alpha",
     "react-recoil-hooks-testing-library": "0.1.0",
     "react-redux": "7.2.4",
-    "react-test-renderer": "17.0.2",
+    "react-test-renderer": "alpha",
     "recoil": "0.3.1",
     "redux": "4.1.0",
     "reselect": "4.0.0",
@@ -121,7 +121,7 @@
     "yarn-or-npm": "3.0.1"
   },
   "peerDependencies": {
-    "react": "^16.8.3 || ^17",
+    "react": "^16.8.3 || ^17 || ^18",
     "react-redux": "^7.0.0",
     "recoil": "^0.3.1",
     "redux": "^4.0.0-0"
