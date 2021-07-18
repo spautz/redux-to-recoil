@@ -3,12 +3,15 @@ import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
 import { ReduxState, getReduxStateAtom, pendingChangesRef, reduxStoreRef } from './internals';
-import { ReduxToRecoilOptions, options } from './options';
+import { options } from './options';
 
 const selectEntireState = (state: ReduxState) => state;
 
-const useSyncReduxToRecoil = (optionOverrides: Partial<ReduxToRecoilOptions> = {}): void => {
-  const { readEnabled } = { ...options, ...optionOverrides };
+/**
+ * Internal functionality of the `SyncReduxToRecoil` component.
+ */
+const useSyncReduxToRecoil = (): void => {
+  const { readEnabled } = options;
 
   // We need to set this synchronously so that components can read on mount
   reduxStoreRef.c = useStore();
