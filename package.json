@@ -1,6 +1,6 @@
 {
   "name": "redux-to-recoil",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [
     "redux to recoil",
@@ -67,7 +67,7 @@
     "build:types:3.x": "downlevel-dts ./dist ./legacy-types/ts3.x/dist --to=3.0",
     "build:types:4.x": "downlevel-dts ./dist ./dist --to=4.0",
     "build:watch": "microbundle watch --jsx React.createElement",
-    "demo:prepare": "cd ./demos/todo-list && yarn add redux-to-recoil@next && yarn install && yarn lint && yarn build",
+    "demo:prepare": "cd ./demos/todo-list && yarn add redux-to-recoil@^next && yarn install && yarn lint && yarn build",
     "demo:start": "cd ./demos/todo-list && yarn start",
     "demo:deploy": "gh-pages -d ./demos/todo-list/build",
     "format": "prettier --write .",
