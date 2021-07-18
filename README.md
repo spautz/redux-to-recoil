@@ -18,14 +18,32 @@ import { atomFromRedux } from 'redux-to-recoil';
 
 const todosAtom = atomFromRedux('.todos'); // wraps state.todos
 
-// It's a normal atom, so it works in Recoil selectors
+// Inside your component, use the atoms and selectors as normal. That's it.
+const [todos, setTodos] = useRecoilState(todosAtom);
+
+// Also: it's a normal Recoil atom, so it works in Recoil selectors
 const todoCountSelector = selector({
   key: 'todoCount',
   get: ({ get }) => get(todosAtom).length,
 });
+const todoCount = useRecoilValue(todoCountSelector);
+```
 
-// Inside your component, use the atoms and selectors as normal
+`selectorFromReselect` creates a Recoil selector from a plain selector, using Reselect or any other selector library.
+
+```typescript jsx
+import { selectorFromReselect, useRecoilValue } from 'recoil';
+
+const todosSelector = selectorFromReselect((state) => state.todos);
+
+// Inside your component, use the selector as normal. That's it.
 const [todos, setTodos] = useRecoilState(todosAtom);
+
+// Also: it's a normal Recoil selector, so it works in other Recoil selectors
+const todoCountSelector = selector({
+  key: 'todoCount',
+  get: ({ get }) => get(todosSelector).length,
+});
 const todoCount = useRecoilValue(todoCountSelector);
 ```
 
@@ -42,13 +60,13 @@ import { SyncReduxToRecoil } from 'redux-to-recoil';
 </Provider>;
 ```
 
-If you want to dispatch changes from Recoil back to Redux then wrap your reducer with `syncChangesFromRecoil`.
-This is only needed if you `set` Recoil values directly.
+If you want to dispatch changes from Recoil back to Redux then wrap your reducer with `syncChangesFromRecoil`
+and enable the `writeEnabled` option. This is only needed if you `set` Recoil values directly.
 
 ```typescript jsx
 import { syncChangesFromRecoil } from 'redux-to-recoil';
 
-// This will enable write-from-recoil
+// This will enable write-from-recoil (when options.writeEnabled is turned on)
 const reducer = syncChangesFromRecoil(yourRootReducer);
 const store = createStore(reducer);
 ```
@@ -87,12 +105,13 @@ A Todo List demo shows both a read-only sync from redux and a read-write sync.
 
 ## Recoil version compatibility
 
-|          Recoil | Redux-to-Recoil |
-| --------------: | --------------: |
-|         `0.3.1` |         `0.5.x` |
-|         `0.2.0` | `0.4.1`-`0.5.1` |
-| `0.1.2`-`0.1.3` |         `0.4.1` |
-|        `0.0.13` |         `0.3.1` |
-|        `0.0.10` |         `0.2.2` |
+|   Recoil | Redux-to-Recoil |
+| -------: | --------------: |
+|  `0.3.1` | `0.5.1`-`0.6.x` |
+|  `0.2.0` | `0.4.1`-`0.5.1` |
+|  `0.1.3` |         `0.4.1` |
+|  `0.1.2` |         `0.4.1` |
+| `0.0.13` |         `0.3.1` |
+| `0.0.10` |         `0.2.2` |
 
 Other versions of Recoil and Redux-to-Recoil may be compatible: this table just lists the thoroughly tested pairings.

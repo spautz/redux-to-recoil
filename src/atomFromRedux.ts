@@ -94,8 +94,9 @@ const getAtomSelectorFamily = () => {
   return atomSelectorFamily;
 };
 
-// This works similarly to Recoil's atomFamily/selectorFamily, except we de-dupe things by path, and don't keep
-// old selectors around for forever.
+/**
+ * Creates a Recoil atom that's mapped from a specific path in Redux. This works like any other atom.
+ */
 const atomFromRedux = <ReturnType = DefaultReturnType>(path: string): RecoilState<ReturnType> => {
   // The leading dot is just a convention to make things easier to read
   const realPath = path.charAt(0) === '.' ? path.substr(1) : path;

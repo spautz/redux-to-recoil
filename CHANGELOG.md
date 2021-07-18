@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/spautz/redux-to-recoil/compare/v0.5.1...v0.6.0) (2021-07-18)
+
+- Add a standalone hook for rare cases when `SyncReduxToRecoil` isn't appropriate ([#46](https://github.com/spautz/redux-to-recoil/issues/46)) ([6060167](https://github.com/spautz/redux-to-recoil/commit/606016779848673f850e6877a3553451acb92f7b))
+- Expanded docs and internal improvements
+
 ### [0.5.1](https://github.com/spautz/redux-to-recoil/compare/v0.5.0...v0.5.1) (2021-05-22)
 
 - Confirm support for Recoil 0.3.x ([#38](https://github.com/spautz/redux-to-recoil/issues/38)) ([16d9054](https://github.com/spautz/redux-to-recoil/commit/16d905416aa24d52d321d6d28065597c49e444ea))

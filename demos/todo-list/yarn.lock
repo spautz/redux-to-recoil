@@ -9239,10 +9239,10 @@ redux-devtools-extension@^2.13.9:
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.9.tgz#6b764e8028b507adcb75a1cae790f71e6be08ae7"
   integrity sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==
 
-redux-to-recoil@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/redux-to-recoil/-/redux-to-recoil-0.5.1.tgz#71812dcb8ac7828b20232c1d961b05543844bd07"
-  integrity sha512-jFEd03EQ6XpyldSkAlZYR6+guoS8GGjHLG57ggP6mXlxcRLGSX6ILyriWBbU69U/CbjCwymaLy3VN8qdr7GfRQ==
+redux-to-recoil@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/redux-to-recoil/-/redux-to-recoil-0.6.0.tgz#216557b5e8040548b1d75461cd4ccca7ac1f4b59"
+  integrity sha512-Ik75lfMjvkyrJ7VDJgSJ7OjaTr4jcARSxLKTVjVI7L7r9VsW4EGnWqzBfV2TjltxvoSDhJIWFjUXbVMMUxv6mQ==
   dependencies:
     immutable-path "^1.0.1"
 

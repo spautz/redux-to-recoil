@@ -46,15 +46,36 @@ const defaultOptions: Readonly<ReduxToRecoilOptions> = {
   _reduxStateAtomKey: 'redux-to-recoil:state',
   _recoilSelectorAtomKey: 'redux-to-recoil:atom',
 };
+if (process.env.NODE_ENV !== 'production') {
+  Object.freeze(defaultOptions);
+}
 
 /**
- * `options` is just a simple singleton for holding these values.
- * Setting props on `<SyncReduxToCoil />` is the preferred way to set them,
- * but you can mutate this object directly if desired.
+ * `options` is just a simple singleton that holds the current, global options for redux-to-recoil.
+ * You can update options with `setOptions` or by passing props to `<SyncReduxToCoil />`.
+ * Mutating `options` directly also works, if you must.
  *
  * <SyncReduxToCoil writeEnabled={false} />
  * <SyncReduxToCoil batchWrites />
+ *
+ * setOptions({ writeEnabled: true });
  */
 const options = { ...defaultOptions };
 
-export { defaultOptions, options };
+/**
+ * Updates redux-to-recoil's global options.
+ */
+const setOptions = (newOptions: Partial<ReduxToRecoilOptions>): ReduxToRecoilOptions => {
+  if (process.env.NODE_ENV !== 'production') {
+    Object.keys(newOptions).forEach((key) => {
+      if (!Object.prototype.hasOwnProperty.call(options, key)) {
+        console.warn(`SyncReduxToRecoil: Unrecognized option "${key}"`);
+      }
+    });
+  }
+
+  Object.assign(options, newOptions);
+  return options;
+};
+
+export { defaultOptions, options, setOptions };
