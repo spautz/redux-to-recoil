@@ -18,8 +18,20 @@ let lastKey: string;
 
 const getAtomSelectorFamily = () => {
   if (!atomSelectorFamily || options._recoilSelectorAtomKey !== lastKey) {
+    if (process.env.NODE_ENV !== 'production' && options._recoilSelectorExtraOptions.get) {
+      console.warn(
+        'options._recoilSelectorExtraOptions.get is not supported: core atomFromRedux functionality cannot be replaced',
+      );
+    }
+    if (process.env.NODE_ENV !== 'production' && options._recoilSelectorExtraOptions.set) {
+      console.warn(
+        'options._recoilSelectorExtraOptions.set is not supported: core atomFromRedux functionality cannot be replaced',
+      );
+    }
+
     atomSelectorFamily = selectorFamily({
       key: 'redux-to-recoil:atom',
+      ...options._recoilSelectorExtraOptions,
       get:
         (realPath: string) =>
         ({ get }) => {
