@@ -6,6 +6,10 @@ import { options } from '../options';
 let reduxStateAtom: RecoilState<ReduxState>;
 let lastKey: string;
 
+/**
+ * The entire redux state is stored in an atom, which keys are then selected from.
+ * This returns that atom.
+ */
 const getReduxStateAtom = (): RecoilState<ReduxState> => {
   if (!reduxStateAtom || options._reduxStateAtomKey !== lastKey) {
     reduxStateAtom = atom<ReduxState>({

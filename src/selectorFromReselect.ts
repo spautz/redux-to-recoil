@@ -1,4 +1,4 @@
-import { RecoilValueReadOnly, selector } from 'recoil';
+import { ReadOnlySelectorOptions, RecoilValueReadOnly, selector } from 'recoil';
 
 import { DefaultReturnType, ReduxState, getReduxStateAtom, reduxStoreRef } from './internals';
 
@@ -9,11 +9,19 @@ let selectorCount = 0;
  */
 const selectorFromReselect = <ReturnType = DefaultReturnType>(
   selectorFn: (reduxState: ReduxState) => ReturnType,
+  extraSelectorOptions: Partial<ReadOnlySelectorOptions<unknown>> = {},
 ): RecoilValueReadOnly<ReturnType> => {
   selectorCount++;
 
+  if (process.env.NODE_ENV !== 'production' && extraSelectorOptions.get) {
+    console.warn(
+      'extraSelectorOptions.get is not supported: core selectorFromReselect functionality cannot be replaced',
+    );
+  }
+
   const wrappedSelector = selector<ReturnType>({
     key: `redux-to-recoil:selector:${selectorCount}${selectorFn.name}`,
+    ...extraSelectorOptions,
     get: ({ get }) => {
       const reduxStore = reduxStoreRef.c;
 

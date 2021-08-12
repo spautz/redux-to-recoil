@@ -107,7 +107,8 @@ A Todo List demo shows both a read-only sync from redux and a read-write sync.
 
 |   Recoil | Redux-to-Recoil |
 | -------: | --------------: |
-|  `0.3.1` | `0.5.1`-`0.6.x` |
+|  `0.4.0` | `0.6.0`-`0.7.x` |
+|  `0.3.1` | `0.5.1`-`0.6.0` |
 |  `0.2.0` | `0.4.1`-`0.5.1` |
 |  `0.1.3` |         `0.4.1` |
 |  `0.1.2` |         `0.4.1` |
