@@ -1,3 +1,5 @@
+import { ReadWriteSelectorOptions } from 'recoil';
+
 export interface ReduxToRecoilOptions {
   /**
    * Controls whether Recoil (via `atomFromRedux`) will update its state each
@@ -37,6 +39,13 @@ export interface ReduxToRecoilOptions {
    * Danger: changing this after initialization will likely break things.
    */
   _recoilSelectorAtomKey: string;
+  /**
+   * Additional options passed to Recoil when constructing the selectors that
+   * access Redux state values. This can be used to set experimental or
+   * future options like Recoil's `cachePolicy_UNSTABLE`.
+   * 'get' and 'set' are not honored.
+   */
+  _recoilSelectorExtraOptions: Partial<ReadWriteSelectorOptions<unknown>>;
 }
 
 const defaultOptions: Readonly<ReduxToRecoilOptions> = {
@@ -45,6 +54,7 @@ const defaultOptions: Readonly<ReduxToRecoilOptions> = {
   batchWrites: false,
   _reduxStateAtomKey: 'redux-to-recoil:state',
   _recoilSelectorAtomKey: 'redux-to-recoil:atom',
+  _recoilSelectorExtraOptions: {},
 };
 if (process.env.NODE_ENV !== 'production') {
   Object.freeze(defaultOptions);
@@ -60,7 +70,7 @@ if (process.env.NODE_ENV !== 'production') {
  *
  * setOptions({ writeEnabled: true });
  */
-const options = { ...defaultOptions };
+const options: ReduxToRecoilOptions = { ...defaultOptions };
 
 /**
  * Updates redux-to-recoil's global options.
