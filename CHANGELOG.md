@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/spautz/redux-to-recoil/compare/v0.6.0...v0.7.0) (2021-08-14)
+
+- Confirm and document support for Recoil 0.4
+- Support for additional options when constructing selectors: `options._recoilSelectorExtraOptions` for `atomFromRedux` and a new argument for `selectorFromReselect` ([#47](https://github.com/spautz/redux-to-recoil/issues/47)) ([b797ca2](https://github.com/spautz/redux-to-recoil/commit/b797ca26c349fc8896eb2c34732e0cbd23b141a5))
+
 ## [0.6.0](https://github.com/spautz/redux-to-recoil/compare/v0.5.1...v0.6.0) (2021-07-18)
 
 - Add a standalone hook for rare cases when `SyncReduxToRecoil` isn't appropriate ([#46](https://github.com/spautz/redux-to-recoil/issues/46)) ([6060167](https://github.com/spautz/redux-to-recoil/commit/606016779848673f850e6877a3553451acb92f7b))
