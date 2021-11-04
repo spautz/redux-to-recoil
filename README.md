@@ -4,9 +4,9 @@ Read and write your [Redux](https://redux.js.org/) store through [Recoil](https:
 
 [![npm version](https://img.shields.io/npm/v/redux-to-recoil.svg)](https://www.npmjs.com/package/redux-to-recoil)
 [![build status](https://github.com/spautz/redux-to-recoil/workflows/CI/badge.svg)](https://github.com/spautz/redux-to-recoil/actions)
-[![dependencies status](https://img.shields.io/david/spautz/redux-to-recoil.svg)](https://david-dm.org/spautz/redux-to-recoil)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/redux-to-recoil/dist/index.umd.js?compression=gzip)](https://bundlephobia.com/result?p=redux-to-recoil)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/redux-to-recoil/main.svg)](https://coveralls.io/github/spautz/redux-to-recoil?branch=main)
+[![dependencies status](https://img.shields.io/librariesio/release/npm/redux-to-recoil.svg)](https://libraries.io/github/spautz/redux-to-recoil)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/redux-to-recoil/dist/index.umd.js?compression=gzip)](https://bundlephobia.com/result?p=redux-to-recoil)
 
 ## Usage
 

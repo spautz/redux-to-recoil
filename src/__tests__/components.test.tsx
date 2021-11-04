@@ -13,6 +13,7 @@ describe('read Redux state through Recoil', () => {
   let testStore: Store;
   const originalConsoleError: typeof console.error = console.error;
   const originalConsoleWarn: typeof console.warn = console.warn;
+
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
