@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/spautz/redux-to-recoil/compare/v0.7.0...v0.7.1) (2021-11-04)
+
+This is a transitory release which supports both Recoil 0.4 and 0.5. Starting with v0.8.0, only Recoil 0.5+ will be tested and verified.
+
+- Confirm support for Recoil 0.4 and 0.5
+- Confirm support for Node 17
+
 ## [0.7.0](https://github.com/spautz/redux-to-recoil/compare/v0.6.0...v0.7.0) (2021-08-14)
 
 - Confirm and document support for Recoil 0.4
