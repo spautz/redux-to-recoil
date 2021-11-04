@@ -42,10 +42,6 @@
   "exports": "./dist/index.modern.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
-  "engines": {
-    "node": "^12 || ^14 || ^15 || ^16",
-    "yarn": "1.*"
-  },
   "scripts": {
     "____ LIFECYCLE HOOKS _______________________________________________": "",
     "prepare": "yon run build && husky install",
