@@ -29,6 +29,19 @@ const todoCountSelector = selector({
 const todoCount = useRecoilValue(todoCountSelector);
 ```
 
+`<SyncReduxToRecoil />` syncs state from Redux to Recoil. This is required.
+
+```typescript jsx
+import { SyncReduxToRecoil } from 'redux-to-recoil';
+
+<Provider store={store}>
+  <RecoilRoot>
+    <SyncReduxToRecoil />
+    <MyApp />
+  </RecoilRoot>
+</Provider>;
+```
+
 `selectorFromReselect` creates a Recoil selector from a plain selector, using Reselect or any other selector library.
 
 ```typescript jsx
@@ -45,19 +58,6 @@ const todoCountSelector = selector({
   get: ({ get }) => get(todosSelector).length,
 });
 const todoCount = useRecoilValue(todoCountSelector);
-```
-
-`<SyncReduxToRecoil />` syncs state from Redux to Recoil. This is required.
-
-```typescript jsx
-import { SyncReduxToRecoil } from 'redux-to-recoil';
-
-<Provider store={store}>
-  <RecoilRoot>
-    <SyncReduxToRecoil />
-    <MyApp />
-  </RecoilRoot>
-</Provider>;
 ```
 
 If you want to dispatch changes from Recoil back to Redux then wrap your reducer with `syncChangesFromRecoil`
@@ -87,13 +87,13 @@ together in a component.
 
 This library is useful for accessing Redux state from _within_ a Recoil selector -- which lets you call selectors
 conditionally, or within loops. `useSelector` can't do that.
-([Dynamic-Selectors](https://github.com/spautz/dynamic-selectors#readme) can also do that.)
+([Dynamic-Selectors](https://github.com/spautz/dynamic-selectors#readme) can, though.)
 
 It can also facilitate a migration from Redux to Recoil.
 
 ## Options
 
-[Options are available](https://github.com/spautz/redux-to-recoil/blob/main/src/options.ts#L1-L26) to control how and
+[Options are available](https://github.com/spautz/redux-to-recoil/blob/main/src/options.ts#L3-L28) to control how and
 whether Recoil receives updates from, and writes updates to, Redux.
 
 ## Demo
@@ -107,13 +107,11 @@ A Todo List demo shows both a read-only sync from redux and a read-write sync.
 
 |   Recoil | Redux-to-Recoil |
 | -------: | --------------: |
-|  `0.5.0` |         `0.8.x` |
-|  `0.4.1` | `0.7.0`-`0.8.0` |
-|  `0.4.0` | `0.6.0`-`0.7.1` |
-|  `0.3.1` | `0.5.1`-`0.6.0` |
-|  `0.2.0` | `0.4.1`-`0.5.1` |
-|  `0.1.3` |         `0.4.1` |
-|  `0.1.2` |         `0.4.1` |
+|  `0.5.x` | `0.7.1`-`0.8.x` |
+|  `0.4.x` | `0.6.0`-`0.7.1` |
+|  `0.3.x` | `0.5.1`-`0.6.0` |
+|  `0.2.x` | `0.4.1`-`0.5.1` |
+|  `0.1.x` |         `0.4.1` |
 | `0.0.13` |         `0.3.1` |
 | `0.0.10` |         `0.2.2` |
 
