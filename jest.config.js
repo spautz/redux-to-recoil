@@ -8,4 +8,5 @@ module.exports = {
 
   collectCoverage: true,
   coverageReporters: ['json', 'html', 'lcov'],
+  coveragePathIgnorePatterns: ['.*\\.(ignored|stories|test)\\.*', '__tests__'],
 };
