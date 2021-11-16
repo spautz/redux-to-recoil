@@ -10,7 +10,6 @@ import {
   createTestStore,
   createTestWrapper,
   incrementKeyAction,
-  suppressRecoilValueWarning,
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
 } from './_helpers';
@@ -19,7 +18,8 @@ import { resetStateBetweenTests } from '../internals';
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
   let ReduxProviderWrapper: React.FC;
-  let originalConsoleError: typeof console.error;
+  const originalConsoleError: typeof console.error = console.error;
+  const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetModules();
@@ -27,12 +27,10 @@ describe('read Redux state through Recoil', () => {
     resetStateBetweenTests();
     testStore = createTestStore();
     ReduxProviderWrapper = createTestWrapper(testStore);
-
-    originalConsoleError = console.error;
-    console.error = suppressRecoilValueWarning();
   });
   afterEach(() => {
     console.error = originalConsoleError;
+    console.warn = originalConsoleWarn;
   });
 
   it('reads values from Redux', () => {
@@ -143,8 +141,10 @@ describe('read Redux state through Recoil', () => {
 
     const consoleWarnCalls = consoleWarnSpy.mock.calls;
     expect(consoleWarnCalls.length).toBe(1);
-    const [warningString] = consoleWarnCalls[0];
-    expect(warningString).toBe('Cannot access Redux state because reads have never been enabled');
+    expect(consoleWarnCalls[0][0]).toBe(
+      'Cannot access Redux state because reads have never been enabled',
+    );
+    consoleWarnSpy.mockRestore();
   });
 
   it('does not update unless readEnabled is on', () => {
