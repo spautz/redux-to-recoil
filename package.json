@@ -80,7 +80,8 @@
     "types": "tsc --noEmit --p tsconfig.json"
   },
   "dependencies": {
-    "immutable-path": "^1.0.1"
+    "immutable-path": "^1.0.1",
+    "react-test-renderer": "18.0.0-beta-96ca8d915-20211115"
   },
   "devDependencies": {
     "@testing-library/react": "13.0.0-alpha.4",
@@ -101,11 +102,10 @@
     "lint-staged": "11.2.6",
     "microbundle": "0.14.1",
     "prettier": "2.4.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "18.0.0-beta-96ca8d915-20211115",
+    "react-dom": "18.0.0-beta-96ca8d915-20211115",
     "react-recoil-hooks-testing-library": "0.1.0",
     "react-redux": "7.2.6",
-    "react-test-renderer": "17.0.2",
     "recoil": "0.5.0",
     "redux": "4.1.2",
     "reselect": "4.1.2",

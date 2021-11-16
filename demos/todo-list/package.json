@@ -6,14 +6,14 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "beta",
+    "react-dom": "beta",
     "react-redux": "^7.2.6",
     "react-scripts": "4.0.3",
     "recoil": "^0.5.0",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
-    "redux-to-recoil": "0.8.0",
+    "redux-to-recoil": "^0.8.0",
     "reselect": "^4.1.2"
   },
   "scripts": {

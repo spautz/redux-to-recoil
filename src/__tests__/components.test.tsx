@@ -40,11 +40,16 @@ describe('read Redux state through Recoil', () => {
     );
 
     const consoleErrorCalls = consoleErrorSpy.mock.calls;
-    expect(consoleErrorCalls.length).toBe(2);
+
+    expect(consoleErrorCalls.length).toBe(3);
     expect(consoleErrorCalls[0][0]).toMatch(
       'could not find react-redux context value; please ensure the component is wrapped in a <Provider>',
     );
+    // @TODO: Why is this logged twice?
     expect(consoleErrorCalls[1][0]).toMatch(
+      'could not find react-redux context value; please ensure the component is wrapped in a <Provider>',
+    );
+    expect(consoleErrorCalls[2][0]).toMatch(
       'The above error occurred in the <SyncReduxToRecoil> component',
     );
     consoleErrorSpy.mockRestore();
@@ -62,11 +67,15 @@ describe('read Redux state through Recoil', () => {
     }).toThrowError('This component must be used inside a <RecoilRoot> component.');
 
     const consoleErrorCalls = consoleErrorSpy.mock.calls;
-    expect(consoleErrorCalls.length).toBe(2);
+    expect(consoleErrorCalls.length).toBe(3);
     expect(consoleErrorCalls[0][0]).toMatch(
       'This component must be used inside a <RecoilRoot> component',
     );
+    // @TODO: Why is this logged twice?
     expect(consoleErrorCalls[1][0]).toMatch(
+      'This component must be used inside a <RecoilRoot> component',
+    );
+    expect(consoleErrorCalls[2][0]).toMatch(
       'The above error occurred in the <SyncReduxToRecoil> component',
     );
     consoleErrorSpy.mockRestore();
