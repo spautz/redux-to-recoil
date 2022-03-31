@@ -84,7 +84,7 @@
     "immutable-path": "^1.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "13.0.0-alpha.4",
+    "@testing-library/react": "13.0.0-alpha.7",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.26",
     "@types/react": "17.0.43",
