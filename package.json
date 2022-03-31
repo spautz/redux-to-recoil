@@ -90,10 +90,10 @@
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
     "@types/react-redux": "7.1.23",
-    "@typescript-eslint/eslint-plugin": "4.33.0",
-    "@typescript-eslint/parser": "4.33.0",
+    "@typescript-eslint/eslint-plugin": "5.17.0",
+    "@typescript-eslint/parser": "5.17.0",
     "downlevel-dts": "0.9.0",
-    "eslint": "7.32.0",
+    "eslint": "8.12.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-react": "7.29.4",
     "gh-pages": "3.2.3",
@@ -120,7 +120,7 @@
   "peerDependencies": {
     "react": "^16.8.3 || ^17 || ^18",
     "react-redux": "^7.0.0 || ^8",
-    "recoil": "^0.5.0",
+    "recoil": "^0.5.0 || ^0.6.0",
     "redux": "^4.0.0-0"
   },
   "lint-staged": {
