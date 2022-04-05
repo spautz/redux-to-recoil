@@ -84,14 +84,14 @@
     "immutable-path": "^1.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "13.0.0-alpha.7",
+    "@testing-library/react": "13.0.0",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.26",
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
     "@types/react-redux": "7.1.23",
-    "@typescript-eslint/eslint-plugin": "5.17.0",
-    "@typescript-eslint/parser": "5.17.0",
+    "@typescript-eslint/eslint-plugin": "5.18.0",
+    "@typescript-eslint/parser": "5.18.0",
     "downlevel-dts": "0.9.0",
     "eslint": "8.12.0",
     "eslint-config-prettier": "8.5.0",
@@ -101,13 +101,13 @@
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
     "microbundle": "0.14.2",
-    "prettier": "2.6.1",
+    "prettier": "2.6.2",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-recoil-hooks-testing-library": "0.1.0",
-    "react-redux": "7.2.6",
+    "react-redux": "7.2.8",
     "react-test-renderer": "18.0.0",
-    "recoil": "0.6.1",
+    "recoil": "0.7.0",
     "redux": "4.1.2",
     "reselect": "4.1.5",
     "rimraf": "3.0.2",
@@ -120,7 +120,7 @@
   "peerDependencies": {
     "react": "^16.8.3 || ^17 || ^18",
     "react-redux": "^7.0.0 || ^8",
-    "recoil": "^0.5.0 || ^0.6.0",
+    "recoil": "^0.5.0 || ^0.6.0 || ^0.7.0",
     "redux": "^4.0.0-0"
   },
   "lint-staged": {
