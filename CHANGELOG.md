@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.2](https://github.com/spautz/redux-to-recoil/compare/v0.8.1...v0.8.2) (2022-04-05)
+
+- Confirm support for Recoil 0.7
+
 ### [0.8.1](https://github.com/spautz/redux-to-recoil/compare/v0.8.0...v0.8.1) (2022-03-31)
 
 - Confirm support for Recoil 0.6, and reconfirm support for React 18
