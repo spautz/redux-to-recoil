@@ -1,0 +1,99 @@
+{
+  "name": "@spautz/redux-to-recoil-workspace",
+  "private": true,
+  "description": "Root workspace for Redux-to-Recoil",
+  "license": "MIT",
+  "homepage": "https://github.com/spautz/redux-to-recoil#readme",
+  "bugs": "https://github.com/spautz/redux-to-recoil/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spautz/redux-to-recoil.git"
+  },
+  "author": {
+    "name": "Steven Pautz",
+    "url": "http://stevenpautz.com/"
+  },
+  "engines": {
+    "node": "^16 || ^18 || ^19 || ^20",
+    "pnpm": "^8"
+  },
+  "packageManager": "pnpm@8.4.0",
+  "type": "module",
+  "scripts": {
+    "____ HOOKS _________________________________________________________": "",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "husky:precommit": "lint-staged",
+    "husky:prepush": "pnpm run format:verify && pnpm run typecheck && pnpm run lint",
+    "____ BATCH COMMANDS FOR PACKAGES ___________________________________": "",
+    "packages:clean": "pnpm --parallel -r run clean",
+    "packages:build": "pnpm -r run build",
+    "packages:test": "pnpm -r run test:coverage",
+    "packages:test:coverage": "pnpm -r run test:coverage",
+    "packages:test:quick": "pnpm --parallel -r run test:quick",
+    "packages:all": "pnpm -r run all",
+    "packages:all:readonly": "pnpm -r run all:readonly",
+    "packages:all:quick": "pnpm --parallel -r run all:quick",
+    "packages:all:ci": "pnpm -r run all:ci",
+    "____ INTEGRATION ___________________________________________________": "",
+    "clean": "pnpm run test:clean && rimraf --glob ./node_modules/.cache ./*.log && pnpm run packages:clean",
+    "all": "pnpm run format                 && pnpm run typecheck && pnpm run lint:fix && pnpm run test:coverage && pnpm run packages:build",
+    "all:readonly": "pnpm run format:verify && pnpm run typecheck && pnpm run lint     && pnpm run test:quick",
+    "all:quick": "pnpm run format           && pnpm run typecheck && pnpm run lint:fix",
+    "all:ci": "pnpm run format:verify       && pnpm run typecheck && pnpm run lint     && pnpm run test:ci && pnpm run packages:build",
+    "____ INDIVIDUAL COMMANDS ___________________________________________": "",
+    "changelog": "changeset",
+    "changelog:status": "changeset status --verbose",
+    "changelog:status:ci": "changeset status --since=origin/main --verbose",
+    "format": "prettier --write .",
+    "format:verify": "prettier --list-different .",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --max-warnings 0 --fix",
+    "release:prep": "pnpm run changelog:status && changeset version",
+    "test": "pnpm run test:coverage",
+    "test:clean": "rimraf ./coverage",
+    "test:ci": "pnpm run test:clean            && vitest run --coverage",
+    "test:coverage": "pnpm run test:clean      && vitest run --coverage",
+    "test:quick": "pnpm run test:clean         && vitest run --coverage=false",
+    "test:watch": "pnpm run test:clean         && vitest watch --coverage=false",
+    "test:watchcoverage": "pnpm run test:clean && vitest watch --coverage",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "@changesets/types": "^5.2.1",
+    "@size-limit/preset-small-lib": "^8.2.4",
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "@vitest/coverage-c8": "^0.31.0",
+    "changesets-format-with-issue-links": "^0.3.0",
+    "downlevel-dts": "^0.11.0",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "jsdom": "^22.0.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
+    "size-limit": "^8.2.4",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "vitest": "^0.31.0"
+  },
+  "lint-staged": {
+    "*.{css,html,js,jsx,json,less,md,scss,ts,tsx,yaml}": [
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings 0"
+    ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^18",
+      "@types/react-dom": "^18"
+    }
+  }
+}

@@ -15,28 +15,19 @@ if command_exists killall; then
   run_command killall -v node || true
 fi
 
-if command_exists xcrun; then
-  run_command xcrun simctl shutdown all || true
+if command_exists watchman; then
+  run_command watchman watch-del-all
 fi
 
 ##################################################################################################
 # Clear caches
 
 if [ -d "./node_modules/" ]; then
-  run_command yarn clean
-  run_npm_command jest --clearCache
-else
-  run_npm_command jest --clearCache --config={}
+  run_command pnpm run clean
 fi
 
-if command_exists yarn; then
-  run_command yarn cache clean
-fi
-
-run_command npm cache clean --force
-
-if command_exists watchman; then
-  run_command watchman watch-del-all
+if command_exists pnpm; then
+  run_command "pnpm store prune" || true
 fi
 
 run_command "rm -rf
@@ -46,17 +37,18 @@ run_command "rm -rf
 ##################################################################################################
 # Remove generated files
 
-for DIRECTORY in '.' 'demos/*' 'examples/*' 'packages/*' ; do
+for DIRECTORY in '.' 'demos/*' 'packages/*' ; do
   run_command "rm -rf
     $DIRECTORY/.yarn
     $DIRECTORY/build/
     $DIRECTORY/coverage/
-    $DIRECTORY/coverage-package/
+    $DIRECTORY/coverage-local/
     $DIRECTORY/dist/
     $DIRECTORY/legacy-types/
     $DIRECTORY/lib-dist/
     $DIRECTORY/node_modules/
     $DIRECTORY/storybook-static/
+    $directory/.pnpm-debug.log*
     $DIRECTORY/lerna-debug.log*
     $DIRECTORY/npm-debug.log*
     $DIRECTORY/yarn-debug.log*
