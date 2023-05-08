@@ -1,7 +1,7 @@
 import { atom, RecoilState } from 'recoil';
 
 import { ReduxState } from './types';
-import { options } from '../options';
+import { options } from '../options.js';
 
 let reduxStateAtom: RecoilState<ReduxState>;
 let lastKey: string;

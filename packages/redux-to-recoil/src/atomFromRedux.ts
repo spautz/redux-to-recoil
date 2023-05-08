@@ -10,8 +10,8 @@ import {
   getReduxStateAtom,
   reduxStoreRef,
   syncChangesFromRecoilAction,
-} from './internals';
-import { options } from './options';
+} from './internals/index.js';
+import { options } from './options.js';
 
 let atomSelectorFamily: (param: string) => RecoilState<ReduxState>;
 let lastKey: string;

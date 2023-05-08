@@ -5,7 +5,7 @@ import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
-import { atomFromRedux } from '../atomFromRedux';
+import { atomFromRedux } from '../atomFromRedux.js';
 
 import {
   createTestStore,
@@ -14,8 +14,8 @@ import {
   VALUE2_DEFAULT,
 } from './_helpers/createTestStore';
 import { createTestWrapper } from './_helpers/createTestWrapper';
-import { resetStateBetweenTests } from '../internals';
-import { SyncReduxToRecoilProps } from '../SyncReduxToRecoil';
+import { resetStateBetweenTests } from '../internals/index.js';
+import { SyncReduxToRecoilProps } from '../SyncReduxToRecoil.js';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;

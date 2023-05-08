@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { SYNC_CHANGES_FROM_RECOIL, applyChangesToObject } from './internals';
+import { SYNC_CHANGES_FROM_RECOIL, applyChangesToObject } from './internals/index.js';
 
 /**
  * Redux Reducer which processes `SYNC_CHANGES_FROM_RECOIL` actions.

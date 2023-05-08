@@ -1,10 +1,10 @@
-export * from './SyncReduxToRecoil';
-export * from './atomFromRedux';
-export * from './selectorFromReselect';
-export * from './syncChangesFromRecoil';
-export * from './useSyncReduxToRecoil';
+export * from './SyncReduxToRecoil.js';
+export * from './atomFromRedux.js';
+export * from './selectorFromReselect.js';
+export * from './syncChangesFromRecoil.js';
+export * from './useSyncReduxToRecoil.js';
 
-export * from './options';
+export * from './options.js';
 
 // Danger! Internals shouldn't be used unless you absolutely know what you're doing
-export * as _internals from './internals';
+export * as _internals from './internals/index.js';

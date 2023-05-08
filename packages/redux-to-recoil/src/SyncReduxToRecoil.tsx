@@ -1,7 +1,7 @@
 import React, { Fragment, ReactNode } from 'react';
 
-import { ReduxToRecoilOptions, setOptions } from './options';
-import { useSyncReduxToRecoil } from './useSyncReduxToRecoil';
+import { ReduxToRecoilOptions, setOptions } from './options.js';
+import { useSyncReduxToRecoil } from './useSyncReduxToRecoil.js';
 
 export type SyncReduxToRecoilProps = Partial<ReduxToRecoilOptions>;
 

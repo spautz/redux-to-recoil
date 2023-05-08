@@ -1,8 +1,8 @@
-export * from './applyChangesToObject';
-export * from './pendingChangesRef';
-export * from './reduxStateAtom';
-export * from './reduxStoreRef';
-export * from './resetStateBetweenTests';
-export * from './syncChangesFromRecoilAction';
+export * from './applyChangesToObject.js';
+export * from './pendingChangesRef.js';
+export * from './reduxStateAtom.js';
+export * from './reduxStoreRef.js';
+export * from './resetStateBetweenTests.js';
+export * from './syncChangesFromRecoilAction.js';
 
-export * from './types';
+export * from './types.js';

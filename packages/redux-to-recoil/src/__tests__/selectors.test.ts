@@ -6,9 +6,9 @@ import { createSelector } from 'reselect';
 import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
-import { ReduxState, resetStateBetweenTests } from '../internals';
-import { atomFromRedux } from '../atomFromRedux';
-import { selectorFromReselect } from '../selectorFromReselect';
+import { ReduxState, resetStateBetweenTests } from '../internals/index.js';
+import { atomFromRedux } from '../atomFromRedux.js';
+import { selectorFromReselect } from '../selectorFromReselect.js';
 
 import { createTestStore } from './_helpers/createTestStore';
 import { createTestWrapper } from './_helpers/createTestWrapper';

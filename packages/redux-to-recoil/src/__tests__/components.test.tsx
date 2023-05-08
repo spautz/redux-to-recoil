@@ -5,8 +5,8 @@ import { RecoilRoot } from 'recoil';
 import { render } from '@testing-library/react';
 import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
-import { reduxStoreRef, resetStateBetweenTests } from '../internals';
-import { SyncReduxToRecoil } from '../SyncReduxToRecoil';
+import { reduxStoreRef, resetStateBetweenTests } from '../internals/index.js';
+import { SyncReduxToRecoil } from '../SyncReduxToRecoil.js';
 
 import { createTestStore } from './_helpers/createTestStore';
 

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 
-import { SyncReduxToRecoil, SyncReduxToRecoilProps } from '../../SyncReduxToRecoil';
+import { SyncReduxToRecoil, SyncReduxToRecoilProps } from '../../SyncReduxToRecoil.js';
 
 const createTestWrapper =
   (testStore: Store): React.FC<SyncReduxToRecoilProps & { children?: ReactNode }> =>

@@ -2,8 +2,13 @@ import { useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRecoilState } from 'recoil';
 
-import { ReduxState, getReduxStateAtom, pendingChangesRef, reduxStoreRef } from './internals';
-import { options } from './options';
+import {
+  ReduxState,
+  getReduxStateAtom,
+  pendingChangesRef,
+  reduxStoreRef,
+} from './internals/index.js';
+import { options } from './options.js';
 
 const selectEntireState = (state: ReduxState) => state;
 

@@ -1,6 +1,11 @@
 import { ReadOnlySelectorOptions, RecoilValueReadOnly, selector } from 'recoil';
 
-import { DefaultReturnType, ReduxState, getReduxStateAtom, reduxStoreRef } from './internals';
+import {
+  DefaultReturnType,
+  ReduxState,
+  getReduxStateAtom,
+  reduxStoreRef,
+} from './internals/index.js';
 
 let selectorCount = 0;
 

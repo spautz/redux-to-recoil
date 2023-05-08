@@ -1,4 +1,4 @@
-import { defaultOptions, options } from '../options';
+import { defaultOptions, options } from '../options.js';
 
 const { _recoilSelectorAtomKey, _reduxStateAtomKey } = defaultOptions;
 

@@ -1,7 +1,7 @@
 import { AnyAction, Store, createStore } from 'redux';
 
-import { ReduxState } from '../../internals';
-import { syncChangesFromRecoil } from '../../syncChangesFromRecoil';
+import { ReduxState } from '../../internals/index.js';
+import { syncChangesFromRecoil } from '../../syncChangesFromRecoil.js';
 
 const VALUE1_DEFAULT = 100;
 const VALUE2_DEFAULT = 200;
