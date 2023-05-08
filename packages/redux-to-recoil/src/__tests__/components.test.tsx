@@ -3,11 +3,12 @@ import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
 import { render } from '@testing-library/react';
+import { describe, beforeEach, expect, it } from 'vitest';
 
 import { reduxStoreRef, resetStateBetweenTests } from '../internals';
 import { SyncReduxToRecoil } from '../SyncReduxToRecoil';
 
-import { createTestStore } from './_helpers';
+import { createTestStore } from './_helpers/createTestStore';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;

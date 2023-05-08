@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, ReactNode } from "react";
 
 import { ReduxToRecoilOptions, setOptions } from './options';
 import { useSyncReduxToRecoil } from './useSyncReduxToRecoil';
@@ -11,7 +11,7 @@ export type SyncReduxToRecoilProps = Partial<ReduxToRecoilOptions>;
  * This should be rendered within _both_ the Redux and Recoil providers. Do not wrap this around the rest of your app.
  */
 const SyncReduxToRecoil: React.FC<SyncReduxToRecoilProps> = (props) => {
-  const { children, ...optionProps } = props;
+  const { children, ...optionProps } = props as typeof props & {children?: ReactNode};
 
   setOptions(optionProps);
   useSyncReduxToRecoil();

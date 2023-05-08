@@ -1,142 +1,139 @@
 {
-  "name": "redux-to-recoil",
-  "version": "0.8.2",
-  "description": "Access your Redux store through Recoil atoms and selectors",
+    "name": "redux-to-recoil",
+    "version": "0.8.2",
+    "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [
-    "redux to recoil",
-    "recoil from redux",
-    "recoil",
-    "redux",
-    "migrate",
-    "migration",
-    "sync"
+     "limited cache",
+      "cache",
+      "circular buffer",
+      "max size",
+      "max time",
+      "rotating cache",
+      "offline cache",
+      "local storage",
+      "autoexpire"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/redux-to-recoil#readme",
+  "homepage": "https://github.com/spautz/redux-to-recoil/tree/main/packages/redux-to-recoil#readme",
   "bugs": "https://github.com/spautz/redux-to-recoil/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/spautz/redux-to-recoil.git"
+    "url": "git+https://github.com/spautz/redux-to-recoil.git",
+    "directory": "packages/redux-to-recoil"
   },
   "author": {
     "name": "Steven Pautz",
-    "url": "http://stevenpautz.com/"
+    "url": "https://github.com/spautz"
   },
   "publishConfig": {
     "access": "public",
+    "provenance": true,
     "tag": "next"
   },
   "files": [
     "dist/",
+    "docs/",
     "legacy-types/",
     "src/",
     "LICENSE",
     "*.md"
   ],
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "jsnext:main": "dist/index.esm.js",
-  "umd:main": "dist/index.umd.js",
-  "module": "dist/index.esm.js",
-  "esmodule": "dist/index.modern.js",
-  "exports": "./dist/index.modern.js",
-  "types": "dist/index.d.ts",
+  "source": "./src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "jsnext:main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "____ LIFECYCLE HOOKS _______________________________________________": "",
-    "prepare": "yon run build && husky install",
-    "prerelease": "yon run build:clean",
-    "prepublishOnly": "yarn run dev:readonly && yarn run build",
+    "____ HOOKS _________________________________________________________": "",
+    "prepare": "pnpm run build:main",
+    "prepack": "pnpm run clean && pnpm run build",
     "____ INTEGRATION ___________________________________________________": "",
-    "clean": "yon run build:clean && yon run test:clean && rimraf ./node_modules/.cache/ *.log",
-    "dev": "yon run format && yon run types && yon run lint",
-    "dev:readonly": "yon run format:verify && yon run types && yon run lint",
-    "all": "yon run clean && yon run dev && yon run test:coverage && yon run build",
-    "all:readonly": "yon run dev:readonly && yon run test:coverage",
-    "____ ALIASES _______________________________________________________": "",
-    "test": "yon run test:coverage",
+    "clean": "pnpm run build:clean && pnpm run test:clean && rimraf --glob ./node_modules/.cache *.log",
+    "all": "pnpm run format                 && pnpm run typecheck && pnpm run lint:fix && pnpm run test:coverage && pnpm run build",
+    "all:readonly": "pnpm run format:verify && pnpm run typecheck && pnpm run lint     && pnpm run test:quick",
+    "all:quick": "pnpm run format           && pnpm run typecheck && pnpm run lint:fix",
+    "all:ci": "pnpm run format:verify       && pnpm run typecheck && pnpm run lint     && pnpm run test:ci && pnpm run build",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
-    "build": "yon run build:clean && yon run build:main && yon run build:types",
+    "build": "pnpm run build:main && pnpm run sizecheck && pnpm run build:legacytypes",
     "build:clean": "rimraf ./dist ./legacy-types",
-    "build:main": "microbundle build --jsx React.createElement",
-    "build:types": "yon run build:types:3.x && yon run build:types:4.x",
-    "build:types:3.x": "downlevel-dts ./dist ./legacy-types/ts3.x/dist --to=3.0",
-    "build:types:4.x": "downlevel-dts ./dist ./dist --to=4.0",
-    "build:watch": "microbundle watch --jsx React.createElement",
-    "demo:prepare": "cd ../../demos/todo-list && yarn add redux-to-recoil@next --tilde && yarn install && yarn lint && yarn build",
-    "demo:start": "cd ../../demos/todo-list && yarn start",
-    "demo:deploy": "gh-pages -d ./demos/todo-list/build",
+    "build:main": "pnpm run build:clean && tsup src/index.ts --format cjs && tsc -p ./tsconfig.build.json",
+    "build:legacytypes": "pnpm run build:legacytypes:3.5 && pnpm run build:legacytypes:4.0 && pnpm run build:legacytypes:4.5",
+    "build:legacytypes:3.5": "downlevel-dts ./dist ./legacy-types/ts3.5 --to=3.5",
+    "build:legacytypes:4.0": "downlevel-dts ./dist ./legacy-types/ts4.0 --to=4.0",
+    "build:legacytypes:4.5": "downlevel-dts ./dist ./legacy-types/ts4.5 --to=4.5",
+    "build:watch": "pnpm run build:clean && tsup src/index.ts --format esm,cjs --dts --watch",
     "format": "prettier --write .",
     "format:verify": "prettier --list-different .",
     "lint": "eslint . --max-warnings 0",
-    "lint:fit": "eslint . --fix --max-warnings 0",
-    "lint-staged": "lint-staged",
-    "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
-    "release:tag": "standard-version --commit-all --sign --skip.changelog --release-as ",
+    "lint:fix": "eslint . --max-warnings 0 --fix",
+    "sizecheck": "size-limit",
+    "test": "pnpm run test:coverage",
     "test:clean": "rimraf ./coverage",
-    "test:coverage": "yon run test:clean && jest --coverage",
-    "test:nowatch": "yon run test:clean && jest --coverage=false --bail",
-    "test:watch": "yon run test:clean && jest --coverage=false --watch",
-    "test:watchcoverage": "yon run test:clean && jest --coverage --watchAll",
-    "types": "tsc --noEmit --p tsconfig.json"
+    "test:ci": "pnpm run test:clean            && vitest run --coverage",
+    "test:coverage": "pnpm run test:clean      && vitest run --coverage",
+    "test:quick": "pnpm run test:clean         && vitest run --coverage=false",
+    "test:watch": "pnpm run test:clean         && vitest watch --coverage=false",
+    "test:watchcoverage": "pnpm run test:clean && vitest watch --coverage",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit"
   },
   "dependencies": {
     "immutable-path": "^1.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "13.0.0",
-    "@types/jest": "27.4.1",
-    "@types/node": "16.11.26",
-    "@types/react": "17.0.43",
-    "@types/react-dom": "17.0.14",
-    "@types/react-redux": "7.1.23",
-    "@typescript-eslint/eslint-plugin": "5.18.0",
-    "@typescript-eslint/parser": "5.18.0",
-    "downlevel-dts": "0.9.0",
-    "eslint": "8.12.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-react": "7.29.4",
-    "gh-pages": "3.2.3",
-    "husky": "7.0.4",
-    "jest": "27.5.1",
-    "lint-staged": "12.3.7",
-    "microbundle": "0.14.2",
-    "prettier": "2.6.2",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
+    "@types/node": "20.1.0",
+    "@types/react": "18.2.6",
+    "@types/react-redux": "7.1.25",
+    "react": "18.2.0",
     "react-recoil-hooks-testing-library": "0.1.0",
     "react-redux": "7.2.8",
-    "react-test-renderer": "18.0.0",
     "recoil": "0.7.0",
     "redux": "4.1.2",
-    "reselect": "4.1.5",
-    "rimraf": "3.0.2",
-    "standard-version": "9.3.2",
-    "ts-jest": "27.1.4",
-    "tslib": "2.3.1",
-    "typescript": "4.6.3",
-    "yarn-or-npm": "3.0.1"
+    "reselect": "4.1.5"
   },
-  "peerDependencies": {
-    "react": "^16.8.3 || ^17 || ^18",
-    "react-redux": "^7.0.0 || ^8",
-    "recoil": "^0.5.0 || ^0.6.0 || ^0.7.0",
-    "redux": "^4.0.0-0"
-  },
-  "lint-staged": {
-    "**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx}": [
-      "prettier --write"
-    ]
-  },
-  "standard-version": {
-    "scripts": {
-      "postchangelog": "yon run format"
+  "peerDependencies": {    "react": "^16.8.3 || ^17 || ^18",
+        "react-redux": "^7.0.0 || ^8",
+        "recoil": "^0.5.0 || ^0.6.0 || ^0.7.0",
+        "redux": "^4.0.0-0"},
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "import": "{}",
+      "limit": "20 B"
+    },
+    {
+      "path": "dist/index.js",
+      "limit": "2 kB"
     }
-  },
+  ],
   "typesVersions": {
-    "<4": {
+    "<4.0": {
       "*": [
-        "legacy-types/ts3.x/*"
+        "legacy-types/ts3.5/index.d.ts"
+      ]
+    },
+    "<4.5": {
+      "*": [
+        "legacy-types/ts4.0/index.d.ts"
+      ]
+    },
+    "<4.7": {
+      "*": [
+        "legacy-types/ts4.5/index.d.ts"
+      ]
+    },
+    "*": {
+      "*": [
+        "dist/index.d.ts"
       ]
     }
   }

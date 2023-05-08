@@ -3,16 +3,19 @@ import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
+import { describe, beforeEach, expect, it } from 'vitest';
 
 import { atomFromRedux } from '../atomFromRedux';
 
 import {
   createTestStore,
-  createTestWrapper,
   incrementKeyAction,
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
-} from './_helpers';
+} from './_helpers/createTestStore';
+import {
+  createTestWrapper,
+} from './_helpers/createTestWrapper';
 import { resetStateBetweenTests } from '../internals';
 
 describe('read Redux state through Recoil', () => {
