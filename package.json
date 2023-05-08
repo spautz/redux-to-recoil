@@ -45,9 +45,9 @@
     "changelog": "changeset",
     "changelog:status": "changeset status --verbose",
     "changelog:status:ci": "changeset status --since=origin/main --verbose",
-        "demo:prepare": "cd demos/todo-list && pnpm add redux-to-recoil@next --tilde && pnpm install && pnpm run lint && pnpm run build",
-        "demo:start": "cd demos/todo-list && pnpm run start",
-        "demo:deploy": "gh-pages -d ./demos/todo-list/build",
+    "demo:prepare": "cd demos/todo-list && pnpm add redux-to-recoil@next --tilde && pnpm install && pnpm run lint && pnpm run build",
+    "demo:start": "cd demos/todo-list && pnpm run start",
+    "demo:deploy": "gh-pages -d ./demos/todo-list/build",
     "format": "prettier --write .",
     "format:verify": "prettier --list-different .",
     "lint": "eslint . --max-warnings 0",
@@ -73,9 +73,9 @@
     "@vitest/coverage-c8": "0.31.0",
     "changesets-format-with-issue-links": "0.3.0",
     "downlevel-dts": "0.11.0",
-    "eslint": "8.39.0",
+    "eslint": "8.40.0",
     "eslint-config-prettier": "8.8.0",
-    "gh-pages": "3.2.3",
+    "gh-pages": "5.0.0",
     "husky": "8.0.3",
     "jsdom": "22.0.0",
     "lint-staged": "13.2.2",
@@ -93,11 +93,5 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --max-warnings 0"
     ]
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "^18",
-      "@types/react-dom": "^18"
-    }
   }
 }

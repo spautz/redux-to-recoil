@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilState, useRecoilState, useSetRecoilState } from 'recoil';
@@ -7,13 +7,14 @@ import { describe, beforeEach, expect, it } from 'vitest';
 
 import { atomFromRedux } from '../atomFromRedux';
 
-import { createTestStore,  VALUE1_DEFAULT, VALUE2_DEFAULT } from './_helpers/createTestStore';
-import {  createTestWrapper,  } from './_helpers/createTestWrapper';
+import { createTestStore, VALUE1_DEFAULT, VALUE2_DEFAULT } from './_helpers/createTestStore';
+import { createTestWrapper } from './_helpers/createTestWrapper';
 import { resetStateBetweenTests } from '../internals';
+import { SyncReduxToRecoilProps } from '../SyncReduxToRecoil';
 
 describe('write Redux state through Recoil', () => {
   let testStore: Store;
-  let ReduxProviderWrapper: React.FC;
+  let ReduxProviderWrapper: React.FC<SyncReduxToRecoilProps & { children?: ReactNode }>;
   const originalConsoleError: typeof console.error = console.error;
   const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
@@ -33,9 +34,9 @@ describe('write Redux state through Recoil', () => {
 
   it('writes values to Redux', () => {
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const value1AtomHook = () => useRecoilState(value1Atom);
+    const useValue1Atom = () => useRecoilState(value1Atom);
 
-    const { result, rerender } = renderRecoilHook(value1AtomHook, {
+    const { result, rerender } = renderRecoilHook(useValue1Atom, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -54,9 +55,9 @@ describe('write Redux state through Recoil', () => {
 
   it('creates new values in Redux', () => {
     const missingValueAtom: RecoilState<unknown> = atomFromRedux('not found');
-    const missingValueAtomHook = () => useRecoilState(missingValueAtom);
+    const useMissingValueAtom = () => useRecoilState(missingValueAtom);
 
-    const { result, rerender } = renderRecoilHook(missingValueAtomHook, {
+    const { result, rerender } = renderRecoilHook(useMissingValueAtom, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -75,9 +76,9 @@ describe('write Redux state through Recoil', () => {
 
   it('can replace the entire state', () => {
     const rootAtom: RecoilState<unknown> = atomFromRedux('.');
-    const rootAtomHook = () => useRecoilState(rootAtom);
+    const useRootAtom = () => useRecoilState(rootAtom);
 
-    const { result, rerender } = renderRecoilHook(rootAtomHook, {
+    const { result, rerender } = renderRecoilHook(useRootAtom, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -98,13 +99,13 @@ describe('write Redux state through Recoil', () => {
   });
 
   it('throws an error if you try to write without SyncReduxToRecoil', () => {
-    const WrapperWithoutSync: React.FC = ({ children }) => (
+    const WrapperWithoutSync: React.FC<{ children: ReactNode }> = ({ children }) => (
       <Provider store={testStore}>{children}</Provider>
     );
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const value1AtomHook = () => useSetRecoilState(value1Atom);
+    const useValue1Atom = () => useSetRecoilState(value1Atom);
 
-    const { result } = renderRecoilHook(value1AtomHook, {
+    const { result } = renderRecoilHook(useValue1Atom, {
       wrapper: WrapperWithoutSync,
     });
 
@@ -121,9 +122,9 @@ describe('write Redux state through Recoil', () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValueOnce();
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const value1AtomHook = () => useRecoilState(value1Atom);
+    const useValue1Atom = () => useRecoilState(value1Atom);
 
-    const { result, rerender } = renderRecoilHook(value1AtomHook, {
+    const { result, rerender } = renderRecoilHook(useValue1Atom, {
       wrapper: ReduxProviderWrapper,
       initialProps: {
         writeEnabled: false,
@@ -152,9 +153,9 @@ describe('write Redux state through Recoil', () => {
     jest.useFakeTimers();
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const value1AtomHook = () => useRecoilState(value1Atom);
+    const useValue1Atom = () => useRecoilState(value1Atom);
 
-    const { result, rerender } = renderRecoilHook(value1AtomHook, {
+    const { result, rerender } = renderRecoilHook(useValue1Atom, {
       wrapper: ReduxProviderWrapper,
       initialProps: {
         writeEnabled: true,
@@ -191,9 +192,9 @@ describe('write Redux state through Recoil', () => {
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const value2Atom: RecoilState<number> = atomFromRedux<number>('value2');
-    const multipleAtomHook = () => [useRecoilState(value1Atom), useRecoilState(value2Atom)];
+    const useMultipleAtoms = () => [useRecoilState(value1Atom), useRecoilState(value2Atom)];
 
-    const { result, rerender } = renderRecoilHook(multipleAtomHook, {
+    const { result, rerender } = renderRecoilHook(useMultipleAtoms, {
       wrapper: ReduxProviderWrapper,
       initialProps: {
         writeEnabled: true,

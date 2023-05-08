@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilState, useRecoilValue } from 'recoil';
@@ -13,14 +13,13 @@ import {
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
 } from './_helpers/createTestStore';
-import {
-  createTestWrapper,
-} from './_helpers/createTestWrapper';
+import { createTestWrapper } from './_helpers/createTestWrapper';
 import { resetStateBetweenTests } from '../internals';
+import { SyncReduxToRecoilProps } from '../SyncReduxToRecoil';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
-  let ReduxProviderWrapper: React.FC;
+  let ReduxProviderWrapper: React.FC<SyncReduxToRecoilProps & { children?: ReactNode }>;
   const originalConsoleError: typeof console.error = console.error;
   const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
@@ -38,9 +37,9 @@ describe('read Redux state through Recoil', () => {
 
   it('reads values from Redux', () => {
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const value1AtomHook = () => useRecoilValue(value1Atom);
+    const useValue1Atom = () => useRecoilValue(value1Atom);
 
-    const { result } = renderRecoilHook(value1AtomHook, {
+    const { result } = renderRecoilHook(useValue1Atom, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -50,9 +49,9 @@ describe('read Redux state through Recoil', () => {
 
   it('reads absent values from Redux', () => {
     const missingValueAtom: RecoilState<unknown> = atomFromRedux('not found');
-    const missingValueAtomHook = () => useRecoilValue(missingValueAtom);
+    const useMissingValueAtom = () => useRecoilValue(missingValueAtom);
 
-    const { result } = renderRecoilHook(missingValueAtomHook, {
+    const { result } = renderRecoilHook(useMissingValueAtom, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -62,9 +61,9 @@ describe('read Redux state through Recoil', () => {
 
   it('can read the entire state', () => {
     const rootAtom: RecoilState<unknown> = atomFromRedux('.');
-    const rootAtomHook = () => useRecoilValue(rootAtom);
+    const useRootAtom = () => useRecoilValue(rootAtom);
 
-    const { result } = renderRecoilHook(rootAtomHook, {
+    const { result } = renderRecoilHook(useRootAtom, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -90,9 +89,9 @@ describe('read Redux state through Recoil', () => {
 
   it('always sees the current Redux values', () => {
     const value2Atom: RecoilState<number> = atomFromRedux<number>('value2');
-    const value2AtomHook = () => useRecoilValue(value2Atom);
+    const useValue2Atom = () => useRecoilValue(value2Atom);
 
-    const { result, rerender } = renderRecoilHook(value2AtomHook, {
+    const { result, rerender } = renderRecoilHook(useValue2Atom, {
       wrapper: ReduxProviderWrapper,
     });
     expect(result.current).toBe(VALUE2_DEFAULT);
@@ -107,13 +106,13 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('throws an error if you try to read without SyncReduxToRecoil', () => {
-    const WrapperWithoutSync: React.FC = ({ children }) => (
+    const WrapperWithoutSync: React.FC<{ children?: ReactNode }> = ({ children }) => (
       <Provider store={testStore}>{children}</Provider>
     );
     const value1Atom: RecoilState<number> = atomFromRedux<number>('no-sync');
-    const value1AtomHook = () => useRecoilValue(value1Atom);
+    const useValue1Atom = () => useRecoilValue(value1Atom);
 
-    const { result } = renderRecoilHook(value1AtomHook, {
+    const { result } = renderRecoilHook(useValue1Atom, {
       wrapper: WrapperWithoutSync,
     });
 
@@ -130,9 +129,9 @@ describe('read Redux state through Recoil', () => {
     const NullReduxProviderWrapper = createTestWrapper(nullStore);
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const value1AtomHook = () => useRecoilValue(value1Atom);
+    const useValue1Atom = () => useRecoilValue(value1Atom);
 
-    const { result } = renderRecoilHook(value1AtomHook, {
+    const { result } = renderRecoilHook(useValue1Atom, {
       wrapper: NullReduxProviderWrapper,
       initialProps: {
         readEnabled: false,
@@ -152,9 +151,9 @@ describe('read Redux state through Recoil', () => {
 
   it('does not update unless readEnabled is on', () => {
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const value1AtomHook = () => useRecoilValue(value1Atom);
+    const useValue1Atom = () => useRecoilValue(value1Atom);
 
-    const { result, rerender } = renderRecoilHook(value1AtomHook, {
+    const { result, rerender } = renderRecoilHook(useValue1Atom, {
       wrapper: ReduxProviderWrapper,
       initialProps: {
         readEnabled: true,

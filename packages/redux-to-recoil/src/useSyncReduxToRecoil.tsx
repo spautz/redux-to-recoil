@@ -30,6 +30,7 @@ const useSyncReduxToRecoil = (): void => {
     if (readEnabled && currentReduxState !== lastReduxState && !pendingChangesRef.c) {
       setReduxState(currentReduxState);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readEnabled, pendingChangesRef.c, currentReduxState, lastReduxState, setReduxState]);
 };
 

@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 
-import { SyncReduxToRecoil } from '../../SyncReduxToRecoil';
+import { SyncReduxToRecoil, SyncReduxToRecoilProps } from '../../SyncReduxToRecoil';
 
 const createTestWrapper =
-  (testStore: Store): React.FC<{children:ReactNode}> =>
+  (testStore: Store): React.FC<SyncReduxToRecoilProps & { children?: ReactNode }> =>
   (props) => {
     const { children, ...anyOtherProps } = props;
 

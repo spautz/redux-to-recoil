@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Store } from 'redux';
 import { Selector } from 'react-redux';
 import { RecoilState, selector, useRecoilValue } from 'recoil';
@@ -10,12 +10,12 @@ import { ReduxState, resetStateBetweenTests } from '../internals';
 import { atomFromRedux } from '../atomFromRedux';
 import { selectorFromReselect } from '../selectorFromReselect';
 
-import { createTestStore,  } from './_helpers/createTestStore';
-import {  createTestWrapper } from './_helpers/createTestWrapper';
+import { createTestStore } from './_helpers/createTestStore';
+import { createTestWrapper } from './_helpers/createTestWrapper';
 
 describe('selectors', () => {
   let testStore: Store;
-  let ReduxProviderWrapper: React.FC;
+  let ReduxProviderWrapper: React.FC<{ children?: ReactNode }>;
   const originalConsoleError: typeof console.error = console.error;
   const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
@@ -35,8 +35,8 @@ describe('selectors', () => {
     const plainReduxSelector: Selector<ReduxState, number> = (state) => state.value1;
     const myRecoilSelector = selectorFromReselect(plainReduxSelector);
 
-    const mySelectorHook = () => useRecoilValue(myRecoilSelector);
-    const { result } = renderRecoilHook(mySelectorHook, {
+    const useMySelector = () => useRecoilValue(myRecoilSelector);
+    const { result } = renderRecoilHook(useMySelector, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -52,8 +52,8 @@ describe('selectors', () => {
     );
     const myRecoilSelector = selectorFromReselect(reselectSelector);
 
-    const mySelectorHook = () => useRecoilValue(myRecoilSelector);
-    const { result } = renderRecoilHook(mySelectorHook, {
+    const useMySelector = () => useRecoilValue(myRecoilSelector);
+    const { result } = renderRecoilHook(useMySelector, {
       wrapper: ReduxProviderWrapper,
     });
 
@@ -73,8 +73,8 @@ describe('selectors', () => {
       },
     });
 
-    const mySelectorHook = () => useRecoilValue(valueSumSelector);
-    const { result } = renderRecoilHook(mySelectorHook, {
+    const useMySelector = () => useRecoilValue(valueSumSelector);
+    const { result } = renderRecoilHook(useMySelector, {
       wrapper: ReduxProviderWrapper,
     });
 

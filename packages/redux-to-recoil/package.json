@@ -1,17 +1,15 @@
 {
-    "name": "redux-to-recoil",
-    "version": "0.8.2",
-    "description": "Access your Redux store through Recoil atoms and selectors",
+  "name": "redux-to-recoil",
+  "version": "0.8.2",
+  "description": "Access your Redux store through Recoil atoms and selectors",
   "keywords": [
-     "limited cache",
-      "cache",
-      "circular buffer",
-      "max size",
-      "max time",
-      "rotating cache",
-      "offline cache",
-      "local storage",
-      "autoexpire"
+    "redux to recoil",
+    "recoil from redux",
+    "recoil",
+    "redux",
+    "migrate",
+    "migration",
+    "sync"
   ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/redux-to-recoil/tree/main/packages/redux-to-recoil#readme",
@@ -90,20 +88,23 @@
     "immutable-path": "^1.0.1"
   },
   "devDependencies": {
+    "@testing-library/react": "14.0.0",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-redux": "7.1.25",
     "react": "18.2.0",
     "react-recoil-hooks-testing-library": "0.1.0",
-    "react-redux": "7.2.8",
-    "recoil": "0.7.0",
-    "redux": "4.1.2",
-    "reselect": "4.1.5"
+    "react-redux": "8.0.5",
+    "recoil": "0.7.7",
+    "redux": "4.2.1",
+    "reselect": "4.1.8"
   },
-  "peerDependencies": {    "react": "^16.8.3 || ^17 || ^18",
-        "react-redux": "^7.0.0 || ^8",
-        "recoil": "^0.5.0 || ^0.6.0 || ^0.7.0",
-        "redux": "^4.0.0-0"},
+  "peerDependencies": {
+    "react": "^16.8.3 || ^17 || ^18",
+    "react-redux": "^7.0.0 || ^8",
+    "recoil": "^0.5.0 || ^0.6.0 || ^0.7.0",
+    "redux": "^4.0.0-0"
+  },
   "size-limit": [
     {
       "path": "dist/index.js",
