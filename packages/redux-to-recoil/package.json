@@ -88,13 +88,16 @@
     "immutable-path": "^1.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "14.0.0",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/react-hooks": "8.0.1",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-redux": "7.1.25",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-recoil-hooks-testing-library": "0.1.0",
     "react-redux": "8.0.5",
+    "react-test-renderer": "18.2.0",
     "recoil": "0.7.7",
     "redux": "4.2.1",
     "reselect": "4.1.8"

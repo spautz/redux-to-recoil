@@ -1,4 +1,4 @@
-import { set as setPath } from 'immutable-path/dist/immutable-object-path';
+import { set as setPath } from 'immutable-path';
 
 import { ChangeEntry, ReduxState } from './types';
 

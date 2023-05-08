@@ -3,7 +3,7 @@ import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilState, useRecoilState, useSetRecoilState } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
-import { describe, beforeEach, expect, it } from 'vitest';
+import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
 import { atomFromRedux } from '../atomFromRedux';
 
@@ -18,10 +18,10 @@ describe('write Redux state through Recoil', () => {
   const originalConsoleError: typeof console.error = console.error;
   const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
-    jest.restoreAllMocks();
-    jest.resetModules();
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vitest.restoreAllMocks();
+    vitest.resetModules();
+    vitest.clearAllTimers();
+    vitest.useRealTimers();
 
     resetStateBetweenTests();
     testStore = createTestStore();
@@ -113,13 +113,13 @@ describe('write Redux state through Recoil', () => {
 
     expect(() => {
       act(() => {
-        setValue1(123);
+        setValue1(() => 123);
       });
     }).toThrowError('Cannot dispatch to Redux because <SyncReduxToRecoil> is not mounted');
   });
 
   it('emits an error and does nothing if writeEnabled is off', () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValueOnce();
+    const consoleErrorSpy = vitest.spyOn(console, 'error').mockReturnValueOnce();
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const useValue1Atom = () => useRecoilState(value1Atom);
@@ -150,7 +150,7 @@ describe('write Redux state through Recoil', () => {
   });
 
   it('can batch its writes to Redux', () => {
-    jest.useFakeTimers();
+    vitest.useFakeTimers();
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const useValue1Atom = () => useRecoilState(value1Atom);
@@ -177,7 +177,7 @@ describe('write Redux state through Recoil', () => {
     expect(testStore.getState().value1).toBe(VALUE1_DEFAULT);
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     rerender();
@@ -188,7 +188,7 @@ describe('write Redux state through Recoil', () => {
   });
 
   it('queues up multiple writes when batching', () => {
-    jest.useFakeTimers();
+    vitest.useFakeTimers();
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const value2Atom: RecoilState<number> = atomFromRedux<number>('value2');
@@ -220,7 +220,7 @@ describe('write Redux state through Recoil', () => {
     expect(testStore.getState().value2).toBe(VALUE2_DEFAULT);
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     rerender();

@@ -117,8 +117,11 @@ importers:
         version: 1.0.1
     devDependencies:
       '@testing-library/react':
-        specifier: 14.0.0
-        version: 14.0.0(react@18.2.0)
+        specifier: 13.4.0
+        version: 13.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@testing-library/react-hooks':
+        specifier: 8.0.1
+        version: 8.0.1(@types/react@18.2.6)(react-dom@18.2.0)(react-test-renderer@18.2.0)(react@18.2.0)
       '@types/node':
         specifier: 20.1.0
         version: 20.1.0
@@ -131,15 +134,21 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
       react-recoil-hooks-testing-library:
         specifier: 0.1.0
-        version: 0.1.0(react-test-renderer@16.14.0)(react@18.2.0)(recoil@0.7.7)
+        version: 0.1.0(react-dom@18.2.0)(react-test-renderer@18.2.0)(react@18.2.0)(recoil@0.7.7)
       react-redux:
         specifier: 8.0.5
-        version: 8.0.5(@types/react@18.2.6)(react@18.2.0)(redux@4.2.1)
+        version: 8.0.5(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-test-renderer:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
       recoil:
         specifier: 0.7.7
-        version: 0.7.7(react@18.2.0)
+        version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
       redux:
         specifier: 4.2.1
         version: 4.2.1
@@ -2721,7 +2730,6 @@ packages:
       dom-accessibility-api: 0.5.16
       lz-string: 1.5.0
       pretty-format: 27.5.1
-    dev: false
 
   /@testing-library/dom@9.2.0:
     resolution: {integrity: sha512-xTEnpUKiV/bMyEsE5bT4oYA0x0Z/colMtxzUY8bKyPXBNLn/e0V4ZjBZkEhms0xE4pv9QsPfSRu9AWS4y5wGvA==}
@@ -2735,6 +2743,7 @@ packages:
       dom-accessibility-api: 0.5.16
       lz-string: 1.5.0
       pretty-format: 27.5.1
+    dev: false
 
   /@testing-library/jest-dom@5.16.3:
     resolution: {integrity: sha512-u5DfKj4wfSt6akfndfu1eG06jsdyA/IUrlX2n3pyq5UXgXMhXY+NJb8eNK/7pqPWAhCKsCGWDdDO0zKMKAYkEA==}
@@ -2751,7 +2760,7 @@ packages:
       redent: 3.0.0
     dev: false
 
-  /@testing-library/react-hooks@3.7.0(react-test-renderer@16.14.0)(react@18.2.0):
+  /@testing-library/react-hooks@3.7.0(react-test-renderer@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-TwfbY6BWtWIHitjT05sbllyLIProcysC0dF0q1bbDa7OHLC6A6rJOYJwZ13hzfz3O4RtOuInmprBozJRyyo7/g==}
     peerDependencies:
       react: '>=16.9.0'
@@ -2760,7 +2769,31 @@ packages:
       '@babel/runtime': 7.21.5
       '@types/testing-library__react-hooks': 3.4.1
       react: 18.2.0
-      react-test-renderer: 16.14.0(react@18.2.0)
+      react-test-renderer: 18.2.0(react@18.2.0)
+    dev: true
+
+  /@testing-library/react-hooks@8.0.1(@types/react@18.2.6)(react-dom@18.2.0)(react-test-renderer@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@types/react': ^16.9.0 || ^17.0.0
+      react: ^16.9.0 || ^17.0.0
+      react-dom: ^16.9.0 || ^17.0.0
+      react-test-renderer: ^16.9.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react-dom:
+        optional: true
+      react-test-renderer:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.21.5
+      '@types/react': 18.2.6
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-error-boundary: 3.1.4(react@18.2.0)
+      react-test-renderer: 18.2.0(react@18.2.0)
     dev: true
 
   /@testing-library/react@12.1.4(react-dom@18.0.0)(react@18.0.0):
@@ -2777,17 +2810,18 @@ packages:
       react-dom: 18.0.0(react@18.0.0)
     dev: false
 
-  /@testing-library/react@14.0.0(react@18.2.0):
-    resolution: {integrity: sha512-S04gSNJbYE30TlIMLTzv6QCTzt9AqIF5y6s6SzVFILNcNvbV/jU96GeiTPillGQo+Ny64M/5PV7klNYYgv5Dfg==}
-    engines: {node: '>=14'}
+  /@testing-library/react@13.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-sXOGON+WNTh3MLE9rve97ftaZukN3oNf2KjDy7YTx6hcTO2uuLHuCGynMDhFwGw/jYf4OJ2Qk0i4i79qMNNkyw==}
+    engines: {node: '>=12'}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
       '@babel/runtime': 7.21.5
-      '@testing-library/dom': 9.2.0
+      '@testing-library/dom': 8.20.0
       '@types/react-dom': 18.0.0
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@testing-library/user-event@14.0.4(@testing-library/dom@9.2.0):
@@ -9566,6 +9600,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+    dev: false
 
   /proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
@@ -9700,6 +9735,26 @@ packages:
       scheduler: 0.21.0
     dev: false
 
+  /react-dom@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.2.0
+      scheduler: 0.23.0
+    dev: true
+
+  /react-error-boundary@3.1.4(react@18.2.0):
+    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.21.5
+      react: 18.2.0
+    dev: true
+
   /react-error-overlay@6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
     dev: false
@@ -9713,7 +9768,7 @@ packages:
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
 
-  /react-recoil-hooks-testing-library@0.1.0(react-test-renderer@16.14.0)(react@18.2.0)(recoil@0.7.7):
+  /react-recoil-hooks-testing-library@0.1.0(react-dom@18.2.0)(react-test-renderer@18.2.0)(react@18.2.0)(recoil@0.7.7):
     resolution: {integrity: sha512-LZlSinVlrLrSc0QRJdZYD9PE+l2kapUQTAsHHHlkPE5iHp1wKheD9RuuIqIMoYqO8H67c9ISFlW4vr0ldOZ45A==}
     peerDependencies:
       react: ^16.8.4
@@ -9721,10 +9776,11 @@ packages:
       react-test-renderer: ^16.8.4
       recoil: ^0.3.1
     dependencies:
-      '@testing-library/react-hooks': 3.7.0(react-test-renderer@16.14.0)(react@18.2.0)
+      '@testing-library/react-hooks': 3.7.0(react-test-renderer@18.2.0)(react@18.2.0)
       react: 18.2.0
-      react-test-renderer: 16.14.0(react@18.2.0)
-      recoil: 0.7.7(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+      react-test-renderer: 18.2.0(react@18.2.0)
+      recoil: 0.7.7(react-dom@18.2.0)(react@18.2.0)
     dev: true
 
   /react-redux@8.0.0-beta.3(react-dom@18.0.0)(react@18.0.0):
@@ -9749,7 +9805,7 @@ packages:
       use-sync-external-store: 1.2.0(react@18.0.0)
     dev: false
 
-  /react-redux@8.0.5(@types/react@18.2.6)(react@18.2.0)(redux@4.2.1):
+  /react-redux@8.0.5(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-Q2f6fCKxPFpkXt1qNRZdEDLlScsDWyrgSj0mliK59qU6W5gvBiKkdMEG2lJzhd1rCctf0hb6EtePPLZ2e0m1uw==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -9776,6 +9832,7 @@ packages:
       '@types/use-sync-external-store': 0.0.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-is: 18.2.0
       redux: 4.2.1
       use-sync-external-store: 1.2.0(react@18.2.0)
@@ -9883,16 +9940,25 @@ packages:
       - webpack-plugin-serve
     dev: false
 
-  /react-test-renderer@16.14.0(react@18.2.0):
-    resolution: {integrity: sha512-L8yPjqPE5CZO6rKsKXRO/rVPiaCOy0tQQJbC+UjPNlobl5mad59lvPjwFsQHTvL03caVDIVr9x9/OSgDe6I5Eg==}
+  /react-shallow-renderer@16.15.0(react@18.2.0):
+    resolution: {integrity: sha512-oScf2FqQ9LFVQgA73vr86xl2NaOIX73rh+YFqcOp68CWj56tSfgtGKrEbyhCj0rSijyG9M1CYprTh39fBi5hzA==}
     peerDependencies:
-      react: ^16.14.0
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
       object-assign: 4.1.1
-      prop-types: 15.8.1
       react: 18.2.0
-      react-is: 16.13.1
-      scheduler: 0.19.1
+      react-is: 18.2.0
+    dev: true
+
+  /react-test-renderer@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-JWD+aQ0lh2gvh4NM3bBM42Kx+XybOxCpgYK7F8ugAlpaTSnWsX+39Z4XkOykGZAHrjwwTZT3x3KxswVWxHPUqA==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      react: 18.2.0
+      react-is: 18.2.0
+      react-shallow-renderer: 16.15.0(react@18.2.0)
+      scheduler: 0.23.0
     dev: true
 
   /react@18.0.0:
@@ -9995,7 +10061,7 @@ packages:
       react-dom: 18.0.0(react@18.0.0)
     dev: false
 
-  /recoil@0.7.7(react@18.2.0):
+  /recoil@0.7.7(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-8Og5KPQW9LwC577Vc7Ug2P0vQshkv1y3zG3tSSkWMqkWSwHmE+by06L8JtnGocjW6gcCvfwB3YtrJG6/tWivNQ==}
     peerDependencies:
       react: '>=16.13.1'
@@ -10009,6 +10075,7 @@ packages:
     dependencies:
       hamt_plus: 1.0.2
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /recursive-readdir@2.2.3:
@@ -10345,18 +10412,17 @@ packages:
       xmlchars: 2.2.0
     dev: true
 
-  /scheduler@0.19.1:
-    resolution: {integrity: sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-    dev: true
-
   /scheduler@0.21.0:
     resolution: {integrity: sha512-1r87x5fz9MXqswA2ERLo0EbOAU74DpIUO090gIasYTqlVoJeMcl+Z1Rg7WHz+qtPujhS/hGIt9kxZOYBV3faRQ==}
     dependencies:
       loose-envify: 1.4.0
     dev: false
+
+  /scheduler@0.23.0:
+    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: true
 
   /schema-utils@2.7.0:
     resolution: {integrity: sha512-0ilKFI6QQF5nxDZLFn2dMjvc4hjg/Wkg7rHd3jK6/A4a1Hl9VFdQWvgB1UMGoU94pad1P/8N7fMcEnLnSiju8A==}

@@ -4,7 +4,7 @@ import { Selector } from 'react-redux';
 import { RecoilState, selector, useRecoilValue } from 'recoil';
 import { createSelector } from 'reselect';
 import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
-import { describe, beforeEach, expect, it } from 'vitest';
+import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
 import { ReduxState, resetStateBetweenTests } from '../internals';
 import { atomFromRedux } from '../atomFromRedux';
@@ -19,8 +19,8 @@ describe('selectors', () => {
   const originalConsoleError: typeof console.error = console.error;
   const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
-    jest.restoreAllMocks();
-    jest.resetModules();
+    vitest.restoreAllMocks();
+    vitest.resetModules();
 
     resetStateBetweenTests();
     testStore = createTestStore();

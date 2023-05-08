@@ -3,7 +3,7 @@ import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilRoot } from 'recoil';
 import { render } from '@testing-library/react';
-import { describe, beforeEach, expect, it } from 'vitest';
+import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
 import { reduxStoreRef, resetStateBetweenTests } from '../internals';
 import { SyncReduxToRecoil } from '../SyncReduxToRecoil';
@@ -16,8 +16,8 @@ describe('read Redux state through Recoil', () => {
   const originalConsoleWarn: typeof console.warn = console.warn;
 
   beforeEach(() => {
-    jest.restoreAllMocks();
-    jest.resetModules();
+    vitest.restoreAllMocks();
+    vitest.resetModules();
 
     resetStateBetweenTests();
     testStore = createTestStore();
@@ -28,7 +28,7 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('needs to be within a Redux context', () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValue();
+    const consoleErrorSpy = vitest.spyOn(console, 'error').mockReturnValue();
 
     expect(() => {
       render(
@@ -57,7 +57,7 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('needs to be within a Recoil context', () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValue();
+    const consoleErrorSpy = vitest.spyOn(console, 'error').mockReturnValue();
 
     expect(() => {
       render(
@@ -83,7 +83,7 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('warns if SyncReduxToRecoil is given invalid options', () => {
-    const consoleWarnSpy = jest.spyOn(console, 'warn').mockReturnValue();
+    const consoleWarnSpy = vitest.spyOn(console, 'warn').mockReturnValue();
 
     const { rerender } = render(
       <Provider store={testStore}>

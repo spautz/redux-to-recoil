@@ -3,7 +3,7 @@ import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { RecoilState, useRecoilValue } from 'recoil';
 import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
-import { describe, beforeEach, expect, it } from 'vitest';
+import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
 import { atomFromRedux } from '../atomFromRedux';
 
@@ -23,8 +23,8 @@ describe('read Redux state through Recoil', () => {
   const originalConsoleError: typeof console.error = console.error;
   const originalConsoleWarn: typeof console.warn = console.warn;
   beforeEach(() => {
-    jest.restoreAllMocks();
-    jest.resetModules();
+    vitest.restoreAllMocks();
+    vitest.resetModules();
 
     resetStateBetweenTests();
     testStore = createTestStore();
@@ -123,7 +123,7 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('warns and returns undefined if readEnabled has never been on', () => {
-    const consoleWarnSpy = jest.spyOn(console, 'warn').mockReturnValueOnce();
+    const consoleWarnSpy = vitest.spyOn(console, 'warn').mockReturnValueOnce();
 
     const nullStore = createTestStore(null);
     const NullReduxProviderWrapper = createTestWrapper(nullStore);
