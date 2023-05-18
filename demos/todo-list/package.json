@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.{js,jsx,json,ts,tsx}\""
+    "lint": "eslint \"src/**/*.{js,jsx,json,ts,tsx}\"",
+    "all:ci": "pnpm run build && pnpm run lint"
   },
   "eslintConfig": {
     "root": true,
