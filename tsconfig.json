@@ -1,36 +1,8 @@
 {
-  "compilerOptions": {
-    /* Basic Options */
-    "target": "ES2019",
-    "module": "esnext",
-    "lib": ["dom", "ES2019"],
-    "allowJs": true,
-    "declaration": true,
-    "jsx": "react",
-    "sourceMap": true,
-    "rootDir": "./src",
-    "removeComments": false,
-    /* Strict Type-Checking Options */
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    /* Additional Checks */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    /* Module Resolution Options */
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    /* Advanced Options */
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": false
-  },
-  "include": ["./src"],
+  "extends": "./tsconfig-base.typecheck.json",
+
+  // Check each package, plus all config files
+  // Each demo app has its own tsconfig, follows the conventions of its build system
+  "include": ["*.ts", "packages/*/*.ts", "packages/*/src"],
   "exclude": ["node_modules"]
 }

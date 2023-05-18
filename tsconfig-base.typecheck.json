@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    // Type Checking
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    // Modules
+    "module": "ES2020",
+    "moduleResolution": "nodenext",
+    // Emit
+    "declaration": true,
+    "noEmit": true,
+    "removeComments": false,
+    "sourceMap": true,
+    // Javascript Support
+    "allowJs": true,
+    "checkJs": true,
+    // Interop Constraints
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    // Language and Environment
+    "jsx": "react",
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "target": "ES2020",
+    // Completeness
+    "skipLibCheck": true
+  }
+}
