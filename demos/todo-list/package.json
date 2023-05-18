@@ -1,5 +1,5 @@
 {
-  "name": "todo-list",
+  "name": "@spautz/redux-to-recoil-demo--todo-list",
   "version": "0.7.0",
   "private": true,
   "dependencies": {
