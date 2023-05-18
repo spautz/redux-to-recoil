@@ -116,4 +116,10 @@ const atomFromRedux = <ReturnType = DefaultReturnType>(path: string): RecoilStat
   return getAtomSelectorFamily()(realPath);
 };
 
-export { atomFromRedux };
+const internal_resetAtomFromRedux = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  atomSelectorFamily = null;
+};
+
+export { atomFromRedux, internal_resetAtomFromRedux };

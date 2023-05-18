@@ -1,15 +1,9 @@
-import { defaultOptions, options } from '../options.js';
-
-const { _recoilSelectorAtomKey, _reduxStateAtomKey } = defaultOptions;
-
-let counter = 0;
+import { internal_resetAtomFromRedux } from '../atomFromRedux';
+import { reduxStoreRef } from './reduxStoreRef';
 
 const resetStateBetweenTests = (): void => {
-  counter++;
-  Object.assign(options, {
-    _recoilSelectorAtomKey: `${_recoilSelectorAtomKey}${counter}`,
-    _reduxStateAtomKey: `${_reduxStateAtomKey}${counter}`,
-  });
+  internal_resetAtomFromRedux();
+  reduxStoreRef.c = null;
 };
 
 export { resetStateBetweenTests };

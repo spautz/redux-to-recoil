@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { RecoilState, useRecoilState, useSetRecoilState } from 'recoil';
-import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
+import { RecoilRoot, RecoilState, useRecoilState, useSetRecoilState } from 'recoil';
+import { act, render } from '@testing-library/react';
+import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
 import { atomFromRedux } from '../atomFromRedux.js';
@@ -99,27 +100,36 @@ describe('write Redux state through Recoil', () => {
   });
 
   it('throws an error if you try to write without SyncReduxToRecoil', () => {
-    const WrapperWithoutSync: React.FC<{ children: ReactNode }> = ({ children }) => (
-      <Provider store={testStore}>{children}</Provider>
-    );
-    const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
-    const useValue1Atom = () => useSetRecoilState(value1Atom);
-
-    const { result } = renderRecoilHook(useValue1Atom, {
-      wrapper: WrapperWithoutSync,
-    });
-
-    const setValue1 = result.current;
+    const consoleErrorSpy = vitest.spyOn(console, 'error').mockReturnValue();
 
     expect(() => {
-      act(() => {
-        setValue1(() => 123);
-      });
+      const Value1Component = () => {
+        const value1Atom: RecoilState<number> = atomFromRedux<number>('no-sync');
+        const setValue1 = useSetRecoilState(value1Atom);
+
+        useEffect(() => {
+          setValue1(123);
+        }, [setValue1]);
+
+        return <button onClick={() => setValue1(456)} />;
+      };
+
+      const result = render(
+        <Provider store={testStore}>
+          <RecoilRoot>
+            <Value1Component />
+          </RecoilRoot>
+        </Provider>,
+      );
+      result.debug();
     }).toThrowError('Cannot dispatch to Redux because <SyncReduxToRecoil> is not mounted');
+
+    expect(console.error).toHaveBeenCalledTimes(2);
+    consoleErrorSpy.mockRestore();
   });
 
   it('emits an error and does nothing if writeEnabled is off', () => {
-    const consoleErrorSpy = vitest.spyOn(console, 'error').mockReturnValueOnce();
+    const consoleErrorSpy = vitest.spyOn(console, 'error').mockReturnValue();
 
     const value1Atom: RecoilState<number> = atomFromRedux<number>('value1');
     const useValue1Atom = () => useRecoilState(value1Atom);

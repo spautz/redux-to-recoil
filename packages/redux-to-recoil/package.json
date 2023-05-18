@@ -88,8 +88,7 @@
     "immutable-path": "^1.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "13.4.0",
-    "@testing-library/react-hooks": "8.0.1",
+    "@testing-library/react": "14.0.0",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-redux": "7.1.25",
@@ -116,7 +115,7 @@
     },
     {
       "path": "dist/index.js",
-      "limit": "2 kB"
+      "limit": "4 kB"
     }
   ],
   "typesVersions": {

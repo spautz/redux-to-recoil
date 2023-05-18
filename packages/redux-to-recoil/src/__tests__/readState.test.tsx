@@ -1,11 +1,10 @@
 import React, { ReactNode } from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { RecoilState, useRecoilValue } from 'recoil';
-import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
+import { RecoilRoot, RecoilState, useRecoilValue } from 'recoil';
+import { act, render } from '@testing-library/react';
+import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
-
-import { atomFromRedux } from '../atomFromRedux.js';
 
 import {
   createTestStore,
@@ -14,8 +13,10 @@ import {
   VALUE2_DEFAULT,
 } from './_helpers/createTestStore';
 import { createTestWrapper } from './_helpers/createTestWrapper';
-import { resetStateBetweenTests } from '../internals/index.js';
+
+import { atomFromRedux } from '../atomFromRedux.js';
 import { SyncReduxToRecoilProps } from '../SyncReduxToRecoil.js';
+import { resetStateBetweenTests } from '../internals';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
@@ -106,20 +107,29 @@ describe('read Redux state through Recoil', () => {
   });
 
   it('throws an error if you try to read without SyncReduxToRecoil', () => {
-    const WrapperWithoutSync: React.FC<{ children?: ReactNode }> = ({ children }) => (
-      <Provider store={testStore}>{children}</Provider>
-    );
-    const value1Atom: RecoilState<number> = atomFromRedux<number>('no-sync');
-    const useValue1Atom = () => useRecoilValue(value1Atom);
+    const consoleErrorSpy = vitest.spyOn(console, 'error').mockReturnValue();
 
-    const { result } = renderRecoilHook(useValue1Atom, {
-      wrapper: WrapperWithoutSync,
-    });
+    expect(() => {
+      const Value1Component = () => {
+        const value1Atom: RecoilState<number> = atomFromRedux<number>('no-sync');
+        const value1 = useRecoilValue(value1Atom);
 
-    expect(result.error).toBeTruthy();
-    expect(result.error.message).toEqual(
-      'Cannot read from Redux because <SyncReduxToRecoil> is not mounted',
-    );
+        return <div>value1 = {value1}</div>;
+      };
+
+      const result = render(
+        <Provider store={testStore}>
+          <RecoilRoot>
+            <Value1Component />
+          </RecoilRoot>
+        </Provider>,
+      );
+      result.debug();
+    }).toThrowError('Cannot read from Redux because <SyncReduxToRecoil> is not mounted');
+
+    // 2 for the error, 1 for having an error
+    expect(console.error).toHaveBeenCalledTimes(3);
+    consoleErrorSpy.mockRestore();
   });
 
   it('warns and returns undefined if readEnabled has never been on', () => {
