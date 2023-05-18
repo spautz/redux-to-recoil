@@ -46,6 +46,8 @@ module.exports = {
     "legacy-types/",
     "lib-dist/",
     "node_modules/",
-    "storybook-static/"
+    "storybook-static/",
+    // Each demo app has its own eslint config, follows the conventions of its build system
+    'demos/'
   ]
 };

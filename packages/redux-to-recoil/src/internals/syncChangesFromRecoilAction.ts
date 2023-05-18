@@ -1,4 +1,4 @@
-import { ChangeEntry } from './types';
+import { ChangeEntry } from './types.js';
 
 const SYNC_CHANGES_FROM_RECOIL = 'SYNC_CHANGES_FROM_RECOIL';
 

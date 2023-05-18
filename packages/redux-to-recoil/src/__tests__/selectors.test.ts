@@ -10,8 +10,8 @@ import { ReduxState, resetStateBetweenTests } from '../internals/index.js';
 import { atomFromRedux } from '../atomFromRedux.js';
 import { selectorFromReselect } from '../selectorFromReselect.js';
 
-import { createTestStore } from './_helpers/createTestStore';
-import { createTestWrapper } from './_helpers/createTestWrapper';
+import { createTestStore } from './_helpers/createTestStore.js';
+import { createTestWrapper } from './_helpers/createTestWrapper.js';
 
 describe('selectors', () => {
   let testStore: Store;

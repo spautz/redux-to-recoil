@@ -8,8 +8,8 @@ import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 
 import { atomFromRedux } from '../atomFromRedux.js';
 
-import { createTestStore, VALUE1_DEFAULT, VALUE2_DEFAULT } from './_helpers/createTestStore';
-import { createTestWrapper } from './_helpers/createTestWrapper';
+import { createTestStore, VALUE1_DEFAULT, VALUE2_DEFAULT } from './_helpers/createTestStore.js';
+import { createTestWrapper } from './_helpers/createTestWrapper.js';
 import { resetStateBetweenTests } from '../internals/index.js';
 import { SyncReduxToRecoilProps } from '../SyncReduxToRecoil.js';
 

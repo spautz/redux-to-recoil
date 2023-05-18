@@ -1,6 +1,6 @@
 import { set as setPath } from 'immutable-path';
 
-import { ChangeEntry, ReduxState } from './types';
+import { ChangeEntry, ReduxState } from './types.js';
 
 const applyChangesToObject = (state: ReduxState, changes: Array<ChangeEntry>): ReduxState => {
   let newState = state;

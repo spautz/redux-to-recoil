@@ -1,5 +1,5 @@
-import { internal_resetAtomFromRedux } from '../atomFromRedux';
-import { reduxStoreRef } from './reduxStoreRef';
+import { internal_resetAtomFromRedux } from '../atomFromRedux.js';
+import { reduxStoreRef } from './reduxStoreRef.js';
 
 const resetStateBetweenTests = (): void => {
   internal_resetAtomFromRedux();

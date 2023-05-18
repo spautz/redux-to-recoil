@@ -8,7 +8,7 @@ import { describe, beforeEach, afterEach, expect, it, vitest } from 'vitest';
 import { reduxStoreRef, resetStateBetweenTests } from '../internals/index.js';
 import { SyncReduxToRecoil } from '../SyncReduxToRecoil.js';
 
-import { createTestStore } from './_helpers/createTestStore';
+import { createTestStore } from './_helpers/createTestStore.js';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;

@@ -1,6 +1,6 @@
 import { atom, RecoilState } from 'recoil';
 
-import { ReduxState } from './types';
+import { ReduxState } from './types.js';
 import { options } from '../options.js';
 
 let reduxStateAtom: RecoilState<ReduxState>;

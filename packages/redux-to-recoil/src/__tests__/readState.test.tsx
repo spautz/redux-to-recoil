@@ -11,12 +11,12 @@ import {
   incrementKeyAction,
   VALUE1_DEFAULT,
   VALUE2_DEFAULT,
-} from './_helpers/createTestStore';
-import { createTestWrapper } from './_helpers/createTestWrapper';
+} from './_helpers/createTestStore.js';
+import { createTestWrapper } from './_helpers/createTestWrapper.js';
 
 import { atomFromRedux } from '../atomFromRedux.js';
 import { SyncReduxToRecoilProps } from '../SyncReduxToRecoil.js';
-import { resetStateBetweenTests } from '../internals';
+import { resetStateBetweenTests } from '../internals/index.js';
 
 describe('read Redux state through Recoil', () => {
   let testStore: Store;
